@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'real_gui.ui'
 #
-# Created by: PyQt5 UI code generator 5.9
+# Created by: PyQt5 UI code generator 5.10
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -51,10 +51,10 @@ class Ui_HSMainWindow(object):
         self.pend_upload_button.setObjectName("pend_upload_button")
         self.main_view_group.addButton(self.pend_upload_button)
         self.verticalLayout.addWidget(self.pend_upload_button)
-        self.global_button = QtWidgets.QPushButton(self.verticalLayoutWidget)
-        self.global_button.setObjectName("global_button")
-        self.main_view_group.addButton(self.global_button)
-        self.verticalLayout.addWidget(self.global_button)
+        self.order_btn = QtWidgets.QPushButton(self.verticalLayoutWidget)
+        self.order_btn.setObjectName("order_btn")
+        self.main_view_group.addButton(self.order_btn)
+        self.verticalLayout.addWidget(self.order_btn)
         self.horizontalLayoutWidget = QtWidgets.QWidget(self.centralwidget)
         self.horizontalLayoutWidget.setGeometry(QtCore.QRect(10, 0, 892, 75))
         self.horizontalLayoutWidget.setObjectName("horizontalLayoutWidget")
@@ -134,16 +134,26 @@ class Ui_HSMainWindow(object):
         self.search_btn.setObjectName("search_btn")
         self.horizontalLayout_4.addWidget(self.search_btn)
         self.horizontalLayout.addLayout(self.horizontalLayout_4)
-        self.catalog_table = QtWidgets.QTableView(self.centralwidget)
-        self.catalog_table.setGeometry(QtCore.QRect(200, 80, 591, 451))
+        self.frame = QtWidgets.QFrame(self.centralwidget)
+        self.frame.setGeometry(QtCore.QRect(200, 80, 591, 441))
+        self.frame.setFrameShape(QtWidgets.QFrame.NoFrame)
+        self.frame.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.frame.setObjectName("frame")
+        self.catalog_table = QtWidgets.QTableView(self.frame)
+        self.catalog_table.setGeometry(QtCore.QRect(0, 0, 591, 451))
         self.catalog_table.setMouseTracking(True)
         self.catalog_table.setContextMenuPolicy(QtCore.Qt.CustomContextMenu)
+        self.catalog_table.setStyleSheet("background-color: rgb(170, 170, 255);")
         self.catalog_table.setSortingEnabled(True)
         self.catalog_table.setObjectName("catalog_table")
         self.catalog_table.verticalHeader().setVisible(False)
+        self.orders_list = QtWidgets.QListWidget(self.frame)
+        self.orders_list.setGeometry(QtCore.QRect(0, 0, 591, 451))
+        self.orders_list.setStyleSheet("background-color: rgb(170, 170, 255);")
+        self.orders_list.setObjectName("orders_list")
         HSMainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(HSMainWindow)
-        self.menubar.setGeometry(QtCore.QRect(0, 0, 804, 21))
+        self.menubar.setGeometry(QtCore.QRect(0, 0, 804, 18))
         self.menubar.setObjectName("menubar")
         self.menuFile = QtWidgets.QMenu(self.menubar)
         self.menuFile.setObjectName("menuFile")
@@ -207,11 +217,11 @@ class Ui_HSMainWindow(object):
 
     def retranslateUi(self, HSMainWindow):
         _translate = QtCore.QCoreApplication.translate
-        HSMainWindow.setWindowTitle(_translate("HSMainWindow", "MainWindow"))
+        HSMainWindow.setWindowTitle(_translate("HSMainWindow", "HangarSwap Seller App"))
         self.active_cat_button.setText(_translate("HSMainWindow", "Active Catalog"))
         self.inactive_cat_button.setText(_translate("HSMainWindow", "Inactive Items"))
         self.pend_upload_button.setText(_translate("HSMainWindow", "Waiting to Upload"))
-        self.global_button.setText(_translate("HSMainWindow", "Global Catalog"))
+        self.order_btn.setText(_translate("HSMainWindow", "Orders"))
         self.newprod_button.setText(_translate("HSMainWindow", "New"))
         self.edit_button.setText(_translate("HSMainWindow", "Edit"))
         self.preview_button.setText(_translate("HSMainWindow", "Preview"))

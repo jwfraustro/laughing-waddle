@@ -64,12 +64,16 @@ class Ui_LoginDialog(object):
         self.pswd_lbl.setObjectName("pswd_lbl")
         self.verticalLayout.addWidget(self.pswd_lbl)
         self.pswd_le = QtWidgets.QLineEdit(self.gridLayoutWidget)
+        self.pswd_le.setEchoMode(QtWidgets.QLineEdit.Password)
         self.pswd_le.setObjectName("pswd_le")
         self.verticalLayout.addWidget(self.pswd_le)
+        self.error_lbl = QtWidgets.QLabel(LoginDialog)
+        self.error_lbl.setGeometry(QtCore.QRect(10, 240, 191, 31))
+        self.error_lbl.setText("")
+        self.error_lbl.setObjectName("error_lbl")
 
         self.retranslateUi(LoginDialog)
-        self.buttonBox.accepted.connect(LoginDialog.accept)
-        self.buttonBox.rejected.connect(LoginDialog.reject)
+        self.buttonBox.rejected.connect(LoginDialog.close)
         QtCore.QMetaObject.connectSlotsByName(LoginDialog)
 
     def retranslateUi(self, LoginDialog):

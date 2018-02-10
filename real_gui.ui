@@ -23,7 +23,7 @@
    <enum>Qt::CustomContextMenu</enum>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>HangarSwap Seller App</string>
   </property>
   <property name="tabShape">
    <enum>QTabWidget::Rounded</enum>
@@ -91,9 +91,9 @@
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="global_button">
+      <widget class="QPushButton" name="order_btn">
        <property name="text">
-        <string>Global Catalog</string>
+        <string>Orders</string>
        </property>
        <attribute name="buttonGroup">
         <string notr="true">main_view_group</string>
@@ -248,27 +248,59 @@
      </item>
     </layout>
    </widget>
-   <widget class="QTableView" name="catalog_table">
+   <widget class="QFrame" name="frame">
     <property name="geometry">
      <rect>
       <x>200</x>
       <y>80</y>
       <width>591</width>
-      <height>451</height>
+      <height>441</height>
      </rect>
     </property>
-    <property name="mouseTracking">
-     <bool>true</bool>
+    <property name="frameShape">
+     <enum>QFrame::NoFrame</enum>
     </property>
-    <property name="contextMenuPolicy">
-     <enum>Qt::CustomContextMenu</enum>
+    <property name="frameShadow">
+     <enum>QFrame::Raised</enum>
     </property>
-    <property name="sortingEnabled">
-     <bool>true</bool>
-    </property>
-    <attribute name="verticalHeaderVisible">
-     <bool>false</bool>
-    </attribute>
+    <widget class="QTableView" name="catalog_table">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>0</y>
+       <width>591</width>
+       <height>451</height>
+      </rect>
+     </property>
+     <property name="mouseTracking">
+      <bool>true</bool>
+     </property>
+     <property name="contextMenuPolicy">
+      <enum>Qt::CustomContextMenu</enum>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: rgb(170, 170, 255);</string>
+     </property>
+     <property name="sortingEnabled">
+      <bool>true</bool>
+     </property>
+     <attribute name="verticalHeaderVisible">
+      <bool>false</bool>
+     </attribute>
+    </widget>
+    <widget class="QListWidget" name="orders_list">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>0</y>
+       <width>591</width>
+       <height>451</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: rgb(170, 170, 255);</string>
+     </property>
+    </widget>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
@@ -277,7 +309,7 @@
      <x>0</x>
      <y>0</y>
      <width>804</width>
-     <height>21</height>
+     <height>18</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">

@@ -3,21 +3,22 @@ import imghdr
 import sys
 
 import bs4
-import edit_product_widget
-import mainwindow
-import new_product_widget
 import requests
-
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtGui import QPixmap
 from requests_toolbelt.multipart.encoder import MultipartEncoder
 
+import edit_product_widget
+import login_form
+import mainwindow
+import new_product_widget
+
 pr_id = ''
 
-payload = {
-    'Username': 'fastaviationfl@gmail.com',
-    'Password': 'rlietzke',
-    'authToken': ''
+payload  = {
+            'Username': '',
+            'Password': '',
+            'authToken': ''
 }
 
 sys._excepthook = sys.excepthook
@@ -413,33 +414,49 @@ class ExampleApp(QtWidgets.QMainWindow, mainwindow.Ui_HSMainWindow):
             clip = QtWidgets.QApplication.clipboard()
             myitem.setText(clip.text())
 
+class loginForm(QtWidgets.QMainWindow, login_form.Ui_LoginDialog):
+    def __init__(self, parent=None):
+        super(loginForm, self).__init__(parent)
+        self.setupUi(self)
+
+        self.buttonBox.accepted.connect(self.loginProcess)
+
+    def loginProcess(self):
+
+        payload['Username']= self.userName_le.text()
+        payload['Password']= self.pswd_le.text()
+
+        s = requests.Session()
+        p = s.post('http://www.hangarswap.com/Main/Login')
+        soup = bs4.BeautifulSoup(p.text, "html.parser")
+
+        authToken = soup.select('input[name="authToken"]')[0]
+        payload['authToken'] = authToken.get('value')
+
+        p = s.post('https://www.hangarswap.com/Main/ProcessLogin', data=payload, verify=False, allow_redirects=False)
+        if 'location' not in p.headers.keys():
+            self.error_lbl.setText('There was an error logging in.')
+        else:
+            self.close()
+
+
+
+
 
 def main():
     app = QtWidgets.QApplication(sys.argv)
+
     form = ExampleApp('')
-    ##    form.setStyleSheet("""
-    ##
-    ##    QPushButton
-    ##    {
-    ##    background-color: rgb(80, 85, 88);
-    ##    color: rgb(255, 255, 255);
-    ##    }
-    ##    """)
-    ##
     form.show()
+
+    login = loginForm()
+    login.show()
+
     app.exec()
 
 
 if __name__ == '__main__':
     sys.excepthook = my_exception_hook
 
-    s = requests.Session()
-    p = s.post('http://www.hangarswap.com/Main/Login')
-    soup = bs4.BeautifulSoup(p.text, "html.parser")
 
-    authToken = soup.select('input[name="authToken"]')[0]
-    payload['authToken'] = authToken.get('value')
-
-    p = s.post('https://www.hangarswap.com/Main/ProcessLogin', data=payload, verify=False, allow_redirects=False)
-    p.raise_for_status()
     main()
