@@ -944,6 +944,15 @@
     <layout class="QGridLayout" name="gridLayout">
      <item row="1" column="0">
       <widget class="QLabel" name="img3_lbl">
+       <property name="baseSize">
+        <size>
+         <width>97</width>
+         <height>109</height>
+        </size>
+       </property>
+       <property name="focusPolicy">
+        <enum>Qt::ClickFocus</enum>
+       </property>
        <property name="contextMenuPolicy">
         <enum>Qt::CustomContextMenu</enum>
        </property>
@@ -957,6 +966,15 @@
      </item>
      <item row="2" column="1">
       <widget class="QLabel" name="img6_lbl">
+       <property name="baseSize">
+        <size>
+         <width>97</width>
+         <height>109</height>
+        </size>
+       </property>
+       <property name="focusPolicy">
+        <enum>Qt::ClickFocus</enum>
+       </property>
        <property name="contextMenuPolicy">
         <enum>Qt::CustomContextMenu</enum>
        </property>
@@ -970,6 +988,15 @@
      </item>
      <item row="3" column="0">
       <widget class="QLabel" name="img7_lbl">
+       <property name="baseSize">
+        <size>
+         <width>97</width>
+         <height>109</height>
+        </size>
+       </property>
+       <property name="focusPolicy">
+        <enum>Qt::ClickFocus</enum>
+       </property>
        <property name="contextMenuPolicy">
         <enum>Qt::CustomContextMenu</enum>
        </property>
@@ -983,6 +1010,15 @@
      </item>
      <item row="3" column="1">
       <widget class="QLabel" name="img8_lbl">
+       <property name="baseSize">
+        <size>
+         <width>97</width>
+         <height>109</height>
+        </size>
+       </property>
+       <property name="focusPolicy">
+        <enum>Qt::ClickFocus</enum>
+       </property>
        <property name="contextMenuPolicy">
         <enum>Qt::CustomContextMenu</enum>
        </property>
@@ -996,6 +1032,15 @@
      </item>
      <item row="2" column="0">
       <widget class="QLabel" name="img5_lbl">
+       <property name="baseSize">
+        <size>
+         <width>97</width>
+         <height>109</height>
+        </size>
+       </property>
+       <property name="focusPolicy">
+        <enum>Qt::ClickFocus</enum>
+       </property>
        <property name="contextMenuPolicy">
         <enum>Qt::CustomContextMenu</enum>
        </property>
@@ -1009,6 +1054,15 @@
      </item>
      <item row="1" column="1">
       <widget class="QLabel" name="img4_lbl">
+       <property name="baseSize">
+        <size>
+         <width>97</width>
+         <height>109</height>
+        </size>
+       </property>
+       <property name="focusPolicy">
+        <enum>Qt::ClickFocus</enum>
+       </property>
        <property name="contextMenuPolicy">
         <enum>Qt::CustomContextMenu</enum>
        </property>
@@ -1022,6 +1076,15 @@
      </item>
      <item row="0" column="0">
       <widget class="QLabel" name="img1_lbl">
+       <property name="baseSize">
+        <size>
+         <width>97</width>
+         <height>109</height>
+        </size>
+       </property>
+       <property name="focusPolicy">
+        <enum>Qt::ClickFocus</enum>
+       </property>
        <property name="contextMenuPolicy">
         <enum>Qt::CustomContextMenu</enum>
        </property>
@@ -1035,6 +1098,15 @@
      </item>
      <item row="0" column="1">
       <widget class="QLabel" name="img2_lbl">
+       <property name="baseSize">
+        <size>
+         <width>97</width>
+         <height>109</height>
+        </size>
+       </property>
+       <property name="focusPolicy">
+        <enum>Qt::ClickFocus</enum>
+       </property>
        <property name="contextMenuPolicy">
         <enum>Qt::CustomContextMenu</enum>
        </property>
@@ -1048,6 +1120,15 @@
      </item>
      <item row="4" column="0">
       <widget class="QLabel" name="img9_lbl">
+       <property name="baseSize">
+        <size>
+         <width>97</width>
+         <height>109</height>
+        </size>
+       </property>
+       <property name="focusPolicy">
+        <enum>Qt::ClickFocus</enum>
+       </property>
        <property name="contextMenuPolicy">
         <enum>Qt::CustomContextMenu</enum>
        </property>
@@ -1061,6 +1142,15 @@
      </item>
      <item row="4" column="1">
       <widget class="QLabel" name="img10_lbl">
+       <property name="baseSize">
+        <size>
+         <width>97</width>
+         <height>109</height>
+        </size>
+       </property>
+       <property name="focusPolicy">
+        <enum>Qt::ClickFocus</enum>
+       </property>
        <property name="contextMenuPolicy">
         <enum>Qt::CustomContextMenu</enum>
        </property>
@@ -1073,6 +1163,16 @@
       </widget>
      </item>
     </layout>
+    <zorder>img10_lbl</zorder>
+    <zorder>img9_lbl</zorder>
+    <zorder>img7_lbl</zorder>
+    <zorder>img2_lbl</zorder>
+    <zorder>img5_lbl</zorder>
+    <zorder>img8_lbl</zorder>
+    <zorder>img6_lbl</zorder>
+    <zorder>img4_lbl</zorder>
+    <zorder>img1_lbl</zorder>
+    <zorder>img3_lbl</zorder>
    </widget>
   </widget>
   <widget class="QWidget" name="horizontalLayoutWidget_7">
@@ -1108,6 +1208,9 @@
     </item>
    </layout>
   </widget>
+  <zorder>img_groupbox</zorder>
+  <zorder>verticalLayoutWidget</zorder>
+  <zorder>horizontalLayoutWidget_7</zorder>
  </widget>
  <resources/>
  <connections>
@@ -1291,8 +1394,8 @@
  <buttongroups>
   <buttongroup name="sale_btnGroup"/>
   <buttongroup name="core_btnGroup"/>
-  <buttongroup name="offer_btnGroup"/>
   <buttongroup name="active_btnGroup"/>
+  <buttongroup name="offer_btnGroup"/>
   <buttongroup name="feat_btnGroup"/>
  </buttongroups>
 </ui>

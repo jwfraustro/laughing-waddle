@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'real_gui.ui'
 #
-# Created by: PyQt5 UI code generator 5.10
+# Created by: PyQt5 UI code generator 5.9
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -11,7 +11,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_HSMainWindow(object):
     def setupUi(self, HSMainWindow):
         HSMainWindow.setObjectName("HSMainWindow")
-        HSMainWindow.resize(804, 573)
+        HSMainWindow.resize(932, 661)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -135,25 +135,35 @@ class Ui_HSMainWindow(object):
         self.horizontalLayout_4.addWidget(self.search_btn)
         self.horizontalLayout.addLayout(self.horizontalLayout_4)
         self.frame = QtWidgets.QFrame(self.centralwidget)
-        self.frame.setGeometry(QtCore.QRect(200, 80, 591, 441))
+        self.frame.setGeometry(QtCore.QRect(200, 80, 731, 541))
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.frame.sizePolicy().hasHeightForWidth())
+        self.frame.setSizePolicy(sizePolicy)
         self.frame.setFrameShape(QtWidgets.QFrame.NoFrame)
         self.frame.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frame.setObjectName("frame")
         self.catalog_table = QtWidgets.QTableView(self.frame)
-        self.catalog_table.setGeometry(QtCore.QRect(0, 0, 591, 451))
+        self.catalog_table.setGeometry(QtCore.QRect(0, 0, 681, 521))
         self.catalog_table.setMouseTracking(True)
         self.catalog_table.setContextMenuPolicy(QtCore.Qt.CustomContextMenu)
         self.catalog_table.setStyleSheet("background-color: rgb(170, 170, 255);")
         self.catalog_table.setSortingEnabled(True)
         self.catalog_table.setObjectName("catalog_table")
         self.catalog_table.verticalHeader().setVisible(False)
-        self.orders_list = QtWidgets.QListWidget(self.frame)
-        self.orders_list.setGeometry(QtCore.QRect(0, 0, 591, 451))
-        self.orders_list.setStyleSheet("background-color: rgb(170, 170, 255);")
+        self.orders_list = QtWidgets.QTableView(self.frame)
+        self.orders_list.setEnabled(True)
+        self.orders_list.setGeometry(QtCore.QRect(0, 0, 721, 521))
+        self.orders_list.setContextMenuPolicy(QtCore.Qt.CustomContextMenu)
+        self.orders_list.setStyleSheet("")
+        self.orders_list.setSizeAdjustPolicy(QtWidgets.QAbstractScrollArea.AdjustToContents)
         self.orders_list.setObjectName("orders_list")
+        self.orders_list.horizontalHeader().setVisible(True)
+        self.orders_list.verticalHeader().setVisible(False)
         HSMainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(HSMainWindow)
-        self.menubar.setGeometry(QtCore.QRect(0, 0, 804, 18))
+        self.menubar.setGeometry(QtCore.QRect(0, 0, 932, 21))
         self.menubar.setObjectName("menubar")
         self.menuFile = QtWidgets.QMenu(self.menubar)
         self.menuFile.setObjectName("menuFile")

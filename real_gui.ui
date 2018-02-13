@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>804</width>
-    <height>573</height>
+    <width>932</width>
+    <height>661</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -253,9 +253,15 @@
      <rect>
       <x>200</x>
       <y>80</y>
-      <width>591</width>
-      <height>441</height>
+      <width>731</width>
+      <height>541</height>
      </rect>
+    </property>
+    <property name="sizePolicy">
+     <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+      <horstretch>0</horstretch>
+      <verstretch>0</verstretch>
+     </sizepolicy>
     </property>
     <property name="frameShape">
      <enum>QFrame::NoFrame</enum>
@@ -268,8 +274,8 @@
       <rect>
        <x>0</x>
        <y>0</y>
-       <width>591</width>
-       <height>451</height>
+       <width>681</width>
+       <height>521</height>
       </rect>
      </property>
      <property name="mouseTracking">
@@ -288,18 +294,33 @@
       <bool>false</bool>
      </attribute>
     </widget>
-    <widget class="QListWidget" name="orders_list">
+    <widget class="QTableView" name="orders_list">
+     <property name="enabled">
+      <bool>true</bool>
+     </property>
      <property name="geometry">
       <rect>
        <x>0</x>
        <y>0</y>
-       <width>591</width>
-       <height>451</height>
+       <width>721</width>
+       <height>521</height>
       </rect>
      </property>
-     <property name="styleSheet">
-      <string notr="true">background-color: rgb(170, 170, 255);</string>
+     <property name="contextMenuPolicy">
+      <enum>Qt::CustomContextMenu</enum>
      </property>
+     <property name="styleSheet">
+      <string notr="true"/>
+     </property>
+     <property name="sizeAdjustPolicy">
+      <enum>QAbstractScrollArea::AdjustToContents</enum>
+     </property>
+     <attribute name="horizontalHeaderVisible">
+      <bool>true</bool>
+     </attribute>
+     <attribute name="verticalHeaderVisible">
+      <bool>false</bool>
+     </attribute>
     </widget>
    </widget>
   </widget>
@@ -308,8 +329,8 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>804</width>
-     <height>18</height>
+     <width>932</width>
+     <height>21</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
