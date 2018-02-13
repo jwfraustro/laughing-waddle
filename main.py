@@ -255,8 +255,37 @@ class NewItemWidget(QtWidgets.QMainWindow, new_product_widget.Ui_ListItemWidget)
             return
 
     def uploadItem(self):
-        item_data, imgs = self.processForm(self.img_names)
-        addProduct(item_data, imgs)
+        try:
+          upload_msg = QMessageBox()
+          upload_msg.setText("Processing Product...")
+          upload_msg.setWindowTitle("Uploading Product")
+          upload_msg.show()
+          item_data, imgs = self.processForm(self.img_names)
+          upload_msg.close()
+
+        except:
+            error_msg = QMessageBox()
+            error_msg.setText("Error processing the product. Please make sure all required forms are filled.")
+            error_msg.setWindowTitle("Product Upload Error")
+            error_msg.setStandardButtons(QMessageBox.Ok)
+            error_msg.show()
+            error_msg.exec_()
+            return
+        try:
+            upload_msg = QMessageBox()
+            upload_msg.setText("Uploading Product...")
+            upload_msg.setWindowTitle("Uploading Product")
+            upload_msg.show()
+            addProduct(item_data, imgs)
+            upload_msg.close()
+        except:
+            error_msg = QMessageBox()
+            error_msg.setText("Error uploading the product. Make sure you're logged in.")
+            error_msg.setWindowTitle("Product Upload Error")
+            error_msg.setStandardButtons(QMessageBox.Ok)
+            error_msg.show()
+            error_msg.exec_()
+            return
 
     def processForm(self, img_names):
 
