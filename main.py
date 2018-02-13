@@ -85,7 +85,8 @@ class NewItemWidget(QtWidgets.QMainWindow, new_product_widget.Ui_ListItemWidget)
         self.img_names={}
         # item_form = self.readForm(self)
         self.img_upload_btn.clicked.connect(self.insertImages)
-        item_form = self.upload_new_button.clicked.connect(self.processForm)
+        self.upload_new_button.clicked.connect(self.uploadItem)
+        self.save_templ_button.clicked.connect(self.saveProduct)
         print(self.gridLayout.count())
         # addProduct(item_form)
 
@@ -220,6 +221,16 @@ class NewItemWidget(QtWidgets.QMainWindow, new_product_widget.Ui_ListItemWidget)
 
         print(self.img_names)
 
+    def saveProduct(self):
+        item_data, imgs = self.processForm(self.img_names)
+        with open("waiting_to_upload.csv", 'a', newline='\n') as f:
+            writer = csv.writer(f, delimiter = ',')
+            writer.writerow([item_data,imgs])
+
+    def uploadItem(self):
+        item_data, imgs = self.processForm(self.img_names)
+        addProduct(item_data, imgs)
+
     def processForm(self, img_names):
 
         # processing text
@@ -320,7 +331,7 @@ class NewItemWidget(QtWidgets.QMainWindow, new_product_widget.Ui_ListItemWidget)
         if self.cond_options.currentText() == 'Core':
             item_form['productCondition'] = 'Core'
 
-        addProduct(item_form, self.img_names)
+        return(item_form, self.img_names)
 
 
 class EditItemWidget(QtWidgets.QMainWindow, edit_product_widget.Ui_ListItemWidget):
