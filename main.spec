@@ -4,7 +4,7 @@ block_cipher = None
 
 
 a = Analysis(['main.py'],
-             pathex=['C:\\Users\\Joshua Fraustro\\Dropbox\\HS\\HSAPP\\1.0'],
+             pathex=['C:\\Users\\Joshua Fraustro\\Dropbox\\HS\\HSAPP\\1.0\\1.01'],
              binaries=[],
              datas=[],
              hiddenimports=[],

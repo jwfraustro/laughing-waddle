@@ -223,9 +223,12 @@ class NewItemWidget(QtWidgets.QMainWindow, new_product_widget.Ui_ListItemWidget)
 
     def saveProduct(self):
         item_data, imgs = self.processForm(self.img_names)
-        with open("waiting_to_upload.csv", 'a', newline='\n') as f:
-            writer = csv.writer(f, delimiter = ',')
-            writer.writerow([item_data,imgs])
+        try:
+            with open("waiting_to_upload.csv", 'a', newline='\n') as f:
+                writer = csv.writer(f, delimiter = ',')
+                writer.writerow([[item_data,imgs]])
+        except:
+            pass
 
     def uploadItem(self):
         item_data, imgs = self.processForm(self.img_names)
