@@ -6,7 +6,6 @@ import bs4
 import requests
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtGui import QPixmap
-from PyQt5.QtWidgets import QMessageBox
 from requests_toolbelt.multipart.encoder import MultipartEncoder
 
 import edit_product_widget
@@ -14,7 +13,7 @@ import login_form
 import mainwindow
 import new_product_widget
 
-s = None
+s = ''
 
 pr_id = ''
 
@@ -63,18 +62,19 @@ def addProduct(item_data, filenames):
         print("Post Successful")
 
         if (len(filenames) > 1):
+            del filenames[0]
             soup = bs4.BeautifulSoup(t.text, "html.parser")
             pr_id = soup.select('[href*="ProductID"]')[0].get("href")[-5:].strip("=")
-            for i in range(2, len(filenames)):
+            for i in range(0, len(filenames)):
                 photo_form = MultipartEncoder(
                     fields={
                         'productid': str(pr_id),
                         'ProductImage': (
-                        'filename', open(filenames['img'+str(i)+'_lbl'], 'rb'), ('image/' + str(imghdr.what(filenames['img'+str(i)+'_lbl'])))),
+                        'filename', open(filenames[i], 'rb'), ('image/' + str(imghdr.what(filenames[i])))),
                     }, boundary='-----WebKitFormBoundarydMG06kgczAncwn4B')
                 t = s.post('https://www.hangarswap.com/Seller/SaveExtraImages', data=photo_form,
                            headers={'Content-Type': photo_form.content_type})
-                print('submitted ', filenames['img'+str(i)+'_lbl'])
+                print('submitted ', filenames[i])
 
 
 class NewItemWidget(QtWidgets.QMainWindow, new_product_widget.Ui_ListItemWidget):
@@ -82,12 +82,9 @@ class NewItemWidget(QtWidgets.QMainWindow, new_product_widget.Ui_ListItemWidget)
         super(NewItemWidget, self).__init__(parent)
 
         self.setupUi(self)
-
-        self.img_names={}
         # item_form = self.readForm(self)
-        self.img_upload_btn.clicked.connect(self.insertImages)
-        self.upload_new_button.clicked.connect(self.uploadItem)
-        self.save_templ_button.clicked.connect(self.saveProduct)
+        self.filenames = self.img_upload_btn.clicked.connect(self.insertImages)
+        item_form = self.upload_new_button.clicked.connect(self.processForm)
         print(self.gridLayout.count())
         # addProduct(item_form)
 
@@ -110,98 +107,39 @@ class NewItemWidget(QtWidgets.QMainWindow, new_product_widget.Ui_ListItemWidget)
         removePhotoAction = QtWidgets.QAction('Remove Photo', self)
         removePhotoAction.triggered.connect(lambda: self.removePhotoContext(event))
 
-        addPhotoAction = QtWidgets.QAction('Add/Replace Photo', self)
+        addPhotoAction = QtWidgets.QAction('Add Photo', self)
         addPhotoAction.triggered.connect(lambda: self.addPhotoContext(event))
-
-
-        defaultPhotoAction = QtWidgets.QAction('Set as Default Photo', self)
-        defaultPhotoAction.triggered.connect(lambda: self.defaultPhotoContext(event)) 
 
         self.menu2.addAction(addPhotoAction)
         self.menu2.addAction(removePhotoAction)
-        self.menu2.addSeparator()
-        self.menu2.addAction(defaultPhotoAction)
 
         self.menu2.popup(QtGui.QCursor.pos())
-        w = QtWidgets.QApplication.widgetAt(QtGui.QCursor.pos())
-        print(w.objectName())
-
-    def defaultPhotoContext(self, event):
-        pos = QtGui.QCursor.pos()
-        w = QtWidgets.QApplication.widgetAt(pos)
-        print(w.objectName())
-
-        #instance temp holder lists / img
-        temp_list =[]
-        temp = self.img_names.get(w.objectName())
-
-        #remove selected image from dict and fill temp list
-        del self.img_names[w.objectName()]
-        for labels, imgs in self.img_names.items():
-            temp_list.append(imgs)
-        self.img_names.clear()
-
-        #reinsert temp img
-        temp_list.insert(0, temp)
-        print(len(temp_list))
-
-        #clear pixmaps
-        col = 0
-        row = 0
-        for i in range(0,11):
-            if col == 2:
-                col = 0
-                row += 1
-            w = self.gridLayout.itemAtPosition(row, col).widget()
-            w.clear()
-
-        #update pixmaps and file list
-        col=0
-        row=0
-        for img in range(0,len(temp_list)):
-            print(img, temp_list[img])
-            pixmap = QPixmap(temp_list[img])
-            pixmap = QPixmap(pixmap.scaled(97, 97))
-            if col == 2:
-                col = 0
-                row += 1
-            w = self.gridLayout.itemAtPosition(row, col).widget()
-            self.img_names[w.objectName()]=temp_list[img]
-            w.setPixmap(QPixmap(pixmap))
-            col += 1
-
-        print(w.objectName(), img)
-
-
+        print(QtWidgets.QApplication.widgetAt(QtGui.QCursor.pos()))
 
     def removePhotoContext(self, event):
-        #get lbl at cursor, and remove from dict
         pos = QtGui.QCursor.pos()
         w = QtWidgets.QApplication.widgetAt(pos)
-        print(w.objectName())
+        print(w)
         w.clear()
-        del self.img_names[w.objectName()]
-        print(self.img_names)
 
     def addPhotoContext(self, event):
-        #get lbl at cursor, and place in dict
         pos = QtGui.QCursor.pos()
         w = QtWidgets.QApplication.widgetAt(pos)
-        print(w.objectName())
+        print(w)
         img, _ = QtWidgets.QFileDialog.getOpenFileName(self, "Select Images", (QtCore.QDir.homePath()))
         print(img)
         pixmap = QPixmap(img)
         pixmap = QPixmap(pixmap.scaled(97, 97))
         w.setPixmap(pixmap)
-        self.img_names[w.objectName()]=img
-        print(self.img_names)
+        print(w.objectName())
 
 
     def insertImages(self):
-        #get images
+
         self.input_filenames, _ = QtWidgets.QFileDialog.getOpenFileNames(self, "Select Images",
                                                                    (QtCore.QDir.homePath()))
-        #iterate through labels, set pixmaps, add to images dict
+
+        self.img_names = {}
         col = 0
         row = 0
         for item in range(0, len(self.input_filenames)):
@@ -215,51 +153,17 @@ class NewItemWidget(QtWidgets.QMainWindow, new_product_widget.Ui_ListItemWidget)
             w = self.gridLayout.itemAtPosition(row, col).widget()
             print(item)
             w.setPixmap(QPixmap(pixmap))
-            self.img_names[w.objectName()]=self.input_filenames[item]
+            self.img_names[w.objectName()]=item
             print("placed")
-            print(('image/' + str(imghdr.what(self.input_filenames[item]))))
+            print(('image/' + str(imghdr.what(self.filenames[item]))))
             col += 1
 
-        print(self.img_names)
+        print(self.filenames)
 
-    def saveProduct(self):
-        try:
-            item_data, imgs = self.processForm(self.img_names)
-        except:
-            error_msg = QMessageBox()
-            error_msg.setText("There was an error saving the product. Please make sure all required forms are filled.")
-            error_msg.setWindowTitle("Product Save Error")
-            error_msg.setStandardButtons(QMessageBox.Ok)
-            error_msg.show()
-            error_msg.exec_()
-            return
-        try:
-            with open("waiting_to_upload.csv", 'a', newline='\n') as f:
-                writer = csv.writer(f, delimiter = ',')
-                writer.writerow([[item_data,imgs]])
-                ok_msg = QMessageBox()
-                ok_msg.setText("Product saved!")
-                ok_msg.setWindowTitle("Product Saved")
-                ok_msg.setStandardButtons(QMessageBox.Ok)
-                ok_msg.show()
-                ok_msg.exec_()
-                return
+    def processForm(self, filenames):
+        print(self.name_le.text())
 
-        except:
-            error_msg = QMessageBox()
-            error_msg.setText("There was an error saving the product.")
-            error_msg.setWindowTitle("Product Save Error")
-            error_msg.setStandardButtons(QMessageBox.Ok)
-            error_msg.show()
-            error_msg.exec_()
-            return
-
-    def uploadItem(self):
-        item_data, imgs = self.processForm(self.img_names)
-        addProduct(item_data, imgs)
-
-    def processForm(self, img_names):
-
+        print(self.filenames[0])
         # processing text
         item_form = {
             'productName': self.name_le.text(),
@@ -276,7 +180,7 @@ class NewItemWidget(QtWidgets.QMainWindow, new_product_widget.Ui_ListItemWidget)
             'ShippingCost': self.ship_le.text(),
             'HasCore': '',
             'CoreCharge': '0.00',
-            'productImage': ('filename', open(self.img_names['img1_lbl'], 'rb'), ('image/' + str(imghdr.what(self.img_names['img1_lbl'])))),
+            'productImage': ('filename', open(self.filenames[0], 'rb'), 'image/jpg'),
             # 'SecondaryproductImage' : '',
             'Active': '',
             'OnSale': '',
@@ -358,7 +262,7 @@ class NewItemWidget(QtWidgets.QMainWindow, new_product_widget.Ui_ListItemWidget)
         if self.cond_options.currentText() == 'Core':
             item_form['productCondition'] = 'Core'
 
-        return(item_form, self.img_names)
+        addProduct(item_form, self.filenames)
 
 
 class EditItemWidget(QtWidgets.QMainWindow, edit_product_widget.Ui_ListItemWidget):
@@ -366,7 +270,6 @@ class EditItemWidget(QtWidgets.QMainWindow, edit_product_widget.Ui_ListItemWidge
         super(EditItemWidget, self).__init__(parent)
         self.setupUi(self)
 
-        #instance context menu options
         self.img1_lbl.customContextMenuRequested.connect(self.contextMenuEvent)
         self.img2_lbl.customContextMenuRequested.connect(self.contextMenuEvent)
         self.img3_lbl.customContextMenuRequested.connect(self.contextMenuEvent)
@@ -512,7 +415,7 @@ class ExampleApp(QtWidgets.QMainWindow, mainwindow.Ui_HSMainWindow):
         if ok:
             return pr_id
         else:
-            self.close()
+            pass
 
     def load_csv(self, fileName):
         fileName, _ = QtWidgets.QFileDialog.getOpenFileName(self, "Open CSV",
@@ -591,16 +494,14 @@ class loginForm(QtWidgets.QMainWindow, login_form.Ui_LoginDialog):
 
         self.buttonBox.accepted.connect(self.loginProcess)
 
-
     def loginProcess(self):
 
-        payload['Username'] = self.userName_le.text()
-        payload['Password'] = self.pswd_le.text()
+        payload['Username']= self.userName_le.text()
+        payload['Password']= self.pswd_le.text()
 
+        global s
         s = requests.Session()
-        print("Made session")
-        p = s.get('http://www.hangarswap.com/Main/Login')
-        print("posted login")
+        p = s.post('http://www.hangarswap.com/Main/Login')
         soup = bs4.BeautifulSoup(p.text, "html.parser")
 
         authToken = soup.select('input[name="authToken"]')[0]
@@ -613,17 +514,14 @@ class loginForm(QtWidgets.QMainWindow, login_form.Ui_LoginDialog):
             self.close()
 
 
-
 def main():
     app = QtWidgets.QApplication(sys.argv)
 
     form = ExampleApp('')
     form.show()
 
-    login_app = QtWidgets.QApplication(sys.argv)
     login = loginForm()
     login.show()
-    login_app.exec()
 
     app.exec()
 
