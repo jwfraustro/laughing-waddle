@@ -6,6 +6,7 @@ import bs4
 import requests
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtGui import QPixmap
+from PyQt5.QtWidgets import QMessageBox
 from requests_toolbelt.multipart.encoder import MultipartEncoder
 
 import edit_product_widget
@@ -222,13 +223,36 @@ class NewItemWidget(QtWidgets.QMainWindow, new_product_widget.Ui_ListItemWidget)
         print(self.img_names)
 
     def saveProduct(self):
-        item_data, imgs = self.processForm(self.img_names)
+        try:
+            item_data, imgs = self.processForm(self.img_names)
+        except:
+            error_msg = QMessageBox()
+            error_msg.setText("There was an error saving the product. Please make sure all required forms are filled.")
+            error_msg.setWindowTitle("Product Save Error")
+            error_msg.setStandardButtons(QMessageBox.Ok)
+            error_msg.show()
+            error_msg.exec_()
+            return
         try:
             with open("waiting_to_upload.csv", 'a', newline='\n') as f:
                 writer = csv.writer(f, delimiter = ',')
                 writer.writerow([[item_data,imgs]])
+                ok_msg = QMessageBox()
+                ok_msg.setText("Product saved!")
+                ok_msg.setWindowTitle("Product Saved")
+                ok_msg.setStandardButtons(QMessageBox.Ok)
+                ok_msg.show()
+                ok_msg.exec_()
+                return
+
         except:
-            pass
+            error_msg = QMessageBox()
+            error_msg.setText("There was an error saving the product.")
+            error_msg.setWindowTitle("Product Save Error")
+            error_msg.setStandardButtons(QMessageBox.Ok)
+            error_msg.show()
+            error_msg.exec_()
+            return
 
     def uploadItem(self):
         item_data, imgs = self.processForm(self.img_names)
@@ -595,6 +619,7 @@ def main():
 
     login = loginForm()
     login.show()
+    login.exec_()
 
     app.exec()
 
