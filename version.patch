@@ -1,0 +1,13 @@
+Index: setup.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- setup.py	(revision 575681f4d368fddb1187d2d3276f1562ce05326e)
++++ setup.py	(date 1518556831997)
+@@ -1,0 +1,5 @@
++import requests, webbrowser
++
++s = requests.get("https://raw.githubusercontent.com/jwfraustro/laughing-waddle/dist/version.txt")
++
++print(s.content)
