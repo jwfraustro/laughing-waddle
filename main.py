@@ -479,28 +479,186 @@ class NewItemWidget(QtWidgets.QMainWindow, new_product_widget.Ui_ListItemWidget)
         # processing category menus
         if self.cat_options.currentText() == 'Airboat':
             item_form['CategoryID'] = '2'
+            if self.subcat_options.currentText() == 'Airboats':
+                item_form['CategoryID'] = '25'
+            if self.subcat_options.currentText() == 'Engines':
+                item_form['CategoryID'] = '22'
+            if self.subcat_options.currentText() == 'Hulls':
+                item_form['CategoryID'] = '24'
+            if self.subcat_options.currentText() == 'Other':
+                item_form['CategoryID'] = '26'
+            if self.subcat_options.currentText() == 'Parts':
+                item_form['CategoryID'] = '23'
         if self.cat_options.currentText() == 'Aircraft For Sale':
             item_form['CategoryID'] = '1'
+            if self.subcat_options.currentText() == 'Aircraft for Sale':
+                item_form['CategoryID'] = '13'
+            if self.subcat_options.currentText() == 'Amphibian':
+                item_form['CategoryID'] = '16'
+            if self.subcat_options.currentText() == 'Helicopters':
+                item_form['CategoryID'] = '17'
+            if self.subcat_options.currentText() == 'Other':
+                item_form['CategoryID'] = '21'
+            if self.subcat_options.currentText() == 'Projects':
+                item_form['CategoryID'] = '12'
+            if self.subcat_options.currentText() == 'Singles':
+                item_form['CategoryID'] = '18'
+            if self.subcat_options.currentText() == 'Twins':
+                item_form['CategoryID'] = '19'
         if self.cat_options.currentText() == 'Airframe':
             item_form['CategoryID'] = '3'
+            if self.subcat_options.currentText() == 'Aerobatic':
+                item_form['CategoryID'] = '28'
+            if self.subcat_options.currentText() == 'Aeronca':
+                item_form['CategoryID'] = '27'
+            if self.subcat_options.currentText() == 'Amphibian':
+                item_form['CategoryID'] = '29'
+            if self.subcat_options.currentText() == 'Antique':
+                item_form['CategoryID'] = '30'
+            if self.subcat_options.currentText() == 'Beechcraft':
+                item_form['CategoryID'] = '31'
+            if self.subcat_options.currentText() == 'Bellanca':
+                item_form['CategoryID'] = '32'
+            if self.subcat_options.currentText() == 'Cessna':
+                item_form['CategoryID'] = '33'
+            if self.subcat_options.currentText() == 'Cirrus':
+                item_form['CategoryID'] = '34'
+            if self.subcat_options.currentText() == 'Control Surfaces':
+                item_form['CategoryID'] = '35'
+            if self.subcat_options.currentText() == 'General Parts':
+                item_form['CategoryID'] = '117'
+            if self.subcat_options.currentText() == 'Helicopter':
+                item_form['CategoryID'] = '37'
+            if self.subcat_options.currentText() == 'Interior':
+                item_form['CategoryID'] = '38'
+            if self.subcat_options.currentText() == 'Luscombe':
+                item_form['CategoryID'] = '39'
+            if self.subcat_options.currentText() == 'Mooney':
+                item_form['CategoryID'] = '40'
+            if self.subcat_options.currentText() == 'Other':
+                item_form['CategoryID'] = '44'
+            if self.subcat_options.currentText() == 'Piper':
+                item_form['CategoryID'] = '41'
+            if self.subcat_options.currentText() == 'Taylorcraft':
+                item_form['CategoryID'] = '42'
+            if self.subcat_options.currentText() == 'Warbird':
+                item_form['CategoryID'] = '43'
         if self.cat_options.currentText() == 'Art':
             item_form['CategoryID'] = '4'
         if self.cat_options.currentText() == 'Avionics':
             item_form['CategoryID'] = '5'
+            if self.subcat_options.currentText() == 'Antennas':
+                item_form['CategoryID'] = '45'
+            if self.subcat_options.currentText() == 'Audio Panels':
+                item_form['CategoryID'] = '46'
+            if self.subcat_options.currentText() == 'AutoPilot':
+                item_form['CategoryID'] = '47'
+            if self.subcat_options.currentText() == 'ELTs':
+                item_form['CategoryID'] = '48'
+            if self.subcat_options.currentText() == 'Engine Monitors':
+                item_form['CategoryID'] = '49'
+            if self.subcat_options.currentText() == 'GPS':
+                item_form['CategoryID'] = '50'
+            if self.subcat_options.currentText() == 'Indicators':
+                item_form['CategoryID'] = '51'
+            if self.subcat_options.currentText() == 'Intercoms':
+                item_form['CategoryID'] = '52'
+            if self.subcat_options.currentText() == 'Nav/Coms':
+                item_form['CategoryID'] = '53'
+            if self.subcat_options.currentText() == 'Other':
+                item_form['CategoryID'] = '59'
+            if self.subcat_options.currentText() == 'Packages':
+                item_form['CategoryID'] = '54'
+            if self.subcat_options.currentText() == 'Pitot Tubes':
+                item_form['CategoryID'] = '55'
+            if self.subcat_options.currentText() == 'Transponders':
+                item_form['CategoryID'] = '56'
+            if self.subcat_options.currentText() == 'Trays & Connectors':
+                item_form['CategoryID'] = '57'
+            if self.subcat_options.currentText() == 'Weather Systems':
+                item_form['CategoryID'] = '58'
         if self.cat_options.currentText() == 'Electrical':
             item_form['CategoryID'] = '6'
+            if self.subcat_options.currentText() == 'Batteries':
+                item_form['CategoryID'] = '60'
+            if self.subcat_options.currentText() == 'Lighting':
+                item_form['CategoryID'] = '61'
+            if self.subcat_options.currentText() == 'Other':
+                item_form['CategoryID'] = '62'
         if self.cat_options.currentText() == 'Experimental':
             item_form['CategoryID'] = '8'
         if self.cat_options.currentText() == 'Hardware & Tools':
             item_form['CategoryID'] = '7'
+            if self.subcat_options.currentText() == 'Jacks':
+                item_form['CategoryID'] = '63'
+            if self.subcat_options.currentText() == 'Nuts & Bolts':
+                item_form['CategoryID'] = '64'
+            if self.subcat_options.currentText() == 'Other':
+                item_form['CategoryID'] = '68'
+            if self.subcat_options.currentText() == 'Rivets':
+                item_form['CategoryID'] = '65'
+            if self.subcat_options.currentText() == 'Testing Equipment':
+                item_form['CategoryID'] = '67'
+            if self.subcat_options.currentText() == 'Tools':
+                item_form['CategoryID'] = '66'
         if self.cat_options.currentText() == 'Landing Gear':
             item_form['CategoryID'] = '14'
+            if self.subcat_options.currentText() == 'Amphibian':
+                item_form['CategoryID'] = '69'
+            if self.subcat_options.currentText() == 'Skis':
+                item_form['CategoryID'] = '70'
+            if self.subcat_options.currentText() == 'Tailwheel':
+                item_form['CategoryID'] = '71'
+            if self.subcat_options.currentText() == 'Tires & Tubes':
+                item_form['CategoryID'] = '72'
+            if self.subcat_options.currentText() == 'Wheels & Brakes':
+                item_form['CategoryID'] = '73'
         if self.cat_options.currentText() == 'Misc':
             item_form['CategoryID'] = '9'
         if self.cat_options.currentText() == 'Pilot Supplies':
             item_form['CategoryID'] = '15'
+            if self.subcat_options.currentText() == 'Aviator Accessories':
+                item_form['CategoryID'] = '74'
+            if self.subcat_options.currentText() == 'Bags':
+                item_form['CategoryID'] = '75'
+            if self.subcat_options.currentText() == 'Books':
+                item_form['CategoryID'] = '76'
+            if self.subcat_options.currentText() == 'Collectibles':
+                item_form['CategoryID'] = '77'
+            if self.subcat_options.currentText() == 'Covers & Accessories':
+                item_form['CategoryID'] = '78'
+            if self.subcat_options.currentText() == 'Headsets':
+                item_form['CategoryID'] = '79'
+            if self.subcat_options.currentText() == 'Manuals':
+                item_form['CategoryID'] = '80'
+            if self.subcat_options.currentText() == 'Oils, Liquids, & Sprays':
+                item_form['CategoryID'] = '81'
+            if self.subcat_options.currentText() == 'Other':
+                item_form['CategoryID'] = '86'
+            if self.subcat_options.currentText() == 'Pilot Wear':
+                item_form['CategoryID'] = '82'
+            if self.subcat_options.currentText() == 'Safety':
+                item_form['CategoryID'] = '83'
+            if self.subcat_options.currentText() == 'Stickers & Decals':
+                item_form['CategoryID'] = '84'
+            if self.subcat_options.currentText() == 'Tow':
+                item_form['CategoryID'] = '85'
         if self.cat_options.currentText() == 'Powerplant':
             item_form['CategoryID'] = '10'
+            if self.subcat_options.currentText() == 'Engine Parts':
+                item_form['CategoryID'] = '88'
+            if self.subcat_options.currentText() == 'Engines':
+                item_form['CategoryID'] = '87'
+            if self.subcat_options.currentText() == 'Environmental':
+                item_form['CategoryID'] = '118'
+            if self.subcat_options.currentText() == 'Exhaust':
+                item_form['CategoryID'] = '89'
+            if self.subcat_options.currentText() == 'Fuel System':
+                item_form['CategoryID'] = '90'
+            if self.subcat_options.currentText() == 'General Parts':
+                item_form['CategoryID'] = '116'
+            if self.subcat_options.currentText() == 'Propellers':
+                item_form['CategoryID'] = '91'
         if self.cat_options.currentText() == 'Wheels & Brakes':
             item_form['CategoryID'] = '11'
 
