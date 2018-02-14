@@ -112,11 +112,6 @@
           </item>
           <item>
            <property name="text">
-            <string>New Item</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
             <string>Airframe</string>
            </property>
           </item>
@@ -1104,9 +1099,9 @@
  </connections>
  <buttongroups>
   <buttongroup name="coreBtnGroup"/>
-  <buttongroup name="activeBtnGroup"/>
   <buttongroup name="saleBtnGroup"/>
   <buttongroup name="offerBtnGroup"/>
+  <buttongroup name="activeBtnGroup"/>
   <buttongroup name="featBtnGroup"/>
  </buttongroups>
 </ui>

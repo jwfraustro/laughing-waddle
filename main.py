@@ -15,6 +15,7 @@ import mainwindow
 import new_product_widget
 
 s = None
+qss =''
 
 pr_id = ''
 
@@ -23,6 +24,110 @@ payload  = {
             'Password': '',
             'authToken': ''
 }
+
+#subcategory definitions
+airboat_subcats = [
+
+    'Airboats',
+    'Engines',
+    'Hulls',
+    'Other',
+    'Parts'
+]
+aircraft_for_sale_subcats = [
+
+    'Aircraft for Sale',
+    'Amphibian',
+    'Helicopters',
+    'Other',
+    'Projects',
+    'Singles',
+    'Twins',
+]
+airframe_subcats=[
+    'Aerobatic',
+    'Aeronca',
+    'Amphibian',
+    'Antique',
+    'Beechcraft',
+    'Bellanca',
+    'Cessna',
+    'Cirrus',
+    'Control Surfaces',
+    'General Parts',
+    'Helicopter',
+    'Interior',
+    'Luscombe',
+    'Mooney',
+    'Other',
+    'Piper',
+    'Taylorcraft',
+    'Warbird',
+]
+avionics_subcats = [
+    'Antennas',
+    'Audio Panels',
+    'AutoPilot',
+    'ELTs',
+    'Engine Monitors',
+    'GPS',
+    'Indicators',
+    'Intercom',
+    'Nav/Coms',
+    'Other',
+    'Packages',
+    'Pitot Tubes',
+    'Transponders',
+    'Trays & Connectors',
+    'Weather Systems'
+]
+electrical_subcats = [
+    'Batteries',
+    'Lighting',
+    'Other'
+]
+hardware_subcats = [
+    'Jacks',
+    'Nuts & Bolts',
+    'Other',
+    'Rivets',
+    'Testing Equipment',
+    'Tools'
+]
+gear_subcats = [
+    'Amphibian',
+    'Skis',
+    'Tailwheel',
+    'Tires & Tubes',
+    'Wheels & Brakes'
+]
+pilot_supp_subcats = [
+    'Aviator Accessories',
+    'Bags',
+    'Books',
+    'Collectibles',
+    'Cover & Accessories',
+    'Headsets',
+    'Manuals',
+    'Oils, Liquids, & Sprays',
+    'Other',
+    'Pilot Wear',
+    'Safety',
+    'Stickers & Decals',
+    'Tow'
+
+]
+powerplant_subcats = [
+    'Engine Parts',
+    'Engines',
+    'Environmental',
+    'Exhaust',
+    'Fuel System',
+    'General Parts',
+    'Propellers'
+]
+
+
 
 sys._excepthook = sys.excepthook
 
@@ -36,60 +141,66 @@ def my_exception_hook(exctype, value, traceback):
 
 
 def addProduct(item_data, filenames):
-    with requests.Session() as s:
-        p = s.post('http://www.hangarswap.com/Main/Login')
-        soup = bs4.BeautifulSoup(p.text, "html.parser")
-
-        # print(s.cookies.get_dict())
-
-        authToken = soup.select('input[name="authToken"]')[0]
-        payload['authToken'] = authToken.get('value')
-        # print(payload['authToken'])
-
-        p = s.post('https://www.hangarswap.com/Main/ProcessLogin', data=payload, verify=False)
-        # print(p.text)
+    # with requests.Session() as s:
+    #     p = s.post('http://www.hangarswap.com/Main/Login')
+    #     soup = bs4.BeautifulSoup(p.text, "html.parser")
+    #
+    #     # print(s.cookies.get_dict())
+    #
+    #     authToken = soup.select('input[name="authToken"]')[0]
+    #     payload['authToken'] = authToken.get('value')
+    #     # print(payload['authToken'])
+    #
+    #     p = s.post('https://www.hangarswap.com/Main/ProcessLogin', data=payload, verify=False)
+    #     # print(p.text)
 
         # An authorised request.
-        r = s.get('https://www.hangarswap.com/Seller/AddProduct')
 
-        print(item_data)
 
-        product_data = MultipartEncoder(fields=item_data, boundary='-----WebKitFormBoundarymkISNjkugjjFZdvE')
+    r = s.get('https://www.hangarswap.com/Seller/AddProduct')
 
-        print("encoded succesful")
+    print(item_data)
 
-        t = s.post('https://www.hangarswap.com/Seller/SaveProduct', data=product_data,
-                   headers={'Content-Type': product_data.content_type})
-        print("Post Successful")
+    product_data = MultipartEncoder(fields=item_data, boundary='-----WebKitFormBoundarymkISNjkugjjFZdvE')
 
-        if (len(filenames) > 1):
-            soup = bs4.BeautifulSoup(t.text, "html.parser")
-            pr_id = soup.select('[href*="ProductID"]')[0].get("href")[-5:].strip("=")
-            for i in range(2, len(filenames)):
-                photo_form = MultipartEncoder(
-                    fields={
-                        'productid': str(pr_id),
-                        'ProductImage': (
-                        'filename', open(filenames['img'+str(i)+'_lbl'], 'rb'), ('image/' + str(imghdr.what(filenames['img'+str(i)+'_lbl'])))),
-                    }, boundary='-----WebKitFormBoundarydMG06kgczAncwn4B')
-                t = s.post('https://www.hangarswap.com/Seller/SaveExtraImages', data=photo_form,
-                           headers={'Content-Type': photo_form.content_type})
-                print('submitted ', filenames['img'+str(i)+'_lbl'])
+    print("encoded succesful")
+
+    t = s.post('https://www.hangarswap.com/Seller/SaveProduct', data=product_data,
+               headers={'Content-Type': product_data.content_type})
+    print("Post Successful")
+
+    if (len(filenames) > 1):
+        soup = bs4.BeautifulSoup(t.text, "html.parser")
+        pr_id = soup.select('[href*="ProductID"]')[0].get("href")[-5:].strip("=")
+        for i in range(2, len(filenames)+1):
+            photo_form = MultipartEncoder(
+                fields={
+                    'productid': str(pr_id),
+                    'ProductImage': (
+                    'filename', open(filenames['img'+str(i)+'_lbl'], 'rb'), ('image/' + str(imghdr.what(filenames['img'+str(i)+'_lbl'])))),
+                }, boundary='-----WebKitFormBoundarydMG06kgczAncwn4B')
+            t = s.post('https://www.hangarswap.com/Seller/SaveExtraImages', data=photo_form,
+                       headers={'Content-Type': photo_form.content_type})
+            print('submitted ', filenames['img'+str(i)+'_lbl'])
 
 
 class NewItemWidget(QtWidgets.QMainWindow, new_product_widget.Ui_ListItemWidget):
     def __init__(self, parent=None):
         super(NewItemWidget, self).__init__(parent)
 
+        global qss
         self.setupUi(self)
+        self.setStyleSheet(qss)
 
         self.img_names={}
-        # item_form = self.readForm(self)
+
+
         self.img_upload_btn.clicked.connect(self.insertImages)
         self.upload_new_button.clicked.connect(self.uploadItem)
         self.save_templ_button.clicked.connect(self.saveProduct)
         print(self.gridLayout.count())
-        # addProduct(item_form)
+
+        self.cat_options.currentTextChanged.connect(self.changedCat)
 
         self.img1_lbl.customContextMenuRequested.connect(self.contextMenuEvent)
         self.img2_lbl.customContextMenuRequested.connect(self.contextMenuEvent)
@@ -101,6 +212,8 @@ class NewItemWidget(QtWidgets.QMainWindow, new_product_widget.Ui_ListItemWidget)
         self.img8_lbl.customContextMenuRequested.connect(self.contextMenuEvent)
         self.img9_lbl.customContextMenuRequested.connect(self.contextMenuEvent)
         self.img10_lbl.customContextMenuRequested.connect(self.contextMenuEvent)
+
+
 
     def contextMenuEvent(self, event):
 
@@ -171,6 +284,29 @@ class NewItemWidget(QtWidgets.QMainWindow, new_product_widget.Ui_ListItemWidget)
             col += 1
 
         print(w.objectName(), img)
+
+    #clears and displays relevant subcategories
+    def changedCat(self):
+        self.subcat_options.clear()
+
+        if self.cat_options.currentText() == 'Airboat':
+            self.subcat_options.addItems(airboat_subcats)
+        if self.cat_options.currentText() == 'Aircraft For Sale':
+            self.subcat_options.addItems(aircraft_for_sale_subcats)
+        if self.cat_options.currentText() == 'Airframe':
+            self.subcat_options.addItems(airframe_subcats)
+        if self.cat_options.currentText() == 'Avionics':
+            self.subcat_options.addItems(avionics_subcats)
+        if self.cat_options.currentText() == 'Electrical':
+            self.subcat_options.addItems(electrical_subcats)
+        if self.cat_options.currentText() == 'Hardware & Tools':
+            self.subcat_options.addItems(hardware_subcats)
+        if self.cat_options.currentText() == 'Landing Gear':
+            self.subcat_options.addItems(gear_subcats)
+        if self.cat_options.currentText() == 'Pilot Supplies':
+            self.subcat_options.addItems(pilot_supp_subcats)
+        if self.cat_options.currentText() == 'Powerplant':
+            self.subcat_options.addItems(powerplant_subcats)
 
 
 
@@ -276,6 +412,7 @@ class NewItemWidget(QtWidgets.QMainWindow, new_product_widget.Ui_ListItemWidget)
             upload_msg.setText("Uploading Product...")
             upload_msg.setWindowTitle("Uploading Product")
             upload_msg.show()
+            print("gonna try uploading")
             addProduct(item_data, imgs)
             upload_msg.close()
         except:
@@ -395,6 +532,9 @@ class EditItemWidget(QtWidgets.QMainWindow, edit_product_widget.Ui_ListItemWidge
         super(EditItemWidget, self).__init__(parent)
         self.setupUi(self)
 
+        global qss
+        self.setStyleSheet(qss)
+
         #instance context menu options
         self.img1_lbl.customContextMenuRequested.connect(self.contextMenuEvent)
         self.img2_lbl.customContextMenuRequested.connect(self.contextMenuEvent)
@@ -504,6 +644,7 @@ class ExampleApp(QtWidgets.QMainWindow, mainwindow.Ui_HSMainWindow):
         self.catalog_table.resizeColumnsToContents()
         self.catalog_table.customContextMenuRequested.connect(self.catalogContextMenu)
         self.orders_list.customContextMenuRequested.connect(self.ordersContextMenu)
+        self.model2.clear()
 
         self.newitemwidget = NewItemWidget(self)
         self.actionNewItem.triggered.connect(self.init_new_product)
@@ -568,7 +709,11 @@ class ExampleApp(QtWidgets.QMainWindow, mainwindow.Ui_HSMainWindow):
         viewOrderAction = QtWidgets.QAction('View Order', self)
         viewOrderAction.triggered.connect(lambda: self.viewOrderContext(event))
 
+        refreshOrdersAction = QtWidgets.QAction('Refresh Orders', self)
+        refreshOrdersAction.triggered.connect(lambda: self.refreshOrdersContext(event))
+
         self.menu.addAction(viewOrderAction)
+        self.menu.addAction(refreshOrdersAction)
 
         self.menu.popup(QtGui.QCursor.pos())
         print(QtGui.QCursor.pos())
@@ -626,6 +771,7 @@ class loginForm(QtWidgets.QMainWindow, login_form.Ui_LoginDialog):
         payload['Username'] = self.userName_le.text()
         payload['Password'] = self.pswd_le.text()
 
+        global s
         s = requests.Session()
         print("Made session")
         p = s.get('http://www.hangarswap.com/Main/Login')
@@ -647,10 +793,14 @@ def main():
     app = QtWidgets.QApplication(sys.argv)
 
     form = ExampleApp('')
+    qss = open("./assets/stylesheets/aqua.qss", "r").read()
+    form.setStyleSheet(qss)
+
     form.show()
 
     login_app = QtWidgets.QApplication(sys.argv)
     login = loginForm()
+    login.setStyleSheet(qss)
     login.show()
     login_app.exec()
 

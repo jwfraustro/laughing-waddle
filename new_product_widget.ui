@@ -59,9 +59,6 @@
      <layout class="QFormLayout" name="formLayout">
       <item row="0" column="0">
        <widget class="QLabel" name="name_lbl">
-        <property name="styleSheet">
-         <string notr="true">color: rgb(255, 0, 0);</string>
-        </property>
         <property name="text">
          <string>Product Name*</string>
         </property>
@@ -72,9 +69,6 @@
       </item>
       <item row="1" column="0">
        <widget class="QLabel" name="desc_lbl">
-        <property name="styleSheet">
-         <string notr="true">color: rgb(255, 0, 0);</string>
-        </property>
         <property name="text">
          <string>Product Description*</string>
         </property>
@@ -89,9 +83,6 @@
       </item>
       <item row="2" column="0">
        <widget class="QLabel" name="cat_lbl">
-        <property name="styleSheet">
-         <string notr="true">color: rgb(255, 0, 0);</string>
-        </property>
         <property name="text">
          <string>Product Category*</string>
         </property>
@@ -121,11 +112,6 @@
           <item>
            <property name="text">
             <string>Aircraft For Sale</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>New Item</string>
            </property>
           </item>
           <item>
@@ -187,344 +173,12 @@
         </item>
         <item>
          <widget class="QComboBox" name="subcat_options">
+          <property name="frame">
+           <bool>true</bool>
+          </property>
           <item>
            <property name="text">
             <string>---</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>Aerobatic</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>Aeronca</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>Amphibian</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>Antique</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>Beechcraft</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>Bellanca</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>Cessna</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>Cirrus</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>Control Surfaces</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>General Parts</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>Helicopter</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>Interior</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>Luscombe</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>Mooney</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>Other</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>Piper</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>Taylorcraft</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>Warbird</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>Antennas</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>Audio Panels</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>AutoPilot</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>ELTs</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>Engine Monitors</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>GPS</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>Indicators</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>Intercoms</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>Nav/Coms</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>Other</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>Packages</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>Pitot Tubes</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>Transponders</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>Trays &amp; Connectors</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>Weather Systems</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>Batteries</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>Lighting</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>Other</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>Jacks</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>Nuts &amp; Bolts</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>Other</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>Rivets</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>Testing Equipment</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>Tools</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>Amphibian</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>Skis</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>Tailwheel</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>Tires &amp; Tubes</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>Wheels &amp; Brakes</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>Aviator Accessories</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>Bags</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>Books</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>Collectibles</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>Covers &amp; Accessories</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>Headsets</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>Manuals</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>Oils, Liquids &amp; Sprays</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>Other</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>Pilot Wear</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>Safety</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>Stickers &amp; Decals</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>Tow</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>Engine Parts</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>Engines</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>Environmental</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>Exhaust</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>Fuel System</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>General Parts</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>Propellers</string>
            </property>
           </item>
          </widget>
@@ -533,9 +187,6 @@
       </item>
       <item row="3" column="0">
        <widget class="QLabel" name="cond_lbl">
-        <property name="styleSheet">
-         <string notr="true">color: rgb(255, 0, 0);</string>
-        </property>
         <property name="text">
          <string>Product Condition*</string>
         </property>
@@ -611,7 +262,7 @@
       <item row="4" column="0">
        <widget class="QLabel" name="qty_lbl">
         <property name="text">
-         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ff0000;&quot;&gt;Qty Available*&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         <string>Qty Available*</string>
         </property>
        </widget>
       </item>
@@ -670,9 +321,6 @@
       </item>
       <item row="10" column="0">
        <widget class="QLabel" name="price_lbl">
-        <property name="styleSheet">
-         <string notr="true">color: rgb(255, 0, 0);</string>
-        </property>
         <property name="text">
          <string>Price*</string>
         </property>
@@ -683,9 +331,6 @@
       </item>
       <item row="11" column="0">
        <widget class="QLabel" name="ship_lbl">
-        <property name="styleSheet">
-         <string notr="true">color: rgb(255, 0, 0);</string>
-        </property>
         <property name="text">
          <string>Shipping Cost*</string>
         </property>
@@ -1393,9 +1038,9 @@
  </connections>
  <buttongroups>
   <buttongroup name="sale_btnGroup"/>
-  <buttongroup name="core_btnGroup"/>
   <buttongroup name="active_btnGroup"/>
   <buttongroup name="offer_btnGroup"/>
   <buttongroup name="feat_btnGroup"/>
+  <buttongroup name="core_btnGroup"/>
  </buttongroups>
 </ui>
