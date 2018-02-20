@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'real_gui.ui'
 #
-# Created by: PyQt5 UI code generator 5.9
+# Created by: PyQt5 UI code generator 5.10
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -25,7 +25,7 @@ class Ui_HSMainWindow(object):
         self.centralwidget.setMouseTracking(True)
         self.centralwidget.setObjectName("centralwidget")
         self.horizontalLayoutWidget = QtWidgets.QWidget(self.centralwidget)
-        self.horizontalLayoutWidget.setGeometry(QtCore.QRect(10, 0, 1026, 75))
+        self.horizontalLayoutWidget.setGeometry(QtCore.QRect(10, 0, 1310, 75))
         self.horizontalLayoutWidget.setObjectName("horizontalLayoutWidget")
         self.horizontalLayout = QtWidgets.QHBoxLayout(self.horizontalLayoutWidget)
         self.horizontalLayout.setContentsMargins(0, 0, 0, 0)
@@ -137,6 +137,9 @@ class Ui_HSMainWindow(object):
         self.orders_list.setObjectName("orders_list")
         self.orders_list.horizontalHeader().setVisible(False)
         self.orders_list.verticalHeader().setVisible(False)
+        self.pending_upload_table = QtWidgets.QTableView(self.frame)
+        self.pending_upload_table.setGeometry(QtCore.QRect(0, 0, 751, 521))
+        self.pending_upload_table.setObjectName("pending_upload_table")
         self.layoutWidget = QtWidgets.QWidget(self.centralwidget)
         self.layoutWidget.setGeometry(QtCore.QRect(0, 0, 2, 2))
         self.layoutWidget.setObjectName("layoutWidget")
@@ -166,10 +169,10 @@ class Ui_HSMainWindow(object):
         self.inactive_cat_button.setObjectName("inactive_cat_button")
         self.main_view_group.addButton(self.inactive_cat_button)
         self.verticalLayout.addWidget(self.inactive_cat_button)
-        self.pend_upload_button = QtWidgets.QPushButton(self.verticalLayoutWidget)
-        self.pend_upload_button.setObjectName("pend_upload_button")
-        self.main_view_group.addButton(self.pend_upload_button)
-        self.verticalLayout.addWidget(self.pend_upload_button)
+        self.pending_upload_button = QtWidgets.QPushButton(self.verticalLayoutWidget)
+        self.pending_upload_button.setObjectName("pending_upload_button")
+        self.main_view_group.addButton(self.pending_upload_button)
+        self.verticalLayout.addWidget(self.pending_upload_button)
         self.order_btn = QtWidgets.QPushButton(self.verticalLayoutWidget)
         self.order_btn.setObjectName("order_btn")
         self.main_view_group.addButton(self.order_btn)
@@ -180,7 +183,7 @@ class Ui_HSMainWindow(object):
         self.layoutWidget.raise_()
         HSMainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(HSMainWindow)
-        self.menubar.setGeometry(QtCore.QRect(0, 0, 919, 21))
+        self.menubar.setGeometry(QtCore.QRect(0, 0, 919, 31))
         self.menubar.setObjectName("menubar")
         self.menuFile = QtWidgets.QMenu(self.menubar)
         self.menuFile.setObjectName("menuFile")
@@ -254,7 +257,7 @@ class Ui_HSMainWindow(object):
         self.search_lbl.setText(_translate("HSMainWindow", "Search"))
         self.active_cat_button.setText(_translate("HSMainWindow", "Active Catalog"))
         self.inactive_cat_button.setText(_translate("HSMainWindow", "Inactive Items"))
-        self.pend_upload_button.setText(_translate("HSMainWindow", "Waiting to Upload"))
+        self.pending_upload_button.setText(_translate("HSMainWindow", "Waiting to Upload"))
         self.order_btn.setText(_translate("HSMainWindow", "Orders"))
         self.menuFile.setTitle(_translate("HSMainWindow", "File"))
         self.menuNew.setTitle(_translate("HSMainWindow", "New"))

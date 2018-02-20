@@ -40,7 +40,7 @@
      <rect>
       <x>10</x>
       <y>0</y>
-      <width>1026</width>
+      <width>1310</width>
       <height>75</height>
      </rect>
     </property>
@@ -192,8 +192,7 @@
         </widget>
        </item>
        <item>
-        <widget class="QLineEdit" name="search_box">
-        </widget>
+        <widget class="QLineEdit" name="search_box"/>
        </item>
        <item>
         <widget class="QCommandLinkButton" name="search_btn">
@@ -286,6 +285,16 @@
       <bool>false</bool>
      </attribute>
     </widget>
+    <widget class="QTableView" name="pending_upload_table">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>0</y>
+       <width>751</width>
+       <height>521</height>
+      </rect>
+     </property>
+    </widget>
    </widget>
    <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
@@ -344,7 +353,7 @@
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="pend_upload_button">
+      <widget class="QPushButton" name="pending_upload_button">
        <property name="text">
         <string>Waiting to Upload</string>
        </property>
@@ -376,7 +385,7 @@
      <x>0</x>
      <y>0</y>
      <width>919</width>
-     <height>21</height>
+     <height>31</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
@@ -488,7 +497,7 @@
  <resources/>
  <connections/>
  <buttongroups>
-  <buttongroup name="main_view_group"/>
   <buttongroup name="buttonGroup"/>
+  <buttongroup name="main_view_group"/>
  </buttongroups>
 </ui>

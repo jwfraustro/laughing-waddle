@@ -370,8 +370,8 @@ class NewItemWidget(QtWidgets.QMainWindow, new_product_widget.Ui_ListItemWidget)
             error_msg.exec_()
             return
         try:
-            with open("waiting_to_upload.csv", 'a', newline='\n') as f:
-                writer = csv.writer(f, delimiter = ',')
+            with open("pending_upload.dat", 'a') as f:
+                writer = csv.writer(f, delimiter = '\t')
                 writer.writerow([[item_data,imgs]])
                 ok_msg = QMessageBox()
                 ok_msg.setText("Product saved!")
@@ -804,6 +804,13 @@ class ExampleApp(QtWidgets.QMainWindow, mainwindow.Ui_HSMainWindow):
         self.orders_list.customContextMenuRequested.connect(self.ordersContextMenu)
         self.model2.clear()
 
+        self.pending_upload_model = QtGui.QStandardItemModel(self)
+        self.pending_upload_model.appendRow(item)
+        self.pending_upload_model.setData(self.model.index(0, 0), "", 0)
+        self.pending_upload_table.setModel(self.pending_upload_model)
+        self.pending_upload_table.resizeColumnsToContents()
+
+
         self.newitemwidget = NewItemWidget(self)
         self.actionNewItem.triggered.connect(self.init_new_product)
         self.edititemwidget = EditItemWidget(self)
@@ -815,6 +822,12 @@ class ExampleApp(QtWidgets.QMainWindow, mainwindow.Ui_HSMainWindow):
                 self.model2.appendRow(items)
             self.orders_list.resizeColumnsToContents()
 
+        with open("pending_upload.dat", 'r') as n:
+            reader = csv.reader(n, delimiter = "\t")
+            for row in reader:
+                items = [QtGui.QStandardItem(field) for field in row]
+                self.pending_upload_model.appendRow(items)
+            self.pending_upload_table.resizeColumnsToContents()
 
         #item = QtWidgets.QListWidgetItem("Item #1")
         #self.orders_list.addItem(item)
@@ -823,6 +836,7 @@ class ExampleApp(QtWidgets.QMainWindow, mainwindow.Ui_HSMainWindow):
         self.edit_button.clicked.connect(self.init_edit_product)
         self.order_btn.clicked.connect(self.orders_list.raise_)
         self.active_cat_button.clicked.connect(self.catalog_table.raise_)
+        self.pending_upload_button.clicked.connect(self.pending_upload_table.raise_)
 
         self.actionInventory_CSV.triggered.connect(self.load_csv)
 
