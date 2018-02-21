@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>919</width>
+    <width>956</width>
     <height>645</height>
    </rect>
   </property>
@@ -278,6 +278,12 @@
      <property name="sizeAdjustPolicy">
       <enum>QAbstractScrollArea::AdjustToContents</enum>
      </property>
+     <property name="selectionMode">
+      <enum>QAbstractItemView::ExtendedSelection</enum>
+     </property>
+     <property name="selectionBehavior">
+      <enum>QAbstractItemView::SelectRows</enum>
+     </property>
      <attribute name="horizontalHeaderVisible">
       <bool>false</bool>
      </attribute>
@@ -290,7 +296,7 @@
       <rect>
        <x>0</x>
        <y>0</y>
-       <width>751</width>
+       <width>721</width>
        <height>521</height>
       </rect>
      </property>
@@ -301,6 +307,9 @@
       <bool>false</bool>
      </attribute>
     </widget>
+    <zorder>orders_list</zorder>
+    <zorder>pending_upload_table</zorder>
+    <zorder>catalog_table</zorder>
    </widget>
    <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
@@ -390,7 +399,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>919</width>
+     <width>956</width>
      <height>21</height>
     </rect>
    </property>

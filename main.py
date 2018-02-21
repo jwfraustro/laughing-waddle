@@ -6,6 +6,7 @@ import sys
 #importing networking modules
 import bs4
 import requests
+import webbrowser
 
 #importing GUI elements
 from PyQt5 import QtCore, QtGui, QtWidgets
@@ -875,7 +876,7 @@ class ExampleApp(QtWidgets.QMainWindow, mainwindow.Ui_HSMainWindow):
     def ordersContextMenu(self, event):
         self.menu = QtWidgets.QMenu(self)
         
-        viewOrderAction = QtWidgets.QAction('View Order', self)
+        viewOrderAction = QtWidgets.QAction('View Order Online', self)
         viewOrderAction.triggered.connect(lambda: self.viewOrderContext(event))
 
         refreshOrdersAction = QtWidgets.QAction('Refresh Orders', self)
@@ -886,6 +887,17 @@ class ExampleApp(QtWidgets.QMainWindow, mainwindow.Ui_HSMainWindow):
 
         self.menu.popup(QtGui.QCursor.pos())
         print(QtGui.QCursor.pos())
+
+    def viewOrderContext(self, event):
+
+        row = self.orders_list.selectionModel().selection().indexes()[0].row()
+        order = self.model2.item(row, 0)
+        print(order.text())
+        webbrowser.open('https://www.hangarswap.com/Seller/DisplayOrder?OrderID='+order.text())
+
+    def refreshOrdersContext(self, event):
+
+        pass
 
     def catalogContextMenu(self, event):
 
