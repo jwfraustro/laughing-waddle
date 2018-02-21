@@ -1,3 +1,1 @@
-productName,productDescription,CategoryID,productCondition,Qty,PartNumber,APN,SerialNumber,SKU,Manufacturer,Price,ShippingCost,HasCore,CoreCharge,productImage,Active,OnSale,AllowBestOffer,Featured
-productName,productDescription,CategoryID,productCondition,Qty,PartNumber,APN,SerialNumber,SKU,Manufacturer,Price,ShippingCost,HasCore,CoreCharge,productImage,Active,OnSale,AllowBestOffer,Featured
-productName,productDescription,CategoryID,productCondition,Qty,PartNumber,APN,SerialNumber,SKU,Manufacturer,Price,ShippingCost,HasCore,CoreCharge,productImage,Active,OnSale,AllowBestOffer,Featured
+title,description,51,OH,1,,,,,,9.99,8.99,0,0.00,"('filename', <_io.BufferedReader name='C:/Users/Joshua Fraustro/Pictures/1.JPG'>, 'image/jpeg')",0,0,0,0

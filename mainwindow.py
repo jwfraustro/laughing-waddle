@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'real_gui.ui'
 #
-# Created by: PyQt5 UI code generator 5.10
+# Created by: PyQt5 UI code generator 5.9
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -139,7 +139,9 @@ class Ui_HSMainWindow(object):
         self.orders_list.verticalHeader().setVisible(False)
         self.pending_upload_table = QtWidgets.QTableView(self.frame)
         self.pending_upload_table.setGeometry(QtCore.QRect(0, 0, 751, 521))
+        self.pending_upload_table.setSizeAdjustPolicy(QtWidgets.QAbstractScrollArea.AdjustToContents)
         self.pending_upload_table.setObjectName("pending_upload_table")
+        self.pending_upload_table.verticalHeader().setVisible(False)
         self.layoutWidget = QtWidgets.QWidget(self.centralwidget)
         self.layoutWidget.setGeometry(QtCore.QRect(0, 0, 2, 2))
         self.layoutWidget.setObjectName("layoutWidget")
@@ -183,7 +185,7 @@ class Ui_HSMainWindow(object):
         self.layoutWidget.raise_()
         HSMainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(HSMainWindow)
-        self.menubar.setGeometry(QtCore.QRect(0, 0, 919, 31))
+        self.menubar.setGeometry(QtCore.QRect(0, 0, 919, 21))
         self.menubar.setObjectName("menubar")
         self.menuFile = QtWidgets.QMenu(self.menubar)
         self.menuFile.setObjectName("menuFile")
