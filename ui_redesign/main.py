@@ -19,6 +19,7 @@ import edit_product_widget
 import orders_widget
 import main_window_redesign
 import new_product_widget
+import inbox_widget
 
 sys._excepthook = sys.excepthook
 def my_exception_hook(exctype, value, traceback):
@@ -34,11 +35,19 @@ class HSMainWindow(QtWidgets.QMainWindow, main_window_redesign.Ui_HSMainWindow):
 
         self.setupUi(self)
 
-        self.ordersBtn.clicked.connect(self.initOrdersList)
+        self.ordersBtn.clicked.connect(self.initOrdersView)
+        self.messagesBtn.clicked.connect(self.initInboxView)
 
-    def initOrdersList(self):
+    def initOrdersView(self):
+        self.widget.removeChild()
         self.order_widget = orders_widget.Ui_catalogWidget()
         self.order_widget.setupUi(self.widget)
+
+    def initInboxView(self):
+        self.widget.removeChild()
+        self.inbox_widget = inbox_widget.Ui_Form()
+        self.inbox_widget.setupUi(self.widget)
+
 
 def main():
     app = QtWidgets.QApplication(sys.argv)
