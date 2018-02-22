@@ -1,0 +1,1135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>ListItemWidget</class>
+ <widget class="QWidget" name="ListItemWidget">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>628</width>
+    <height>658</height>
+   </rect>
+  </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>628</width>
+    <height>658</height>
+   </size>
+  </property>
+  <property name="contextMenuPolicy">
+   <enum>Qt::CustomContextMenu</enum>
+  </property>
+  <property name="windowTitle">
+   <string>Edit a Product - HS Dashboard App</string>
+  </property>
+  <widget class="QWidget" name="verticalLayoutWidget">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>10</y>
+     <width>381</width>
+     <height>591</height>
+    </rect>
+   </property>
+   <layout class="QVBoxLayout" name="verticalLayout">
+    <item>
+     <widget class="QLabel" name="newproduct_lbl">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>12</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="text">
+       <string>Edit Product</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <layout class="QFormLayout" name="formLayout">
+      <item row="0" column="0">
+       <widget class="QLabel" name="name_lbl">
+        <property name="text">
+         <string>Product Name*</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <widget class="QLineEdit" name="name_le"/>
+      </item>
+      <item row="1" column="0">
+       <widget class="QLabel" name="desc_lbl">
+        <property name="text">
+         <string>Product Description*</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="1">
+       <widget class="QTextEdit" name="desc_te"/>
+      </item>
+      <item row="2" column="0">
+       <widget class="QLabel" name="cat_lbl">
+        <property name="text">
+         <string>Product Category*</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="1">
+       <layout class="QHBoxLayout" name="horizontalLayout_10">
+        <item>
+         <widget class="QComboBox" name="cat_options">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="currentIndex">
+           <number>0</number>
+          </property>
+          <item>
+           <property name="text">
+            <string>Airboat</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Aircraft For Sale</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Airframe</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Art</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Avionics</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Electrical</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Experimental</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Hardware &amp; Tools</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Landing Gear</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Misc</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Pilot Supplies</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Powerplant</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Wheels &amp; Brakes</string>
+           </property>
+          </item>
+         </widget>
+        </item>
+        <item>
+         <widget class="QComboBox" name="subcat_options">
+          <item>
+           <property name="text">
+            <string>---</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Aerobatic</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Aeronca</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Amphibian</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Antique</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Beechcraft</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Bellanca</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Cessna</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Cirrus</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Control Surfaces</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>General Parts</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Helicopter</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Interior</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Luscombe</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Mooney</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Other</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Piper</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Taylorcraft</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Warbird</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Antennas</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Audio Panels</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>AutoPilot</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>ELTs</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Engine Monitors</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>GPS</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Indicators</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Intercoms</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Nav/Coms</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Other</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Packages</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Pitot Tubes</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Transponders</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Trays &amp; Connectors</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Weather Systems</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Batteries</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Lighting</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Other</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Jacks</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Nuts &amp; Bolts</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Other</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Rivets</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Testing Equipment</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Tools</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Amphibian</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Skis</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Tailwheel</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Tires &amp; Tubes</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Wheels &amp; Brakes</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Aviator Accessories</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Bags</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Books</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Collectibles</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Covers &amp; Accessories</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Headsets</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Manuals</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Oils, Liquids &amp; Sprays</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Other</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Pilot Wear</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Safety</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Stickers &amp; Decals</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Tow</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Engine Parts</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Engines</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Environmental</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Exhaust</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Fuel System</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>General Parts</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Propellers</string>
+           </property>
+          </item>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item row="3" column="0">
+       <widget class="QLabel" name="cond_lbl">
+        <property name="text">
+         <string>Product Condition*</string>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="1">
+       <widget class="QComboBox" name="cond_options">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Ignored" vsizetype="Fixed">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>50</width>
+          <height>20</height>
+         </size>
+        </property>
+        <property name="baseSize">
+         <size>
+          <width>50</width>
+          <height>0</height>
+         </size>
+        </property>
+        <item>
+         <property name="text">
+          <string>As Removed</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Serviceable</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Overhauled</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>New Stock</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Repairable</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>New Surplus (NOS)</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Beyond Repair</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Unknown</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Core</string>
+         </property>
+        </item>
+       </widget>
+      </item>
+      <item row="4" column="0">
+       <widget class="QLabel" name="qty_lbl">
+        <property name="text">
+         <string>Qty Available*</string>
+        </property>
+       </widget>
+      </item>
+      <item row="4" column="1">
+       <widget class="QLineEdit" name="qty_le"/>
+      </item>
+      <item row="5" column="0">
+       <widget class="QLabel" name="mpn_lbl">
+        <property name="text">
+         <string>Part Number</string>
+        </property>
+       </widget>
+      </item>
+      <item row="5" column="1">
+       <widget class="QLineEdit" name="pn_le"/>
+      </item>
+      <item row="6" column="0">
+       <widget class="QLabel" name="ampn_lbl">
+        <property name="text">
+         <string>Alt Part Number</string>
+        </property>
+       </widget>
+      </item>
+      <item row="6" column="1">
+       <widget class="QLineEdit" name="apn_le"/>
+      </item>
+      <item row="7" column="0">
+       <widget class="QLabel" name="sn_lbl">
+        <property name="text">
+         <string>Serial Number</string>
+        </property>
+       </widget>
+      </item>
+      <item row="7" column="1">
+       <widget class="QLineEdit" name="sn_le"/>
+      </item>
+      <item row="8" column="0">
+       <widget class="QLabel" name="sku_lbl">
+        <property name="text">
+         <string>SKU</string>
+        </property>
+       </widget>
+      </item>
+      <item row="8" column="1">
+       <widget class="QLineEdit" name="sku_le"/>
+      </item>
+      <item row="9" column="0">
+       <widget class="QLabel" name="mfr_lbl">
+        <property name="text">
+         <string>Manufacturer</string>
+        </property>
+       </widget>
+      </item>
+      <item row="9" column="1">
+       <widget class="QLineEdit" name="mfr_le"/>
+      </item>
+      <item row="10" column="0">
+       <widget class="QLabel" name="price_lbl">
+        <property name="text">
+         <string>Price*</string>
+        </property>
+       </widget>
+      </item>
+      <item row="10" column="1">
+       <widget class="QLineEdit" name="price_le"/>
+      </item>
+      <item row="11" column="0">
+       <widget class="QLabel" name="ship_lbl">
+        <property name="text">
+         <string>Shipping Cost*</string>
+        </property>
+       </widget>
+      </item>
+      <item row="11" column="1">
+       <widget class="QLineEdit" name="ship_le"/>
+      </item>
+      <item row="12" column="0">
+       <widget class="QLabel" name="core_lbl">
+        <property name="text">
+         <string>Has Core Charge?</string>
+        </property>
+       </widget>
+      </item>
+      <item row="12" column="1">
+       <layout class="QHBoxLayout" name="horizontalLayout">
+        <item>
+         <widget class="QRadioButton" name="core_yes">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="text">
+           <string>Yes</string>
+          </property>
+          <attribute name="buttonGroup">
+           <string notr="true">coreBtnGroup</string>
+          </attribute>
+         </widget>
+        </item>
+        <item>
+         <widget class="QRadioButton" name="core_no">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="text">
+           <string>No</string>
+          </property>
+          <attribute name="buttonGroup">
+           <string notr="true">coreBtnGroup</string>
+          </attribute>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item row="13" column="0">
+       <widget class="QLabel" name="img_lbl">
+        <property name="text">
+         <string>Default Image:</string>
+        </property>
+       </widget>
+      </item>
+      <item row="13" column="1">
+       <widget class="QPushButton" name="img_upload_btn">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="text">
+         <string>Choose Image</string>
+        </property>
+       </widget>
+      </item>
+      <item row="14" column="0">
+       <widget class="QLabel" name="active_lbl">
+        <property name="text">
+         <string>Active</string>
+        </property>
+       </widget>
+      </item>
+      <item row="14" column="1">
+       <layout class="QHBoxLayout" name="horizontalLayout_6">
+        <item>
+         <widget class="QRadioButton" name="active_yes">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="text">
+           <string>Yes</string>
+          </property>
+          <attribute name="buttonGroup">
+           <string notr="true">activeBtnGroup</string>
+          </attribute>
+         </widget>
+        </item>
+        <item>
+         <widget class="QRadioButton" name="active_no">
+          <property name="text">
+           <string>No</string>
+          </property>
+          <attribute name="buttonGroup">
+           <string notr="true">activeBtnGroup</string>
+          </attribute>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item row="15" column="0">
+       <widget class="QLabel" name="onsale_lbl">
+        <property name="text">
+         <string>On Sale</string>
+        </property>
+       </widget>
+      </item>
+      <item row="15" column="1">
+       <layout class="QHBoxLayout" name="horizontalLayout_7">
+        <item>
+         <widget class="QRadioButton" name="sale_yes">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="text">
+           <string>Yes</string>
+          </property>
+          <attribute name="buttonGroup">
+           <string notr="true">saleBtnGroup</string>
+          </attribute>
+         </widget>
+        </item>
+        <item>
+         <widget class="QRadioButton" name="sale_no">
+          <property name="text">
+           <string>No</string>
+          </property>
+          <attribute name="buttonGroup">
+           <string notr="true">saleBtnGroup</string>
+          </attribute>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item row="16" column="0">
+       <widget class="QLabel" name="offer_lbl">
+        <property name="text">
+         <string>Allow Best Offer</string>
+        </property>
+       </widget>
+      </item>
+      <item row="16" column="1">
+       <layout class="QHBoxLayout" name="horizontalLayout_8">
+        <item>
+         <widget class="QRadioButton" name="offer_yes">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="text">
+           <string>Yes</string>
+          </property>
+          <attribute name="buttonGroup">
+           <string notr="true">offerBtnGroup</string>
+          </attribute>
+         </widget>
+        </item>
+        <item>
+         <widget class="QRadioButton" name="offer_no">
+          <property name="text">
+           <string>No</string>
+          </property>
+          <attribute name="buttonGroup">
+           <string notr="true">offerBtnGroup</string>
+          </attribute>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item row="17" column="0">
+       <widget class="QLabel" name="feat_lbl">
+        <property name="text">
+         <string>Featured</string>
+        </property>
+       </widget>
+      </item>
+      <item row="17" column="1">
+       <layout class="QHBoxLayout" name="horizontalLayout_9">
+        <item>
+         <widget class="QRadioButton" name="feat_yes">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="text">
+           <string>Yes</string>
+          </property>
+          <attribute name="buttonGroup">
+           <string notr="true">featBtnGroup</string>
+          </attribute>
+         </widget>
+        </item>
+        <item>
+         <widget class="QRadioButton" name="feat_no">
+          <property name="text">
+           <string>No</string>
+          </property>
+          <attribute name="buttonGroup">
+           <string notr="true">featBtnGroup</string>
+          </attribute>
+         </widget>
+        </item>
+       </layout>
+      </item>
+     </layout>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QGroupBox" name="img_groupbox">
+   <property name="geometry">
+    <rect>
+     <x>399</x>
+     <y>9</y>
+     <width>221</width>
+     <height>601</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>11</pointsize>
+     <weight>50</weight>
+     <bold>false</bold>
+     <underline>false</underline>
+    </font>
+   </property>
+   <property name="contextMenuPolicy">
+    <enum>Qt::NoContextMenu</enum>
+   </property>
+   <property name="title">
+    <string>Product Images</string>
+   </property>
+   <widget class="QWidget" name="gridLayoutWidget">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>20</y>
+      <width>201</width>
+      <height>571</height>
+     </rect>
+    </property>
+    <layout class="QGridLayout" name="gridLayout">
+     <item row="0" column="0">
+      <widget class="QLabel" name="img1_lbl">
+       <property name="contextMenuPolicy">
+        <enum>Qt::CustomContextMenu</enum>
+       </property>
+       <property name="frameShape">
+        <enum>QFrame::StyledPanel</enum>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="1">
+      <widget class="QLabel" name="img2_lbl">
+       <property name="contextMenuPolicy">
+        <enum>Qt::CustomContextMenu</enum>
+       </property>
+       <property name="frameShape">
+        <enum>QFrame::StyledPanel</enum>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+     </item>
+     <item row="3" column="0">
+      <widget class="QLabel" name="img7_lbl">
+       <property name="contextMenuPolicy">
+        <enum>Qt::CustomContextMenu</enum>
+       </property>
+       <property name="frameShape">
+        <enum>QFrame::StyledPanel</enum>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="1">
+      <widget class="QLabel" name="img4_lbl">
+       <property name="contextMenuPolicy">
+        <enum>Qt::CustomContextMenu</enum>
+       </property>
+       <property name="frameShape">
+        <enum>QFrame::StyledPanel</enum>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+     </item>
+     <item row="3" column="1">
+      <widget class="QLabel" name="img8_lbl">
+       <property name="contextMenuPolicy">
+        <enum>Qt::CustomContextMenu</enum>
+       </property>
+       <property name="frameShape">
+        <enum>QFrame::StyledPanel</enum>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="0">
+      <widget class="QLabel" name="img5_lbl">
+       <property name="contextMenuPolicy">
+        <enum>Qt::CustomContextMenu</enum>
+       </property>
+       <property name="frameShape">
+        <enum>QFrame::StyledPanel</enum>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="1">
+      <widget class="QLabel" name="img6_lbl">
+       <property name="contextMenuPolicy">
+        <enum>Qt::CustomContextMenu</enum>
+       </property>
+       <property name="frameShape">
+        <enum>QFrame::StyledPanel</enum>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="0">
+      <widget class="QLabel" name="img3_lbl">
+       <property name="contextMenuPolicy">
+        <enum>Qt::CustomContextMenu</enum>
+       </property>
+       <property name="frameShape">
+        <enum>QFrame::StyledPanel</enum>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+     </item>
+     <item row="4" column="0">
+      <widget class="QLabel" name="img9_lbl">
+       <property name="contextMenuPolicy">
+        <enum>Qt::CustomContextMenu</enum>
+       </property>
+       <property name="frameShape">
+        <enum>QFrame::StyledPanel</enum>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+     </item>
+     <item row="4" column="1">
+      <widget class="QLabel" name="img10_lbl">
+       <property name="contextMenuPolicy">
+        <enum>Qt::CustomContextMenu</enum>
+       </property>
+       <property name="frameShape">
+        <enum>QFrame::StyledPanel</enum>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="textInteractionFlags">
+        <set>Qt::NoTextInteraction</set>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+  </widget>
+  <widget class="QWidget" name="horizontalLayoutWidget_7">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>610</y>
+     <width>381</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <layout class="QHBoxLayout" name="horizontalLayout_11">
+    <item>
+     <widget class="QPushButton" name="upload_new_button">
+      <property name="text">
+       <string>Submit</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QPushButton" name="cancel_new_button">
+      <property name="text">
+       <string>Cancel</string>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+ </widget>
+ <tabstops>
+  <tabstop>name_le</tabstop>
+  <tabstop>desc_te</tabstop>
+  <tabstop>cat_options</tabstop>
+  <tabstop>subcat_options</tabstop>
+  <tabstop>cond_options</tabstop>
+  <tabstop>qty_le</tabstop>
+  <tabstop>pn_le</tabstop>
+  <tabstop>apn_le</tabstop>
+  <tabstop>sn_le</tabstop>
+  <tabstop>sku_le</tabstop>
+  <tabstop>mfr_le</tabstop>
+  <tabstop>price_le</tabstop>
+  <tabstop>ship_le</tabstop>
+  <tabstop>core_yes</tabstop>
+  <tabstop>core_no</tabstop>
+  <tabstop>img_upload_btn</tabstop>
+  <tabstop>active_yes</tabstop>
+  <tabstop>active_no</tabstop>
+  <tabstop>sale_yes</tabstop>
+  <tabstop>sale_no</tabstop>
+  <tabstop>offer_yes</tabstop>
+  <tabstop>offer_no</tabstop>
+  <tabstop>feat_yes</tabstop>
+  <tabstop>feat_no</tabstop>
+  <tabstop>upload_new_button</tabstop>
+  <tabstop>cancel_new_button</tabstop>
+ </tabstops>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>cancel_new_button</sender>
+   <signal>clicked()</signal>
+   <receiver>ListItemWidget</receiver>
+   <slot>close()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>296</x>
+     <y>630</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>313</x>
+     <y>328</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+ <buttongroups>
+  <buttongroup name="activeBtnGroup"/>
+  <buttongroup name="featBtnGroup"/>
+  <buttongroup name="offerBtnGroup"/>
+  <buttongroup name="saleBtnGroup"/>
+  <buttongroup name="coreBtnGroup"/>
+ </buttongroups>
+</ui>
