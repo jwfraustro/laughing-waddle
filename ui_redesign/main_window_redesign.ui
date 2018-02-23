@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>849</width>
-    <height>704</height>
+    <height>632</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -35,6 +35,10 @@
   </property>
   <property name="windowTitle">
    <string>HangarSwap Seller App</string>
+  </property>
+  <property name="windowIcon">
+   <iconset>
+    <normaloff>favicon-32x32.png</normaloff>favicon-32x32.png</iconset>
   </property>
   <property name="styleSheet">
    <string notr="true">QMenuBar {
@@ -85,9 +89,32 @@ font: 8pt &quot;Open Sans&quot;;
         <enum>QLayout::SetDefaultConstraint</enum>
        </property>
        <item>
-        <widget class="QPushButton" name="pushButton_2">
+        <widget class="QPushButton" name="landingBtn">
+         <property name="styleSheet">
+          <string notr="true">QPushButton{border-color: rgb(231, 231, 231);
+background-color: rgb(255, 255, 255);
+color: rgb(62, 112, 201);
+border-style: solid;
+border-width: 1px;
+}
+QPushButton:pressed{
+background-color: rgb(226, 226, 226);
+border-color: rgb(255,255,255);
+color: rgb(255,255,255);
+}</string>
+         </property>
          <property name="text">
           <string/>
+         </property>
+         <property name="icon">
+          <iconset resource="RESOURCES.qrc">
+           <normaloff>:/imgs/HangarSwapLogo_sm1_new.png</normaloff>:/imgs/HangarSwapLogo_sm1_new.png</iconset>
+         </property>
+         <property name="iconSize">
+          <size>
+           <width>120</width>
+           <height>23</height>
+          </size>
          </property>
         </widget>
        </item>
@@ -306,7 +333,7 @@ font: 8pt &quot;Open Sans&quot;;
         <item row="0" column="0">
          <widget class="QFrame" name="frame_2">
           <property name="sizePolicy">
-           <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+           <sizepolicy hsizetype="MinimumExpanding" vsizetype="Preferred">
             <horstretch>0</horstretch>
             <verstretch>0</verstretch>
            </sizepolicy>
@@ -396,7 +423,7 @@ font: 8pt &quot;Open Sans&quot;;
               <string notr="true">QPushButton{border-color: rgb(62, 112, 201);
 background-color: rgb(255, 255, 255);
 color: rgb(62, 112, 201);
-border-radius: 10px;
+border-radius: 5px;
 border-style: solid;
 border-width: 1px;
 }
@@ -456,7 +483,7 @@ border-color: rgb(255,255,255);
          </widget>
         </item>
         <item row="0" column="1">
-         <widget class="QFrame" name="frame_3">
+         <widget class="QFrame" name="landingBtnsFrame">
           <property name="sizePolicy">
            <sizepolicy hsizetype="MinimumExpanding" vsizetype="Preferred">
             <horstretch>0</horstretch>
@@ -471,7 +498,7 @@ border-color: rgb(255,255,255);
           </property>
           <layout class="QGridLayout" name="gridLayout_7">
            <item row="0" column="0">
-            <widget class="QPushButton" name="pushButton">
+            <widget class="QPushButton" name="landingOrdersBtn">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
                <horstretch>0</horstretch>
@@ -498,7 +525,7 @@ border-width: 1px;
             </widget>
            </item>
            <item row="0" column="1">
-            <widget class="QPushButton" name="pushButton_4">
+            <widget class="QPushButton" name="landingStoreBtn">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
                <horstretch>0</horstretch>
@@ -525,12 +552,15 @@ border-width: 1px;
             </widget>
            </item>
            <item row="1" column="0">
-            <widget class="QPushButton" name="pushButton_3">
+            <widget class="QPushButton" name="landingRevenueBtn">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
                <horstretch>0</horstretch>
                <verstretch>0</verstretch>
               </sizepolicy>
+             </property>
+             <property name="cursor">
+              <cursorShape>PointingHandCursor</cursorShape>
              </property>
              <property name="styleSheet">
               <string notr="true">QPushButton{border-color: rgb(65, 184, 105);
@@ -547,12 +577,15 @@ border-width: 1px;
             </widget>
            </item>
            <item row="1" column="1">
-            <widget class="QPushButton" name="pushButton_5">
+            <widget class="QPushButton" name="landingProductsBtn">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
                <horstretch>0</horstretch>
                <verstretch>0</verstretch>
               </sizepolicy>
+             </property>
+             <property name="cursor">
+              <cursorShape>PointingHandCursor</cursorShape>
              </property>
              <property name="styleSheet">
               <string notr="true">QPushButton
@@ -576,7 +609,7 @@ border-width: 1px;
         <item row="1" column="0">
          <widget class="QFrame" name="frame_4">
           <property name="sizePolicy">
-           <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+           <sizepolicy hsizetype="MinimumExpanding" vsizetype="Preferred">
             <horstretch>0</horstretch>
             <verstretch>0</verstretch>
            </sizepolicy>
@@ -598,17 +631,17 @@ border-width: 1px;
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_10">
            <item>
-            <widget class="QLabel" name="label">
+            <widget class="QLabel" name="recentMessagesLbl">
              <property name="text">
               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:14pt; font-weight:600;&quot;&gt;Recent Messages&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
              </property>
             </widget>
            </item>
            <item>
-            <widget class="QListView" name="listView"/>
+            <widget class="QListView" name="recentMessagesView"/>
            </item>
            <item>
-            <widget class="QPushButton" name="pushButton_6">
+            <widget class="QPushButton" name="landingMessagesBtn">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
                <horstretch>0</horstretch>
@@ -749,6 +782,9 @@ border-width: 1px;
                   </widget>
                  </item>
                 </layout>
+                <zorder>prod1titleLbl</zorder>
+                <zorder>prod1priceLbl</zorder>
+                <zorder>prod1imgLbl</zorder>
                </widget>
               </item>
               <item row="0" column="1">
@@ -809,6 +845,9 @@ border-width: 1px;
                   </widget>
                  </item>
                 </layout>
+                <zorder>prod2titleLbl</zorder>
+                <zorder>prod2priceLbl</zorder>
+                <zorder>prod2imgLbl</zorder>
                </widget>
               </item>
               <item row="1" column="0">
@@ -869,6 +908,9 @@ border-width: 1px;
                   </widget>
                  </item>
                 </layout>
+                <zorder>prod3titleLbl</zorder>
+                <zorder>prod3priceLbl</zorder>
+                <zorder>prod3imgLbl</zorder>
                </widget>
               </item>
               <item row="1" column="1">
@@ -929,6 +971,9 @@ border-width: 1px;
                   </widget>
                  </item>
                 </layout>
+                <zorder>prod4titleLbl</zorder>
+                <zorder>prod4priceLbl</zorder>
+                <zorder>prod4imgLbl</zorder>
                </widget>
               </item>
              </layout>
@@ -2167,8 +2212,8 @@ color: rgb(63,112,199);
    <slot>switchInboxTable()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>174</x>
-     <y>51</y>
+     <x>180</x>
+     <y>52</y>
     </hint>
     <hint type="destinationlabel">
      <x>171</x>
@@ -2183,8 +2228,8 @@ color: rgb(63,112,199);
    <slot>switchUnreadTable()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>174</x>
-     <y>50</y>
+     <x>180</x>
+     <y>51</y>
     </hint>
     <hint type="destinationlabel">
      <x>226</x>
@@ -2199,8 +2244,8 @@ color: rgb(63,112,199);
    <slot>switchSentTable()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>174</x>
-     <y>48</y>
+     <x>180</x>
+     <y>49</y>
     </hint>
     <hint type="destinationlabel">
      <x>848</x>
@@ -2215,8 +2260,8 @@ color: rgb(63,112,199);
    <slot>switchTrashTable()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>174</x>
-     <y>47</y>
+     <x>180</x>
+     <y>48</y>
     </hint>
     <hint type="destinationlabel">
      <x>0</x>
@@ -2273,7 +2318,7 @@ color: rgb(63,112,199);
    </hints>
   </connection>
   <connection>
-   <sender>pushButton</sender>
+   <sender>landingOrdersBtn</sender>
    <signal>clicked()</signal>
    <receiver>HSMainWindow</receiver>
    <slot>initOrdersView()</slot>
@@ -2289,7 +2334,7 @@ color: rgb(63,112,199);
    </hints>
   </connection>
   <connection>
-   <sender>pushButton_3</sender>
+   <sender>landingRevenueBtn</sender>
    <signal>clicked()</signal>
    <receiver>HSMainWindow</receiver>
    <slot>initOrdersView()</slot>
@@ -2305,7 +2350,7 @@ color: rgb(63,112,199);
    </hints>
   </connection>
   <connection>
-   <sender>pushButton_4</sender>
+   <sender>landingStoreBtn</sender>
    <signal>clicked()</signal>
    <receiver>HSMainWindow</receiver>
    <slot>initStorePageView()</slot>
@@ -2321,7 +2366,7 @@ color: rgb(63,112,199);
    </hints>
   </connection>
   <connection>
-   <sender>pushButton_5</sender>
+   <sender>landingProductsBtn</sender>
    <signal>clicked()</signal>
    <receiver>HSMainWindow</receiver>
    <slot>initProductsView()</slot>
@@ -2337,7 +2382,7 @@ color: rgb(63,112,199);
    </hints>
   </connection>
   <connection>
-   <sender>pushButton_6</sender>
+   <sender>landingMessagesBtn</sender>
    <signal>clicked()</signal>
    <receiver>HSMainWindow</receiver>
    <slot>initInboxView()</slot>
@@ -2368,6 +2413,22 @@ color: rgb(63,112,199);
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>landingBtn</sender>
+   <signal>clicked()</signal>
+   <receiver>HSMainWindow</receiver>
+   <slot>initLandingView()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>52</x>
+     <y>39</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>170</x>
+     <y>-8</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>initOrdersView()</slot>
@@ -2388,6 +2449,7 @@ color: rgb(63,112,199);
   <slot>switchTrashTable()</slot>
   <slot>initStorePageView()</slot>
   <slot>initNewProductsView()</slot>
+  <slot>initLandingView()</slot>
  </slots>
  <buttongroups>
   <buttongroup name="main_view_group"/>

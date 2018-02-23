@@ -23,6 +23,9 @@ class Ui_HSMainWindow(object):
         HSMainWindow.setFont(font)
         HSMainWindow.setMouseTracking(True)
         HSMainWindow.setContextMenuPolicy(QtCore.Qt.CustomContextMenu)
+        icon = QtGui.QIcon()
+        icon.addPixmap(QtGui.QPixmap("favicon-32x32.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        HSMainWindow.setWindowIcon(icon)
         HSMainWindow.setStyleSheet("QMenuBar {\n"
 "    background-color: rgb(54, 56, 67);\n"
 "    \n"
@@ -41,12 +44,31 @@ class Ui_HSMainWindow(object):
         self.sidebar_2 = QtWidgets.QFrame(self.centralwidget)
         self.sidebar_2.setStyleSheet("background-color: rgb(245, 245, 245);\n"
 "font: 8pt \"Open Sans\";\n"
-"QPushButton {cursor:\"Pointing Hand\";}")
+"")
         self.sidebar_2.setObjectName("sidebar_2")
         self.sidebar = QtWidgets.QVBoxLayout(self.sidebar_2)
         self.sidebar.setSizeConstraint(QtWidgets.QLayout.SetDefaultConstraint)
         self.sidebar.setSpacing(0)
         self.sidebar.setObjectName("sidebar")
+        self.landingBtn = QtWidgets.QPushButton(self.sidebar_2)
+        self.landingBtn.setStyleSheet("QPushButton{border-color: rgb(231, 231, 231);\n"
+"background-color: rgb(255, 255, 255);\n"
+"color: rgb(62, 112, 201);\n"
+"border-style: solid;\n"
+"border-width: 1px;\n"
+"}\n"
+"QPushButton:pressed{\n"
+"background-color: rgb(226, 226, 226);\n"
+"border-color: rgb(255,255,255);\n"
+"color: rgb(255,255,255);\n"
+"}")
+        self.landingBtn.setText("")
+        icon1 = QtGui.QIcon()
+        icon1.addPixmap(QtGui.QPixmap("HangarSwapLogo_sm1_new.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.landingBtn.setIcon(icon1)
+        self.landingBtn.setIconSize(QtCore.QSize(120, 23))
+        self.landingBtn.setObjectName("landingBtn")
+        self.sidebar.addWidget(self.landingBtn)
         self.catalogGroupBox = QtWidgets.QGroupBox(self.sidebar_2)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
@@ -57,15 +79,15 @@ class Ui_HSMainWindow(object):
         self.catalogGroupBox.setObjectName("catalogGroupBox")
         self.verticalLayout_2 = QtWidgets.QVBoxLayout(self.catalogGroupBox)
         self.verticalLayout_2.setObjectName("verticalLayout_2")
-        self.pushButton = QtWidgets.QPushButton(self.catalogGroupBox)
+        self.addProductBtn_2 = QtWidgets.QPushButton(self.catalogGroupBox)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.pushButton.sizePolicy().hasHeightForWidth())
-        self.pushButton.setSizePolicy(sizePolicy)
-        self.pushButton.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
-        self.pushButton.setObjectName("pushButton")
-        self.verticalLayout_2.addWidget(self.pushButton)
+        sizePolicy.setHeightForWidth(self.addProductBtn_2.sizePolicy().hasHeightForWidth())
+        self.addProductBtn_2.setSizePolicy(sizePolicy)
+        self.addProductBtn_2.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
+        self.addProductBtn_2.setObjectName("addProductBtn_2")
+        self.verticalLayout_2.addWidget(self.addProductBtn_2)
         self.productsBtn = QtWidgets.QPushButton(self.catalogGroupBox)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.MinimumExpanding)
         sizePolicy.setHorizontalStretch(0)
@@ -154,6 +176,367 @@ class Ui_HSMainWindow(object):
         self.stackedWidget.setMinimumSize(QtCore.QSize(698, 530))
         self.stackedWidget.setStyleSheet("background-color: rgb(231, 234, 239);")
         self.stackedWidget.setObjectName("stackedWidget")
+        self.landingPage = QtWidgets.QWidget()
+        self.landingPage.setObjectName("landingPage")
+        self.gridLayout_8 = QtWidgets.QGridLayout(self.landingPage)
+        self.gridLayout_8.setContentsMargins(0, 0, 0, 0)
+        self.gridLayout_8.setObjectName("gridLayout_8")
+        self.frame_2 = QtWidgets.QFrame(self.landingPage)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.MinimumExpanding, QtWidgets.QSizePolicy.Preferred)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.frame_2.sizePolicy().hasHeightForWidth())
+        self.frame_2.setSizePolicy(sizePolicy)
+        self.frame_2.setStyleSheet("background-color: rgb(254, 254, 254);")
+        self.frame_2.setFrameShape(QtWidgets.QFrame.Box)
+        self.frame_2.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.frame_2.setObjectName("frame_2")
+        self.verticalLayout_9 = QtWidgets.QVBoxLayout(self.frame_2)
+        self.verticalLayout_9.setObjectName("verticalLayout_9")
+        self.profileIcon_2 = QtWidgets.QLabel(self.frame_2)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Preferred)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.profileIcon_2.sizePolicy().hasHeightForWidth())
+        self.profileIcon_2.setSizePolicy(sizePolicy)
+        self.profileIcon_2.setMinimumSize(QtCore.QSize(50, 50))
+        self.profileIcon_2.setMaximumSize(QtCore.QSize(50, 50))
+        self.profileIcon_2.setText("")
+        self.profileIcon_2.setPixmap(QtGui.QPixmap(":/imgs/default-user-icon.jpg"))
+        self.profileIcon_2.setScaledContents(True)
+        self.profileIcon_2.setObjectName("profileIcon_2")
+        self.verticalLayout_9.addWidget(self.profileIcon_2)
+        self.storeNameLbl = QtWidgets.QLabel(self.frame_2)
+        self.storeNameLbl.setStyleSheet("font: 75 11pt \"Open Sans\";")
+        self.storeNameLbl.setObjectName("storeNameLbl")
+        self.verticalLayout_9.addWidget(self.storeNameLbl)
+        self.customerNameLbl = QtWidgets.QLabel(self.frame_2)
+        self.customerNameLbl.setObjectName("customerNameLbl")
+        self.verticalLayout_9.addWidget(self.customerNameLbl)
+        self.addProductBtn_3 = QtWidgets.QPushButton(self.frame_2)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Ignored, QtWidgets.QSizePolicy.Preferred)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.addProductBtn_3.sizePolicy().hasHeightForWidth())
+        self.addProductBtn_3.setSizePolicy(sizePolicy)
+        self.addProductBtn_3.setMinimumSize(QtCore.QSize(0, 0))
+        self.addProductBtn_3.setMaximumSize(QtCore.QSize(9999, 9999))
+        self.addProductBtn_3.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
+        self.addProductBtn_3.setStyleSheet("QPushButton{border-color: rgb(62, 112, 201);\n"
+"background-color: rgb(255, 255, 255);\n"
+"color: rgb(62, 112, 201);\n"
+"border-radius: 5px;\n"
+"border-style: solid;\n"
+"border-width: 1px;\n"
+"}\n"
+"QPushButton:pressed{\n"
+"background-color:  rgb(62, 112, 201);\n"
+"border-color: rgb(255,255,255);\n"
+"color: rgb(255,255,255);\n"
+"}")
+        self.addProductBtn_3.setObjectName("addProductBtn_3")
+        self.verticalLayout_9.addWidget(self.addProductBtn_3)
+        self.viewCatalogBtn = QtWidgets.QPushButton(self.frame_2)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Ignored, QtWidgets.QSizePolicy.Preferred)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.viewCatalogBtn.sizePolicy().hasHeightForWidth())
+        self.viewCatalogBtn.setSizePolicy(sizePolicy)
+        self.viewCatalogBtn.setMinimumSize(QtCore.QSize(0, 0))
+        self.viewCatalogBtn.setMaximumSize(QtCore.QSize(9999, 9999))
+        self.viewCatalogBtn.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
+        self.viewCatalogBtn.setStyleSheet("QPushButton{border-color: rgb(65, 184, 105);\n"
+"background-color: rgb(65, 184, 105);\n"
+"color: rgb(255, 255, 255);\n"
+"border-radius: 10px;\n"
+"border-style: solid;\n"
+"border-width: 1px;\n"
+"}\n"
+"QPushButton:pressed{\n"
+"background-color:  rgb(72, 206, 117);\n"
+"border-color: rgb(255,255,255);\n"
+"}")
+        self.viewCatalogBtn.setObjectName("viewCatalogBtn")
+        self.verticalLayout_9.addWidget(self.viewCatalogBtn)
+        self.gridLayout_8.addWidget(self.frame_2, 0, 0, 1, 1)
+        self.landingBtnsFrame = QtWidgets.QFrame(self.landingPage)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.MinimumExpanding, QtWidgets.QSizePolicy.Preferred)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.landingBtnsFrame.sizePolicy().hasHeightForWidth())
+        self.landingBtnsFrame.setSizePolicy(sizePolicy)
+        self.landingBtnsFrame.setFrameShape(QtWidgets.QFrame.StyledPanel)
+        self.landingBtnsFrame.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.landingBtnsFrame.setObjectName("landingBtnsFrame")
+        self.gridLayout_7 = QtWidgets.QGridLayout(self.landingBtnsFrame)
+        self.gridLayout_7.setObjectName("gridLayout_7")
+        self.landingOrdersBtn = QtWidgets.QPushButton(self.landingBtnsFrame)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.landingOrdersBtn.sizePolicy().hasHeightForWidth())
+        self.landingOrdersBtn.setSizePolicy(sizePolicy)
+        self.landingOrdersBtn.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
+        self.landingOrdersBtn.setStyleSheet("QPushButton\n"
+"{\n"
+"border-color:rgb(243, 65, 53);\n"
+"background-color: rgb(243, 65, 53);\n"
+"color: rgb(255, 255, 255);\n"
+"border-style: solid;\n"
+"border-width: 1px;\n"
+"}\n"
+"")
+        self.landingOrdersBtn.setObjectName("landingOrdersBtn")
+        self.gridLayout_7.addWidget(self.landingOrdersBtn, 0, 0, 1, 1)
+        self.landingStoreBtn = QtWidgets.QPushButton(self.landingBtnsFrame)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.landingStoreBtn.sizePolicy().hasHeightForWidth())
+        self.landingStoreBtn.setSizePolicy(sizePolicy)
+        self.landingStoreBtn.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
+        self.landingStoreBtn.setStyleSheet("QPushButton\n"
+"{\n"
+"border-color: rgb(244, 146, 71);\n"
+"background-color: rgb(244, 146, 71);\n"
+"color: rgb(255, 255, 255);\n"
+"border-style: solid;\n"
+"border-width: 1px;\n"
+"}\n"
+"")
+        self.landingStoreBtn.setObjectName("landingStoreBtn")
+        self.gridLayout_7.addWidget(self.landingStoreBtn, 0, 1, 1, 1)
+        self.landingRevenueBtn = QtWidgets.QPushButton(self.landingBtnsFrame)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.landingRevenueBtn.sizePolicy().hasHeightForWidth())
+        self.landingRevenueBtn.setSizePolicy(sizePolicy)
+        self.landingRevenueBtn.setStyleSheet("QPushButton{border-color: rgb(65, 184, 105);\n"
+"background-color: rgb(65, 184, 105);\n"
+"color: rgb(255, 255, 255);\n"
+"border-style: solid;\n"
+"border-width: 1px;\n"
+"}\n"
+"")
+        self.landingRevenueBtn.setObjectName("landingRevenueBtn")
+        self.gridLayout_7.addWidget(self.landingRevenueBtn, 1, 0, 1, 1)
+        self.landingProductsBtn = QtWidgets.QPushButton(self.landingBtnsFrame)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.landingProductsBtn.sizePolicy().hasHeightForWidth())
+        self.landingProductsBtn.setSizePolicy(sizePolicy)
+        self.landingProductsBtn.setStyleSheet("QPushButton\n"
+"{\n"
+"border-color: rgb(63, 112, 199);\n"
+"background-color: rgb(63, 112, 199);\n"
+"color: rgb(255, 255, 255);\n"
+"border-style: solid;\n"
+"border-width: 1px;\n"
+"}\n"
+"")
+        self.landingProductsBtn.setObjectName("landingProductsBtn")
+        self.gridLayout_7.addWidget(self.landingProductsBtn, 1, 1, 1, 1)
+        self.gridLayout_8.addWidget(self.landingBtnsFrame, 0, 1, 1, 1)
+        self.frame_4 = QtWidgets.QFrame(self.landingPage)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.MinimumExpanding, QtWidgets.QSizePolicy.Preferred)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.frame_4.sizePolicy().hasHeightForWidth())
+        self.frame_4.setSizePolicy(sizePolicy)
+        self.frame_4.setMinimumSize(QtCore.QSize(186, 0))
+        self.frame_4.setStyleSheet("background-color: rgb(254, 254, 254);")
+        self.frame_4.setFrameShape(QtWidgets.QFrame.Box)
+        self.frame_4.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.frame_4.setObjectName("frame_4")
+        self.verticalLayout_10 = QtWidgets.QVBoxLayout(self.frame_4)
+        self.verticalLayout_10.setObjectName("verticalLayout_10")
+        self.recentMessagesLbl = QtWidgets.QLabel(self.frame_4)
+        self.recentMessagesLbl.setObjectName("recentMessagesLbl")
+        self.verticalLayout_10.addWidget(self.recentMessagesLbl)
+        self.recentMessagesView = QtWidgets.QListView(self.frame_4)
+        self.recentMessagesView.setObjectName("recentMessagesView")
+        self.verticalLayout_10.addWidget(self.recentMessagesView)
+        self.landingMessagesBtn = QtWidgets.QPushButton(self.frame_4)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Preferred)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.landingMessagesBtn.sizePolicy().hasHeightForWidth())
+        self.landingMessagesBtn.setSizePolicy(sizePolicy)
+        self.landingMessagesBtn.setMinimumSize(QtCore.QSize(0, 20))
+        self.landingMessagesBtn.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
+        self.landingMessagesBtn.setStyleSheet("QPushButton{border-color: rgb(63, 112, 199);\n"
+"background-color: rgb(63, 112, 199);\n"
+"color: rgb(255, 255, 255);\n"
+"border-radius: 10px;\n"
+"border-style: solid;\n"
+"border-width: 1px;\n"
+"}\n"
+"")
+        self.landingMessagesBtn.setObjectName("landingMessagesBtn")
+        self.verticalLayout_10.addWidget(self.landingMessagesBtn)
+        self.gridLayout_8.addWidget(self.frame_4, 1, 0, 1, 1)
+        self.newestListingsFrame = QtWidgets.QFrame(self.landingPage)
+        self.newestListingsFrame.setMinimumSize(QtCore.QSize(0, 0))
+        self.newestListingsFrame.setStyleSheet("background-color: rgb(254, 254, 254);")
+        self.newestListingsFrame.setFrameShape(QtWidgets.QFrame.Box)
+        self.newestListingsFrame.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.newestListingsFrame.setObjectName("newestListingsFrame")
+        self.verticalLayout_11 = QtWidgets.QVBoxLayout(self.newestListingsFrame)
+        self.verticalLayout_11.setObjectName("verticalLayout_11")
+        self.newestListingsLBL = QtWidgets.QLabel(self.newestListingsFrame)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.newestListingsLBL.sizePolicy().hasHeightForWidth())
+        self.newestListingsLBL.setSizePolicy(sizePolicy)
+        self.newestListingsLBL.setStyleSheet("font: 75 16pt \"Open Sans\";")
+        self.newestListingsLBL.setObjectName("newestListingsLBL")
+        self.verticalLayout_11.addWidget(self.newestListingsLBL)
+        self.newProductsGalleryFrame = QtWidgets.QFrame(self.newestListingsFrame)
+        self.newProductsGalleryFrame.setStyleSheet("background-color: rgb(231, 234, 239);")
+        self.newProductsGalleryFrame.setFrameShape(QtWidgets.QFrame.StyledPanel)
+        self.newProductsGalleryFrame.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.newProductsGalleryFrame.setObjectName("newProductsGalleryFrame")
+        self.gridLayout_9 = QtWidgets.QGridLayout(self.newProductsGalleryFrame)
+        self.gridLayout_9.setObjectName("gridLayout_9")
+        self.newProd1Frame = QtWidgets.QFrame(self.newProductsGalleryFrame)
+        self.newProd1Frame.setStyleSheet("background-color: rgb(254, 254, 254);")
+        self.newProd1Frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
+        self.newProd1Frame.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.newProd1Frame.setObjectName("newProd1Frame")
+        self.verticalLayout_12 = QtWidgets.QVBoxLayout(self.newProd1Frame)
+        self.verticalLayout_12.setObjectName("verticalLayout_12")
+        self.prod1imgLbl = QtWidgets.QLabel(self.newProd1Frame)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.prod1imgLbl.sizePolicy().hasHeightForWidth())
+        self.prod1imgLbl.setSizePolicy(sizePolicy)
+        self.prod1imgLbl.setMinimumSize(QtCore.QSize(70, 150))
+        self.prod1imgLbl.setMaximumSize(QtCore.QSize(150, 150))
+        self.prod1imgLbl.setText("")
+        self.prod1imgLbl.setPixmap(QtGui.QPixmap(":/imgs/no_photo_use.jpg"))
+        self.prod1imgLbl.setScaledContents(True)
+        self.prod1imgLbl.setWordWrap(True)
+        self.prod1imgLbl.setObjectName("prod1imgLbl")
+        self.verticalLayout_12.addWidget(self.prod1imgLbl, 0, QtCore.Qt.AlignHCenter)
+        self.prod1titleLbl = QtWidgets.QLabel(self.newProd1Frame)
+        self.prod1titleLbl.setObjectName("prod1titleLbl")
+        self.verticalLayout_12.addWidget(self.prod1titleLbl, 0, QtCore.Qt.AlignHCenter)
+        self.prod1priceLbl = QtWidgets.QLabel(self.newProd1Frame)
+        self.prod1priceLbl.setObjectName("prod1priceLbl")
+        self.verticalLayout_12.addWidget(self.prod1priceLbl, 0, QtCore.Qt.AlignHCenter)
+        self.prod1titleLbl.raise_()
+        self.prod1priceLbl.raise_()
+        self.prod1imgLbl.raise_()
+        self.gridLayout_9.addWidget(self.newProd1Frame, 0, 0, 1, 1)
+        self.newProd2Frame = QtWidgets.QFrame(self.newProductsGalleryFrame)
+        self.newProd2Frame.setStyleSheet("background-color: rgb(254, 254, 254);")
+        self.newProd2Frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
+        self.newProd2Frame.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.newProd2Frame.setObjectName("newProd2Frame")
+        self.verticalLayout_13 = QtWidgets.QVBoxLayout(self.newProd2Frame)
+        self.verticalLayout_13.setObjectName("verticalLayout_13")
+        self.prod2imgLbl = QtWidgets.QLabel(self.newProd2Frame)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.prod2imgLbl.sizePolicy().hasHeightForWidth())
+        self.prod2imgLbl.setSizePolicy(sizePolicy)
+        self.prod2imgLbl.setMinimumSize(QtCore.QSize(150, 150))
+        self.prod2imgLbl.setMaximumSize(QtCore.QSize(150, 150))
+        self.prod2imgLbl.setText("")
+        self.prod2imgLbl.setPixmap(QtGui.QPixmap(":/imgs/no_photo_use.jpg"))
+        self.prod2imgLbl.setScaledContents(True)
+        self.prod2imgLbl.setObjectName("prod2imgLbl")
+        self.verticalLayout_13.addWidget(self.prod2imgLbl, 0, QtCore.Qt.AlignHCenter)
+        self.prod2titleLbl = QtWidgets.QLabel(self.newProd2Frame)
+        self.prod2titleLbl.setObjectName("prod2titleLbl")
+        self.verticalLayout_13.addWidget(self.prod2titleLbl, 0, QtCore.Qt.AlignHCenter)
+        self.prod2priceLbl = QtWidgets.QLabel(self.newProd2Frame)
+        self.prod2priceLbl.setObjectName("prod2priceLbl")
+        self.verticalLayout_13.addWidget(self.prod2priceLbl, 0, QtCore.Qt.AlignHCenter)
+        self.prod2titleLbl.raise_()
+        self.prod2priceLbl.raise_()
+        self.prod2imgLbl.raise_()
+        self.gridLayout_9.addWidget(self.newProd2Frame, 0, 1, 1, 1)
+        self.newProd3Frame = QtWidgets.QFrame(self.newProductsGalleryFrame)
+        self.newProd3Frame.setStyleSheet("background-color: rgb(254, 254, 254);")
+        self.newProd3Frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
+        self.newProd3Frame.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.newProd3Frame.setObjectName("newProd3Frame")
+        self.verticalLayout_15 = QtWidgets.QVBoxLayout(self.newProd3Frame)
+        self.verticalLayout_15.setObjectName("verticalLayout_15")
+        self.prod3imgLbl = QtWidgets.QLabel(self.newProd3Frame)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.prod3imgLbl.sizePolicy().hasHeightForWidth())
+        self.prod3imgLbl.setSizePolicy(sizePolicy)
+        self.prod3imgLbl.setMinimumSize(QtCore.QSize(150, 150))
+        self.prod3imgLbl.setMaximumSize(QtCore.QSize(150, 150))
+        self.prod3imgLbl.setText("")
+        self.prod3imgLbl.setPixmap(QtGui.QPixmap(":/imgs/no_photo_use.jpg"))
+        self.prod3imgLbl.setScaledContents(True)
+        self.prod3imgLbl.setObjectName("prod3imgLbl")
+        self.verticalLayout_15.addWidget(self.prod3imgLbl, 0, QtCore.Qt.AlignHCenter)
+        self.prod3titleLbl = QtWidgets.QLabel(self.newProd3Frame)
+        self.prod3titleLbl.setObjectName("prod3titleLbl")
+        self.verticalLayout_15.addWidget(self.prod3titleLbl, 0, QtCore.Qt.AlignHCenter)
+        self.prod3priceLbl = QtWidgets.QLabel(self.newProd3Frame)
+        self.prod3priceLbl.setObjectName("prod3priceLbl")
+        self.verticalLayout_15.addWidget(self.prod3priceLbl, 0, QtCore.Qt.AlignHCenter)
+        self.prod3titleLbl.raise_()
+        self.prod3priceLbl.raise_()
+        self.prod3imgLbl.raise_()
+        self.gridLayout_9.addWidget(self.newProd3Frame, 1, 0, 1, 1)
+        self.newProd4Frame = QtWidgets.QFrame(self.newProductsGalleryFrame)
+        self.newProd4Frame.setStyleSheet("background-color: rgb(254, 254, 254);")
+        self.newProd4Frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
+        self.newProd4Frame.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.newProd4Frame.setObjectName("newProd4Frame")
+        self.verticalLayout_14 = QtWidgets.QVBoxLayout(self.newProd4Frame)
+        self.verticalLayout_14.setObjectName("verticalLayout_14")
+        self.prod4imgLbl = QtWidgets.QLabel(self.newProd4Frame)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.prod4imgLbl.sizePolicy().hasHeightForWidth())
+        self.prod4imgLbl.setSizePolicy(sizePolicy)
+        self.prod4imgLbl.setMinimumSize(QtCore.QSize(150, 150))
+        self.prod4imgLbl.setMaximumSize(QtCore.QSize(150, 150))
+        self.prod4imgLbl.setText("")
+        self.prod4imgLbl.setPixmap(QtGui.QPixmap(":/imgs/no_photo_use.jpg"))
+        self.prod4imgLbl.setScaledContents(True)
+        self.prod4imgLbl.setObjectName("prod4imgLbl")
+        self.verticalLayout_14.addWidget(self.prod4imgLbl, 0, QtCore.Qt.AlignHCenter)
+        self.prod4titleLbl = QtWidgets.QLabel(self.newProd4Frame)
+        self.prod4titleLbl.setObjectName("prod4titleLbl")
+        self.verticalLayout_14.addWidget(self.prod4titleLbl, 0, QtCore.Qt.AlignHCenter)
+        self.prod4priceLbl = QtWidgets.QLabel(self.newProd4Frame)
+        self.prod4priceLbl.setObjectName("prod4priceLbl")
+        self.verticalLayout_14.addWidget(self.prod4priceLbl, 0, QtCore.Qt.AlignHCenter)
+        self.prod4titleLbl.raise_()
+        self.prod4priceLbl.raise_()
+        self.prod4imgLbl.raise_()
+        self.gridLayout_9.addWidget(self.newProd4Frame, 1, 1, 1, 1)
+        self.verticalLayout_11.addWidget(self.newProductsGalleryFrame)
+        self.newestListingsBtn = QtWidgets.QPushButton(self.newestListingsFrame)
+        self.newestListingsBtn.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
+        self.newestListingsBtn.setStyleSheet("QPushButton{border-color: rgb(63, 112, 199);\n"
+"background-color: rgb(63, 112, 199);\n"
+"color: rgb(255, 255, 255);\n"
+"border-radius: 10px;\n"
+"border-style: solid;\n"
+"border-width: 1px;\n"
+"}\n"
+"")
+        self.newestListingsBtn.setObjectName("newestListingsBtn")
+        self.verticalLayout_11.addWidget(self.newestListingsBtn)
+        self.gridLayout_8.addWidget(self.newestListingsFrame, 1, 1, 1, 1)
+        self.stackedWidget.addWidget(self.landingPage)
         self.ordersPage = QtWidgets.QWidget()
         self.ordersPage.setObjectName("ordersPage")
         self.gridLayout_3 = QtWidgets.QGridLayout(self.ordersPage)
@@ -185,7 +568,12 @@ class Ui_HSMainWindow(object):
         self.orderTable.setStyleSheet("alternate-background-color: rgb(241, 241, 241);\n"
 "background-color: rgb(255, 255, 255);")
         self.orderTable.setSizeAdjustPolicy(QtWidgets.QAbstractScrollArea.AdjustToContents)
+        self.orderTable.setAlternatingRowColors(True)
+        self.orderTable.setSelectionMode(QtWidgets.QAbstractItemView.SingleSelection)
+        self.orderTable.setSelectionBehavior(QtWidgets.QAbstractItemView.SelectRows)
         self.orderTable.setSortingEnabled(True)
+        self.orderTable.setWordWrap(False)
+        self.orderTable.setCornerButtonEnabled(False)
         self.orderTable.setObjectName("orderTable")
         self.orderTable.horizontalHeader().setCascadingSectionResizes(True)
         self.orderTable.verticalHeader().setVisible(False)
@@ -388,13 +776,19 @@ class Ui_HSMainWindow(object):
         self.addProductBtn.setSizePolicy(sizePolicy)
         self.addProductBtn.setMinimumSize(QtCore.QSize(81, 20))
         self.addProductBtn.setMaximumSize(QtCore.QSize(111, 20))
-        self.addProductBtn.setStyleSheet("border-color: rgb(62, 112, 201);\n"
+        self.addProductBtn.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
+        self.addProductBtn.setStyleSheet("QPushButton{border-color: rgb(62, 112, 201);\n"
 "background-color: rgb(255, 255, 255);\n"
 "color: rgb(62, 112, 201);\n"
 "border-radius: 5px;\n"
 "border-style: solid;\n"
 "border-width: 1px;\n"
-"")
+"}\n"
+"QPushButton:pressed{\n"
+"background-color:  rgb(62, 112, 201);\n"
+"border-color: rgb(255,255,255);\n"
+"color: rgb(255,255,255);\n"
+"}")
         self.addProductBtn.setObjectName("addProductBtn")
         self.gridLayout_4.addWidget(self.addProductBtn, 2, 2, 1, 1)
         self.productCatalogLbl = QtWidgets.QLabel(self.catalogPage)
@@ -437,13 +831,19 @@ class Ui_HSMainWindow(object):
         self.addPendProdBtn.setSizePolicy(sizePolicy)
         self.addPendProdBtn.setMinimumSize(QtCore.QSize(81, 20))
         self.addPendProdBtn.setMaximumSize(QtCore.QSize(111, 20))
-        self.addPendProdBtn.setStyleSheet("border-color: rgb(62, 112, 201);\n"
+        self.addPendProdBtn.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
+        self.addPendProdBtn.setStyleSheet("QPushButton{border-color: rgb(62, 112, 201);\n"
 "background-color: rgb(255, 255, 255);\n"
 "color: rgb(62, 112, 201);\n"
 "border-radius: 5px;\n"
 "border-style: solid;\n"
 "border-width: 1px;\n"
-"")
+"}\n"
+"QPushButton:pressed{\n"
+"background-color:  rgb(62, 112, 201);\n"
+"border-color: rgb(255,255,255);\n"
+"color: rgb(255,255,255);\n"
+"}")
         self.addPendProdBtn.setObjectName("addPendProdBtn")
         self.gridLayout_5.addWidget(self.addPendProdBtn, 2, 2, 1, 1)
         self.pendUploadsLbl = QtWidgets.QLabel(self.pendingPage)
@@ -455,15 +855,27 @@ class Ui_HSMainWindow(object):
         self.gridLayout_6 = QtWidgets.QGridLayout(self.profilePage)
         self.gridLayout_6.setContentsMargins(15, 15, 15, 0)
         self.gridLayout_6.setObjectName("gridLayout_6")
-        self.pushButton_2 = QtWidgets.QPushButton(self.profilePage)
+        self.changeIconBtn = QtWidgets.QPushButton(self.profilePage)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.pushButton_2.sizePolicy().hasHeightForWidth())
-        self.pushButton_2.setSizePolicy(sizePolicy)
-        self.pushButton_2.setStyleSheet("background-color: rgb(255, 255, 255);")
-        self.pushButton_2.setObjectName("pushButton_2")
-        self.gridLayout_6.addWidget(self.pushButton_2, 3, 0, 1, 1)
+        sizePolicy.setHeightForWidth(self.changeIconBtn.sizePolicy().hasHeightForWidth())
+        self.changeIconBtn.setSizePolicy(sizePolicy)
+        self.changeIconBtn.setMinimumSize(QtCore.QSize(80, 22))
+        self.changeIconBtn.setStyleSheet("QPushButton\n"
+"{\n"
+"background-color: rgb(63, 112, 199);\n"
+"color: rgb(255, 255, 255);\n"
+"border: 0px;\n"
+"alternate-background-color: rgb(50, 90, 159);\n"
+"}\n"
+"QPushButton:pressed \n"
+"{\n"
+"background-color:rgb(255,255,255);\n"
+"color: rgb(63,112,199);\n"
+"}")
+        self.changeIconBtn.setObjectName("changeIconBtn")
+        self.gridLayout_6.addWidget(self.changeIconBtn, 3, 0, 1, 1)
         spacerItem1 = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
         self.gridLayout_6.addItem(spacerItem1, 11, 0, 1, 1)
         self.line = QtWidgets.QFrame(self.profilePage)
@@ -481,19 +893,19 @@ class Ui_HSMainWindow(object):
         self.paypalEmailLE.setStyleSheet("background-color: rgb(255, 255, 255);")
         self.paypalEmailLE.setObjectName("paypalEmailLE")
         self.gridLayout_6.addWidget(self.paypalEmailLE, 7, 0, 1, 5)
-        self.label = QtWidgets.QLabel(self.profilePage)
+        self.profileIcon = QtWidgets.QLabel(self.profilePage)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Preferred)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.label.sizePolicy().hasHeightForWidth())
-        self.label.setSizePolicy(sizePolicy)
-        self.label.setMinimumSize(QtCore.QSize(50, 50))
-        self.label.setMaximumSize(QtCore.QSize(50, 50))
-        self.label.setText("")
-        self.label.setPixmap(QtGui.QPixmap(":/imgs/default-user-icon.jpg"))
-        self.label.setScaledContents(True)
-        self.label.setObjectName("label")
-        self.gridLayout_6.addWidget(self.label, 2, 0, 1, 1)
+        sizePolicy.setHeightForWidth(self.profileIcon.sizePolicy().hasHeightForWidth())
+        self.profileIcon.setSizePolicy(sizePolicy)
+        self.profileIcon.setMinimumSize(QtCore.QSize(50, 50))
+        self.profileIcon.setMaximumSize(QtCore.QSize(50, 50))
+        self.profileIcon.setText("")
+        self.profileIcon.setPixmap(QtGui.QPixmap(":/imgs/default-user-icon.jpg"))
+        self.profileIcon.setScaledContents(True)
+        self.profileIcon.setObjectName("profileIcon")
+        self.gridLayout_6.addWidget(self.profileIcon, 2, 0, 1, 1)
         self.profileDescTE = QtWidgets.QTextEdit(self.profilePage)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.MinimumExpanding, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
@@ -543,12 +955,20 @@ class Ui_HSMainWindow(object):
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.profileSaveBtn.sizePolicy().hasHeightForWidth())
         self.profileSaveBtn.setSizePolicy(sizePolicy)
-        self.profileSaveBtn.setMinimumSize(QtCore.QSize(80, 20))
+        self.profileSaveBtn.setMinimumSize(QtCore.QSize(90, 25))
         self.profileSaveBtn.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
-        self.profileSaveBtn.setStyleSheet("background-color: rgb(63, 112, 199);\n"
+        self.profileSaveBtn.setStyleSheet("QPushButton\n"
+"{\n"
+"background-color: rgb(63, 112, 199);\n"
 "color: rgb(255, 255, 255);\n"
 "border: 0px;\n"
-"alternate-background-color: rgb(50, 90, 159);")
+"alternate-background-color: rgb(50, 90, 159);\n"
+"}\n"
+"QPushButton:pressed \n"
+"{\n"
+"background-color:rgb(255,255,255);\n"
+"color: rgb(63,112,199);\n"
+"}")
         self.profileSaveBtn.setFlat(False)
         self.profileSaveBtn.setObjectName("profileSaveBtn")
         self.gridLayout_6.addWidget(self.profileSaveBtn, 9, 0, 1, 1)
@@ -562,8 +982,6 @@ class Ui_HSMainWindow(object):
         self.menuFile.setObjectName("menuFile")
         self.menuNew = QtWidgets.QMenu(self.menuFile)
         self.menuNew.setObjectName("menuNew")
-        self.menuSynchronize = QtWidgets.QMenu(self.menuFile)
-        self.menuSynchronize.setObjectName("menuSynchronize")
         self.menuLoad = QtWidgets.QMenu(self.menuFile)
         self.menuLoad.setObjectName("menuLoad")
         self.menuExport_CSV = QtWidgets.QMenu(self.menuFile)
@@ -596,39 +1014,36 @@ class Ui_HSMainWindow(object):
         self.actionInactive_Items.setObjectName("actionInactive_Items")
         self.actionGlobal_Catalog = QtWidgets.QAction(HSMainWindow)
         self.actionGlobal_Catalog.setObjectName("actionGlobal_Catalog")
+        self.actionProductCatalogCSV = QtWidgets.QAction(HSMainWindow)
+        self.actionProductCatalogCSV.setObjectName("actionProductCatalogCSV")
+        self.actionHelpGuide = QtWidgets.QAction(HSMainWindow)
+        self.actionHelpGuide.setObjectName("actionHelpGuide")
         self.menuNew.addAction(self.actionNewItem)
-        self.menuNew.addAction(self.actionTemplate)
-        self.menuSynchronize.addAction(self.actionAll_Items)
-        self.menuSynchronize.addAction(self.actionCheck_for_New_Items)
-        self.menuSynchronize.addAction(self.actionUpload_Waiting_Items)
         self.menuLoad.addAction(self.actionInventory_CSV)
-        self.menuExport_CSV.addAction(self.actionActive_Catalog)
-        self.menuExport_CSV.addAction(self.actionInactive_Items)
-        self.menuExport_CSV.addAction(self.actionGlobal_Catalog)
+        self.menuExport_CSV.addAction(self.actionProductCatalogCSV)
         self.menuFile.addAction(self.menuNew.menuAction())
         self.menuFile.addAction(self.menuLoad.menuAction())
         self.menuFile.addAction(self.menuExport_CSV.menuAction())
         self.menuFile.addAction(self.actionClose)
-        self.menuFile.addSeparator()
-        self.menuFile.addAction(self.menuSynchronize.menuAction())
         self.menuHelp.addAction(self.actionN_A)
+        self.menuHelp.addAction(self.actionHelpGuide)
         self.menubar.addAction(self.menuFile.menuAction())
         self.menubar.addAction(self.menuHelp.menuAction())
 
         self.retranslateUi(HSMainWindow)
-        self.stackedWidget.setCurrentIndex(4)
+        self.stackedWidget.setCurrentIndex(0)
         self.inboxStackedWidget.setCurrentIndex(0)
         self.ordersBtn.clicked.connect(HSMainWindow.initOrdersView)
         self.messagesBtn.clicked.connect(HSMainWindow.initInboxView)
         self.productsBtn.clicked.connect(HSMainWindow.initProductsView)
         self.pendBtn.clicked.connect(HSMainWindow.initPendingView)
         self.profileBtn.clicked.connect(HSMainWindow.initProfileView)
-        self.pushButton_2.clicked.connect(HSMainWindow.changeProfileIcon)
+        self.changeIconBtn.clicked.connect(HSMainWindow.changeProfileIcon)
         self.showCombo.currentIndexChanged['QString'].connect(HSMainWindow.changeOrderTableLength)
         self.orderSearchLE.textEdited['QString'].connect(HSMainWindow.searchOrderTable)
         self.addPendProdBtn.clicked.connect(HSMainWindow.addProduct)
         self.pendCatCombo.currentIndexChanged['QString'].connect(HSMainWindow.filterPendingProductsTable)
-        self.pushButton.clicked.connect(HSMainWindow.addProduct)
+        self.addProductBtn_2.clicked.connect(HSMainWindow.addProduct)
         self.categoryCombo.currentIndexChanged['QString'].connect(HSMainWindow.filterProductsTable)
         self.addProductBtn.clicked.connect(HSMainWindow.addProduct)
         self.inboxBtn.clicked.connect(HSMainWindow.switchInboxTable)
@@ -636,8 +1051,17 @@ class Ui_HSMainWindow(object):
         self.sentBtn.clicked.connect(HSMainWindow.switchSentTable)
         self.trashBtn.clicked.connect(HSMainWindow.switchTrashTable)
         self.profileSaveBtn.clicked.connect(HSMainWindow.saveProfileChanges)
+        self.addProductBtn_3.clicked.connect(HSMainWindow.addProduct)
+        self.viewCatalogBtn.clicked.connect(HSMainWindow.initProductsView)
+        self.landingOrdersBtn.clicked.connect(HSMainWindow.initOrdersView)
+        self.landingRevenueBtn.clicked.connect(HSMainWindow.initOrdersView)
+        self.landingStoreBtn.clicked.connect(HSMainWindow.initStorePageView)
+        self.landingProductsBtn.clicked.connect(HSMainWindow.initProductsView)
+        self.landingMessagesBtn.clicked.connect(HSMainWindow.initInboxView)
+        self.newestListingsBtn.clicked.connect(HSMainWindow.initNewProductsView)
+        self.landingBtn.clicked.connect(HSMainWindow.initLandingView)
         QtCore.QMetaObject.connectSlotsByName(HSMainWindow)
-        HSMainWindow.setTabOrder(self.pushButton, self.productsBtn)
+        HSMainWindow.setTabOrder(self.addProductBtn_2, self.productsBtn)
         HSMainWindow.setTabOrder(self.productsBtn, self.pendBtn)
         HSMainWindow.setTabOrder(self.pendBtn, self.ordersBtn)
         HSMainWindow.setTabOrder(self.ordersBtn, self.messagesBtn)
@@ -651,7 +1075,7 @@ class Ui_HSMainWindow(object):
         _translate = QtCore.QCoreApplication.translate
         HSMainWindow.setWindowTitle(_translate("HSMainWindow", "HangarSwap Seller App"))
         self.catalogGroupBox.setTitle(_translate("HSMainWindow", "Catalog"))
-        self.pushButton.setText(_translate("HSMainWindow", "Add Product"))
+        self.addProductBtn_2.setText(_translate("HSMainWindow", "Add Product"))
         self.productsBtn.setText(_translate("HSMainWindow", "Products"))
         self.pendBtn.setText(_translate("HSMainWindow", "Waiting to Upload"))
         self.salesGroupBox.setTitle(_translate("HSMainWindow", "Sales"))
@@ -659,6 +1083,26 @@ class Ui_HSMainWindow(object):
         self.accountGroupBox.setTitle(_translate("HSMainWindow", "My Account"))
         self.messagesBtn.setText(_translate("HSMainWindow", "Messages"))
         self.profileBtn.setText(_translate("HSMainWindow", "Profile"))
+        self.storeNameLbl.setText(_translate("HSMainWindow", "Store Name"))
+        self.customerNameLbl.setText(_translate("HSMainWindow", "Customer Name"))
+        self.addProductBtn_3.setText(_translate("HSMainWindow", "Add Product +"))
+        self.viewCatalogBtn.setText(_translate("HSMainWindow", "View My Catalog"))
+        self.landingOrdersBtn.setText(_translate("HSMainWindow", "Orders"))
+        self.landingStoreBtn.setText(_translate("HSMainWindow", "View My Store"))
+        self.landingRevenueBtn.setText(_translate("HSMainWindow", "Revenue"))
+        self.landingProductsBtn.setText(_translate("HSMainWindow", "Products"))
+        self.recentMessagesLbl.setText(_translate("HSMainWindow", "<html><head/><body><p><span style=\" font-size:14pt; font-weight:600;\">Recent Messages</span></p></body></html>"))
+        self.landingMessagesBtn.setText(_translate("HSMainWindow", "View All Messages"))
+        self.newestListingsLBL.setText(_translate("HSMainWindow", "<html><head/><body><p><span style=\" font-size:18pt; font-weight:600;\">Newest Listings</span></p></body></html>"))
+        self.prod1titleLbl.setText(_translate("HSMainWindow", "PROD 1 TITLE"))
+        self.prod1priceLbl.setText(_translate("HSMainWindow", "PROD 1 PRICE"))
+        self.prod2titleLbl.setText(_translate("HSMainWindow", "PROD 2 TITLE"))
+        self.prod2priceLbl.setText(_translate("HSMainWindow", "PROD 2 PRICE"))
+        self.prod3titleLbl.setText(_translate("HSMainWindow", "PROD 3 TITLE"))
+        self.prod3priceLbl.setText(_translate("HSMainWindow", "PROD 3 PRICE"))
+        self.prod4titleLbl.setText(_translate("HSMainWindow", "PROD 4 TITLE"))
+        self.prod4priceLbl.setText(_translate("HSMainWindow", "PROD 4 PRICE"))
+        self.newestListingsBtn.setText(_translate("HSMainWindow", "View Newest Items on HangarSwap.com"))
         self.orderhistoryLbl.setText(_translate("HSMainWindow", "<html><head/><body><p><span style=\" font-size:12pt; font-weight:600;\">Order History</span></p></body></html>"))
         self.showLbl.setText(_translate("HSMainWindow", "Show:"))
         self.showCombo.setItemText(0, _translate("HSMainWindow", "10"))
@@ -677,7 +1121,7 @@ class Ui_HSMainWindow(object):
         self.pendCatLbl.setText(_translate("HSMainWindow", "Category Filter:"))
         self.addPendProdBtn.setText(_translate("HSMainWindow", "Add Product +"))
         self.pendUploadsLbl.setText(_translate("HSMainWindow", "<html><head/><body><p><span style=\" font-size:12pt; font-weight:600;\">Pending Uploads</span></p></body></html>"))
-        self.pushButton_2.setText(_translate("HSMainWindow", "Change Icon"))
+        self.changeIconBtn.setText(_translate("HSMainWindow", "Change Icon"))
         self.emailconfidLbl.setText(_translate("HSMainWindow", "<html><head/><body><p><span style=\" font-style:italic; color:#515558;\">We\'ll never share your email with anyone else.</span></p></body></html>"))
         self.paypalEmailLbl.setText(_translate("HSMainWindow", "Paypal Email Address"))
         self.profileDescLbl.setText(_translate("HSMainWindow", "Seller Profile Description"))
@@ -685,9 +1129,8 @@ class Ui_HSMainWindow(object):
         self.profileSaveBtn.setText(_translate("HSMainWindow", "Save Changes"))
         self.menuFile.setTitle(_translate("HSMainWindow", "File"))
         self.menuNew.setTitle(_translate("HSMainWindow", "New"))
-        self.menuSynchronize.setTitle(_translate("HSMainWindow", "Synchronize"))
-        self.menuLoad.setTitle(_translate("HSMainWindow", "Load"))
-        self.menuExport_CSV.setTitle(_translate("HSMainWindow", "Export CSV"))
+        self.menuLoad.setTitle(_translate("HSMainWindow", "Import"))
+        self.menuExport_CSV.setTitle(_translate("HSMainWindow", "Export"))
         self.menuHelp.setTitle(_translate("HSMainWindow", "Help"))
         self.actionNewItem.setText(_translate("HSMainWindow", "Item"))
         self.actionTemplate.setText(_translate("HSMainWindow", "Template"))
@@ -695,10 +1138,12 @@ class Ui_HSMainWindow(object):
         self.actionAll_Items.setText(_translate("HSMainWindow", "All Items"))
         self.actionCheck_for_New_Items.setText(_translate("HSMainWindow", "Check for New Items"))
         self.actionUpload_Waiting_Items.setText(_translate("HSMainWindow", "Upload Waiting Items"))
-        self.actionN_A.setText(_translate("HSMainWindow", "N/A"))
-        self.actionInventory_CSV.setText(_translate("HSMainWindow", "Inventory CSV"))
+        self.actionN_A.setText(_translate("HSMainWindow", "Program Info"))
+        self.actionInventory_CSV.setText(_translate("HSMainWindow", "Inventory Catalog (CSV)"))
         self.actionActive_Catalog.setText(_translate("HSMainWindow", "Active"))
         self.actionInactive_Items.setText(_translate("HSMainWindow", "Inactive"))
         self.actionGlobal_Catalog.setText(_translate("HSMainWindow", "Global Catalog"))
+        self.actionProductCatalogCSV.setText(_translate("HSMainWindow", "Product Catalog (CSV)"))
+        self.actionHelpGuide.setText(_translate("HSMainWindow", "Help Guide"))
 
 import RESOURCES

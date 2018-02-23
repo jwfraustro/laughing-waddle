@@ -2,7 +2,7 @@
 import csv
 import imghdr
 import sys
-
+import login_form
 #importing networking modules
 import bs4
 import requests
@@ -26,6 +26,12 @@ def my_exception_hook(exctype, value, traceback):
     sys._excepthook(exctype, value, traceback)
     sys.exit(1)
 
+class Login(QtWidgets.QMainWindow, login_form.Ui_Dialog):
+    def __init__(self, parent=None):
+        super(Login, self).__init__(parent)
+
+        self.setupUi(self)
+
 class HSMainWindow(QtWidgets.QMainWindow, main_window_redesign.Ui_HSMainWindow):
     def __init__(self, fileName, parent=None):
         super(HSMainWindow, self).__init__(parent)
@@ -42,6 +48,15 @@ class HSMainWindow(QtWidgets.QMainWindow, main_window_redesign.Ui_HSMainWindow):
         self.stackedWidget.setCurrentWidget(self.pendingPage)
     def initProfileView(self):
         self.stackedWidget.setCurrentWidget(self.profilePage)
+
+    def initLandingView(self):
+        self.stackedWidget.setCurrentWidget(self.landingPage)
+    def initStorePageView(self):
+        return
+    def initNewProductsView(self):
+        return
+
+
     def switchInboxTable(self):
         self.inboxStackedWidget.setCurrentWidget(self.inboxTablePage)
     def switchSentTable(self):
@@ -72,10 +87,12 @@ class HSMainWindow(QtWidgets.QMainWindow, main_window_redesign.Ui_HSMainWindow):
 
 def main():
     app = QtWidgets.QApplication(sys.argv)
+    login = Login()
+    login.
 
-    form = HSMainWindow('')
-
-    form.show()
+    if login.handleLogin() == "True":
+        form = HSMainWindow('')
+        form.show()
 
     app.exec()
 
