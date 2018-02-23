@@ -1,0 +1,7 @@
+<RCC>
+  <qresource prefix="imgs">
+    <file>no_photo_use.jpg</file>
+    <file>HangarSwapLogo_sm1_new.png</file>
+    <file>default-user-icon.jpg</file>
+  </qresource>
+</RCC>

@@ -15,11 +15,8 @@ from PyQt5.QtWidgets import QMessageBox
 from requests_toolbelt.multipart.encoder import MultipartEncoder
 
 #importing external widgets
-import edit_product_widget
-import orders_widget
 import main_window_redesign
 import new_product_widget
-import inbox_widget
 
 sys._excepthook = sys.excepthook
 def my_exception_hook(exctype, value, traceback):
@@ -35,18 +32,42 @@ class HSMainWindow(QtWidgets.QMainWindow, main_window_redesign.Ui_HSMainWindow):
 
         self.setupUi(self)
 
-        self.ordersBtn.clicked.connect(self.initOrdersView)
-        self.messagesBtn.clicked.connect(self.initInboxView)
-
     def initOrdersView(self):
-        self.widget.removeChild()
-        self.order_widget = orders_widget.Ui_catalogWidget()
-        self.order_widget.setupUi(self.widget)
-
+        self.stackedWidget.setCurrentWidget(self.ordersPage)
     def initInboxView(self):
-        self.widget.removeChild()
-        self.inbox_widget = inbox_widget.Ui_Form()
-        self.inbox_widget.setupUi(self.widget)
+        self.stackedWidget.setCurrentWidget(self.inboxPage)
+    def initProductsView(self):
+        self.stackedWidget.setCurrentWidget(self.catalogPage)
+    def initPendingView(self):
+        self.stackedWidget.setCurrentWidget(self.pendingPage)
+    def initProfileView(self):
+        self.stackedWidget.setCurrentWidget(self.profilePage)
+    def switchInboxTable(self):
+        self.inboxStackedWidget.setCurrentWidget(self.inboxTablePage)
+    def switchSentTable(self):
+        self.inboxStackedWidget.setCurrentWidget(self.sentTablePage)
+    def switchTrashTable(self):
+        self.inboxStackedWidget.setCurrentWidget(self.trashTablePage)
+    def switchUnreadTable(self):
+        self.inboxStackedWidget.setCurrentWidget(self.unreadTablePage)
+
+    def changeProfileIcon(self):
+        return
+    def saveProfileChanges(self):
+        return
+
+    def changeOrderTableLength(self):
+        return
+    def searchOrderTable(self):
+        return
+
+    def addProduct(self):
+        return
+
+    def filterPendingProductsTable(self):
+        return
+    def filterProductsTable(self):
+        return
 
 
 def main():

@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>849</width>
-    <height>632</height>
+    <height>704</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -21,6 +21,11 @@
     <width>849</width>
     <height>632</height>
    </size>
+  </property>
+  <property name="font">
+   <font>
+    <family>Open Sans</family>
+   </font>
   </property>
   <property name="mouseTracking">
    <bool>true</bool>
@@ -70,7 +75,7 @@
       <property name="styleSheet">
        <string notr="true">background-color: rgb(245, 245, 245);
 font: 8pt &quot;Open Sans&quot;;
-QPushButton {cursor:&quot;Pointing Hand&quot;;}</string>
+</string>
       </property>
       <layout class="QVBoxLayout" name="sidebar">
        <property name="spacing">
@@ -79,6 +84,13 @@ QPushButton {cursor:&quot;Pointing Hand&quot;;}</string>
        <property name="sizeConstraint">
         <enum>QLayout::SetDefaultConstraint</enum>
        </property>
+       <item>
+        <widget class="QPushButton" name="pushButton_2">
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+       </item>
        <item>
         <widget class="QGroupBox" name="catalogGroupBox">
          <property name="sizePolicy">
@@ -95,7 +107,7 @@ QPushButton {cursor:&quot;Pointing Hand&quot;;}</string>
          </property>
          <layout class="QVBoxLayout" name="verticalLayout_2">
           <item>
-           <widget class="QPushButton" name="pushButton">
+           <widget class="QPushButton" name="addProductBtn_2">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
               <horstretch>0</horstretch>
@@ -270,7 +282,7 @@ QPushButton {cursor:&quot;Pointing Hand&quot;;}</string>
      </widget>
     </item>
     <item row="0" column="1">
-     <widget class="QWidget" name="widget" native="true">
+     <widget class="QStackedWidget" name="stackedWidget">
       <property name="sizePolicy">
        <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
         <horstretch>0</horstretch>
@@ -286,6 +298,1527 @@ QPushButton {cursor:&quot;Pointing Hand&quot;;}</string>
       <property name="styleSheet">
        <string notr="true">background-color: rgb(231, 234, 239);</string>
       </property>
+      <property name="currentIndex">
+       <number>0</number>
+      </property>
+      <widget class="QWidget" name="landingPage">
+       <layout class="QGridLayout" name="gridLayout_8">
+        <item row="0" column="0">
+         <widget class="QFrame" name="frame_2">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">background-color: rgb(254, 254, 254);</string>
+          </property>
+          <property name="frameShape">
+           <enum>QFrame::Box</enum>
+          </property>
+          <property name="frameShadow">
+           <enum>QFrame::Raised</enum>
+          </property>
+          <layout class="QVBoxLayout" name="verticalLayout_9">
+           <item>
+            <widget class="QLabel" name="profileIcon_2">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="minimumSize">
+              <size>
+               <width>50</width>
+               <height>50</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>50</width>
+               <height>50</height>
+              </size>
+             </property>
+             <property name="text">
+              <string/>
+             </property>
+             <property name="pixmap">
+              <pixmap resource="RESOURCES.qrc">:/imgs/default-user-icon.jpg</pixmap>
+             </property>
+             <property name="scaledContents">
+              <bool>true</bool>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLabel" name="storeNameLbl">
+             <property name="styleSheet">
+              <string notr="true">font: 75 11pt &quot;Open Sans&quot;;</string>
+             </property>
+             <property name="text">
+              <string>Store Name</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLabel" name="customerNameLbl">
+             <property name="text">
+              <string>Customer Name</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="addProductBtn_3">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Ignored" vsizetype="Preferred">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="minimumSize">
+              <size>
+               <width>0</width>
+               <height>0</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>9999</width>
+               <height>9999</height>
+              </size>
+             </property>
+             <property name="cursor">
+              <cursorShape>PointingHandCursor</cursorShape>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">QPushButton{border-color: rgb(62, 112, 201);
+background-color: rgb(255, 255, 255);
+color: rgb(62, 112, 201);
+border-radius: 10px;
+border-style: solid;
+border-width: 1px;
+}
+QPushButton:pressed{
+background-color:  rgb(62, 112, 201);
+border-color: rgb(255,255,255);
+color: rgb(255,255,255);
+}</string>
+             </property>
+             <property name="text">
+              <string>Add Product +</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="viewCatalogBtn">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Ignored" vsizetype="Preferred">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="minimumSize">
+              <size>
+               <width>0</width>
+               <height>0</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>9999</width>
+               <height>9999</height>
+              </size>
+             </property>
+             <property name="cursor">
+              <cursorShape>PointingHandCursor</cursorShape>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">QPushButton{border-color: rgb(65, 184, 105);
+background-color: rgb(65, 184, 105);
+color: rgb(255, 255, 255);
+border-radius: 10px;
+border-style: solid;
+border-width: 1px;
+}
+QPushButton:pressed{
+background-color:  rgb(72, 206, 117);
+border-color: rgb(255,255,255);
+}</string>
+             </property>
+             <property name="text">
+              <string>View My Catalog</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item row="0" column="1">
+         <widget class="QFrame" name="frame_3">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="MinimumExpanding" vsizetype="Preferred">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="frameShape">
+           <enum>QFrame::StyledPanel</enum>
+          </property>
+          <property name="frameShadow">
+           <enum>QFrame::Raised</enum>
+          </property>
+          <layout class="QGridLayout" name="gridLayout_7">
+           <item row="0" column="0">
+            <widget class="QPushButton" name="pushButton">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="cursor">
+              <cursorShape>PointingHandCursor</cursorShape>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">QPushButton
+{
+border-color:rgb(243, 65, 53);
+background-color: rgb(243, 65, 53);
+color: rgb(255, 255, 255);
+border-style: solid;
+border-width: 1px;
+}
+</string>
+             </property>
+             <property name="text">
+              <string>Orders</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="1">
+            <widget class="QPushButton" name="pushButton_4">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="cursor">
+              <cursorShape>PointingHandCursor</cursorShape>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">QPushButton
+{
+border-color: rgb(244, 146, 71);
+background-color: rgb(244, 146, 71);
+color: rgb(255, 255, 255);
+border-style: solid;
+border-width: 1px;
+}
+</string>
+             </property>
+             <property name="text">
+              <string>View My Store</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="0">
+            <widget class="QPushButton" name="pushButton_3">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">QPushButton{border-color: rgb(65, 184, 105);
+background-color: rgb(65, 184, 105);
+color: rgb(255, 255, 255);
+border-style: solid;
+border-width: 1px;
+}
+</string>
+             </property>
+             <property name="text">
+              <string>Revenue</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="1">
+            <widget class="QPushButton" name="pushButton_5">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">QPushButton
+{
+border-color: rgb(63, 112, 199);
+background-color: rgb(63, 112, 199);
+color: rgb(255, 255, 255);
+border-style: solid;
+border-width: 1px;
+}
+</string>
+             </property>
+             <property name="text">
+              <string>Products</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item row="1" column="0">
+         <widget class="QFrame" name="frame_4">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>186</width>
+            <height>0</height>
+           </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">background-color: rgb(254, 254, 254);</string>
+          </property>
+          <property name="frameShape">
+           <enum>QFrame::Box</enum>
+          </property>
+          <property name="frameShadow">
+           <enum>QFrame::Raised</enum>
+          </property>
+          <layout class="QVBoxLayout" name="verticalLayout_10">
+           <item>
+            <widget class="QLabel" name="label">
+             <property name="text">
+              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:14pt; font-weight:600;&quot;&gt;Recent Messages&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QListView" name="listView"/>
+           </item>
+           <item>
+            <widget class="QPushButton" name="pushButton_6">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="minimumSize">
+              <size>
+               <width>0</width>
+               <height>20</height>
+              </size>
+             </property>
+             <property name="cursor">
+              <cursorShape>PointingHandCursor</cursorShape>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">QPushButton{border-color: rgb(63, 112, 199);
+background-color: rgb(63, 112, 199);
+color: rgb(255, 255, 255);
+border-radius: 10px;
+border-style: solid;
+border-width: 1px;
+}
+</string>
+             </property>
+             <property name="text">
+              <string>View All Messages</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item row="1" column="1">
+         <widget class="QFrame" name="newestListingsFrame">
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>0</height>
+           </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">background-color: rgb(254, 254, 254);</string>
+          </property>
+          <property name="frameShape">
+           <enum>QFrame::Box</enum>
+          </property>
+          <property name="frameShadow">
+           <enum>QFrame::Raised</enum>
+          </property>
+          <layout class="QVBoxLayout" name="verticalLayout_11">
+           <item>
+            <widget class="QLabel" name="newestListingsLBL">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">font: 75 16pt &quot;Open Sans&quot;;</string>
+             </property>
+             <property name="text">
+              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:18pt; font-weight:600;&quot;&gt;Newest Listings&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QFrame" name="newProductsGalleryFrame">
+             <property name="styleSheet">
+              <string notr="true">background-color: rgb(231, 234, 239);</string>
+             </property>
+             <property name="frameShape">
+              <enum>QFrame::StyledPanel</enum>
+             </property>
+             <property name="frameShadow">
+              <enum>QFrame::Raised</enum>
+             </property>
+             <layout class="QGridLayout" name="gridLayout_9">
+              <item row="0" column="0">
+               <widget class="QFrame" name="newProd1Frame">
+                <property name="styleSheet">
+                 <string notr="true">background-color: rgb(254, 254, 254);</string>
+                </property>
+                <property name="frameShape">
+                 <enum>QFrame::StyledPanel</enum>
+                </property>
+                <property name="frameShadow">
+                 <enum>QFrame::Raised</enum>
+                </property>
+                <layout class="QVBoxLayout" name="verticalLayout_12">
+                 <item alignment="Qt::AlignHCenter">
+                  <widget class="QLabel" name="prod1imgLbl">
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
+                   </property>
+                   <property name="minimumSize">
+                    <size>
+                     <width>70</width>
+                     <height>150</height>
+                    </size>
+                   </property>
+                   <property name="maximumSize">
+                    <size>
+                     <width>150</width>
+                     <height>150</height>
+                    </size>
+                   </property>
+                   <property name="text">
+                    <string/>
+                   </property>
+                   <property name="pixmap">
+                    <pixmap resource="RESOURCES.qrc">:/imgs/no_photo_use.jpg</pixmap>
+                   </property>
+                   <property name="scaledContents">
+                    <bool>true</bool>
+                   </property>
+                   <property name="wordWrap">
+                    <bool>true</bool>
+                   </property>
+                  </widget>
+                 </item>
+                 <item alignment="Qt::AlignHCenter">
+                  <widget class="QLabel" name="prod1titleLbl">
+                   <property name="text">
+                    <string>PROD 1 TITLE</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item alignment="Qt::AlignHCenter">
+                  <widget class="QLabel" name="prod1priceLbl">
+                   <property name="text">
+                    <string>PROD 1 PRICE</string>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
+               </widget>
+              </item>
+              <item row="0" column="1">
+               <widget class="QFrame" name="newProd2Frame">
+                <property name="styleSheet">
+                 <string notr="true">background-color: rgb(254, 254, 254);</string>
+                </property>
+                <property name="frameShape">
+                 <enum>QFrame::StyledPanel</enum>
+                </property>
+                <property name="frameShadow">
+                 <enum>QFrame::Raised</enum>
+                </property>
+                <layout class="QVBoxLayout" name="verticalLayout_13">
+                 <item alignment="Qt::AlignHCenter">
+                  <widget class="QLabel" name="prod2imgLbl">
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
+                   </property>
+                   <property name="minimumSize">
+                    <size>
+                     <width>150</width>
+                     <height>150</height>
+                    </size>
+                   </property>
+                   <property name="maximumSize">
+                    <size>
+                     <width>150</width>
+                     <height>150</height>
+                    </size>
+                   </property>
+                   <property name="text">
+                    <string/>
+                   </property>
+                   <property name="pixmap">
+                    <pixmap resource="RESOURCES.qrc">:/imgs/no_photo_use.jpg</pixmap>
+                   </property>
+                   <property name="scaledContents">
+                    <bool>true</bool>
+                   </property>
+                  </widget>
+                 </item>
+                 <item alignment="Qt::AlignHCenter">
+                  <widget class="QLabel" name="prod2titleLbl">
+                   <property name="text">
+                    <string>PROD 2 TITLE</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item alignment="Qt::AlignHCenter">
+                  <widget class="QLabel" name="prod2priceLbl">
+                   <property name="text">
+                    <string>PROD 2 PRICE</string>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
+               </widget>
+              </item>
+              <item row="1" column="0">
+               <widget class="QFrame" name="newProd3Frame">
+                <property name="styleSheet">
+                 <string notr="true">background-color: rgb(254, 254, 254);</string>
+                </property>
+                <property name="frameShape">
+                 <enum>QFrame::StyledPanel</enum>
+                </property>
+                <property name="frameShadow">
+                 <enum>QFrame::Raised</enum>
+                </property>
+                <layout class="QVBoxLayout" name="verticalLayout_15">
+                 <item alignment="Qt::AlignHCenter">
+                  <widget class="QLabel" name="prod3imgLbl">
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
+                   </property>
+                   <property name="minimumSize">
+                    <size>
+                     <width>150</width>
+                     <height>150</height>
+                    </size>
+                   </property>
+                   <property name="maximumSize">
+                    <size>
+                     <width>150</width>
+                     <height>150</height>
+                    </size>
+                   </property>
+                   <property name="text">
+                    <string/>
+                   </property>
+                   <property name="pixmap">
+                    <pixmap resource="RESOURCES.qrc">:/imgs/no_photo_use.jpg</pixmap>
+                   </property>
+                   <property name="scaledContents">
+                    <bool>true</bool>
+                   </property>
+                  </widget>
+                 </item>
+                 <item alignment="Qt::AlignHCenter">
+                  <widget class="QLabel" name="prod3titleLbl">
+                   <property name="text">
+                    <string>PROD 3 TITLE</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item alignment="Qt::AlignHCenter">
+                  <widget class="QLabel" name="prod3priceLbl">
+                   <property name="text">
+                    <string>PROD 3 PRICE</string>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
+               </widget>
+              </item>
+              <item row="1" column="1">
+               <widget class="QFrame" name="newProd4Frame">
+                <property name="styleSheet">
+                 <string notr="true">background-color: rgb(254, 254, 254);</string>
+                </property>
+                <property name="frameShape">
+                 <enum>QFrame::StyledPanel</enum>
+                </property>
+                <property name="frameShadow">
+                 <enum>QFrame::Raised</enum>
+                </property>
+                <layout class="QVBoxLayout" name="verticalLayout_14">
+                 <item alignment="Qt::AlignHCenter">
+                  <widget class="QLabel" name="prod4imgLbl">
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
+                   </property>
+                   <property name="minimumSize">
+                    <size>
+                     <width>150</width>
+                     <height>150</height>
+                    </size>
+                   </property>
+                   <property name="maximumSize">
+                    <size>
+                     <width>150</width>
+                     <height>150</height>
+                    </size>
+                   </property>
+                   <property name="text">
+                    <string/>
+                   </property>
+                   <property name="pixmap">
+                    <pixmap resource="RESOURCES.qrc">:/imgs/no_photo_use.jpg</pixmap>
+                   </property>
+                   <property name="scaledContents">
+                    <bool>true</bool>
+                   </property>
+                  </widget>
+                 </item>
+                 <item alignment="Qt::AlignHCenter">
+                  <widget class="QLabel" name="prod4titleLbl">
+                   <property name="text">
+                    <string>PROD 4 TITLE</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item alignment="Qt::AlignHCenter">
+                  <widget class="QLabel" name="prod4priceLbl">
+                   <property name="text">
+                    <string>PROD 4 PRICE</string>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="newestListingsBtn">
+             <property name="cursor">
+              <cursorShape>PointingHandCursor</cursorShape>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">QPushButton{border-color: rgb(63, 112, 199);
+background-color: rgb(63, 112, 199);
+color: rgb(255, 255, 255);
+border-radius: 10px;
+border-style: solid;
+border-width: 1px;
+}
+</string>
+             </property>
+             <property name="text">
+              <string>View Newest Items on HangarSwap.com</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="ordersPage">
+       <layout class="QGridLayout" name="gridLayout_3">
+        <property name="leftMargin">
+         <number>15</number>
+        </property>
+        <property name="topMargin">
+         <number>15</number>
+        </property>
+        <property name="rightMargin">
+         <number>15</number>
+        </property>
+        <item row="0" column="0">
+         <widget class="QLabel" name="orderhistoryLbl">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="text">
+           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt; font-weight:600;&quot;&gt;Order History&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="0">
+         <widget class="QLabel" name="showLbl">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="text">
+           <string>Show:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="4" column="0" colspan="3">
+         <widget class="QTableView" name="orderTable">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="MinimumExpanding" vsizetype="Expanding">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>0</height>
+           </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">alternate-background-color: rgb(241, 241, 241);
+background-color: rgb(255, 255, 255);</string>
+          </property>
+          <property name="sizeAdjustPolicy">
+           <enum>QAbstractScrollArea::AdjustToContents</enum>
+          </property>
+          <property name="alternatingRowColors">
+           <bool>true</bool>
+          </property>
+          <property name="selectionMode">
+           <enum>QAbstractItemView::SingleSelection</enum>
+          </property>
+          <property name="selectionBehavior">
+           <enum>QAbstractItemView::SelectRows</enum>
+          </property>
+          <property name="sortingEnabled">
+           <bool>true</bool>
+          </property>
+          <property name="wordWrap">
+           <bool>false</bool>
+          </property>
+          <property name="cornerButtonEnabled">
+           <bool>false</bool>
+          </property>
+          <attribute name="horizontalHeaderCascadingSectionResizes">
+           <bool>true</bool>
+          </attribute>
+          <attribute name="verticalHeaderVisible">
+           <bool>false</bool>
+          </attribute>
+         </widget>
+        </item>
+        <item row="2" column="0">
+         <widget class="QComboBox" name="showCombo">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>81</width>
+            <height>20</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>158</width>
+            <height>20</height>
+           </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">background-color: rgb(255, 255, 255);</string>
+          </property>
+          <item>
+           <property name="text">
+            <string>10</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>25</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>50</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>100</string>
+           </property>
+          </item>
+         </widget>
+        </item>
+        <item row="1" column="2">
+         <widget class="QLabel" name="searchLbl">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="text">
+           <string>Search:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="2">
+         <widget class="QLineEdit" name="orderSearchLE">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">background-color: rgb(255, 255, 255);</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="inboxPage">
+       <layout class="QGridLayout" name="gridLayout_2">
+        <property name="leftMargin">
+         <number>15</number>
+        </property>
+        <property name="topMargin">
+         <number>15</number>
+        </property>
+        <property name="rightMargin">
+         <number>15</number>
+        </property>
+        <item row="1" column="0" alignment="Qt::AlignTop">
+         <widget class="QFrame" name="frame">
+          <property name="maximumSize">
+           <size>
+            <width>95</width>
+            <height>137</height>
+           </size>
+          </property>
+          <property name="frameShape">
+           <enum>QFrame::StyledPanel</enum>
+          </property>
+          <property name="frameShadow">
+           <enum>QFrame::Raised</enum>
+          </property>
+          <layout class="QVBoxLayout" name="verticalLayout">
+           <item>
+            <widget class="QPushButton" name="inboxBtn">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">background-color: rgb(245, 245, 245);</string>
+             </property>
+             <property name="text">
+              <string>Inbox</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="unreadBtn">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">background-color: rgb(245, 245, 245);</string>
+             </property>
+             <property name="text">
+              <string>Unread</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="sentBtn">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">background-color: rgb(245, 245, 245);</string>
+             </property>
+             <property name="text">
+              <string>Sent</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="trashBtn">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">background-color: rgb(245, 245, 245);</string>
+             </property>
+             <property name="text">
+              <string>Trash</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item row="0" column="0">
+         <widget class="QLabel" name="inboxLbl">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="text">
+           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:18pt;&quot;&gt;Inbox&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+          </property>
+          <property name="textFormat">
+           <enum>Qt::AutoText</enum>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="1">
+         <widget class="QStackedWidget" name="inboxStackedWidget">
+          <property name="currentIndex">
+           <number>0</number>
+          </property>
+          <widget class="QWidget" name="inboxTablePage">
+           <layout class="QVBoxLayout" name="verticalLayout_5">
+            <item>
+             <widget class="QTableView" name="inboxTable">
+              <property name="styleSheet">
+               <string notr="true">background-color: rgb(255, 255, 255);</string>
+              </property>
+              <property name="horizontalScrollBarPolicy">
+               <enum>Qt::ScrollBarAlwaysOff</enum>
+              </property>
+              <property name="sizeAdjustPolicy">
+               <enum>QAbstractScrollArea::AdjustToContents</enum>
+              </property>
+              <property name="selectionMode">
+               <enum>QAbstractItemView::SingleSelection</enum>
+              </property>
+              <property name="selectionBehavior">
+               <enum>QAbstractItemView::SelectRows</enum>
+              </property>
+              <property name="showGrid">
+               <bool>false</bool>
+              </property>
+              <attribute name="horizontalHeaderVisible">
+               <bool>false</bool>
+              </attribute>
+              <attribute name="horizontalHeaderHighlightSections">
+               <bool>false</bool>
+              </attribute>
+              <attribute name="verticalHeaderVisible">
+               <bool>false</bool>
+              </attribute>
+              <attribute name="verticalHeaderHighlightSections">
+               <bool>false</bool>
+              </attribute>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+          <widget class="QWidget" name="unreadTablePage">
+           <layout class="QVBoxLayout" name="verticalLayout_6">
+            <item>
+             <widget class="QTableView" name="unreadTable">
+              <property name="styleSheet">
+               <string notr="true">background-color: rgb(255, 255, 255);</string>
+              </property>
+              <property name="selectionMode">
+               <enum>QAbstractItemView::SingleSelection</enum>
+              </property>
+              <property name="selectionBehavior">
+               <enum>QAbstractItemView::SelectRows</enum>
+              </property>
+              <attribute name="horizontalHeaderVisible">
+               <bool>false</bool>
+              </attribute>
+              <attribute name="horizontalHeaderHighlightSections">
+               <bool>false</bool>
+              </attribute>
+              <attribute name="verticalHeaderVisible">
+               <bool>false</bool>
+              </attribute>
+              <attribute name="verticalHeaderHighlightSections">
+               <bool>false</bool>
+              </attribute>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+          <widget class="QWidget" name="sentTablePage">
+           <layout class="QVBoxLayout" name="verticalLayout_7">
+            <item>
+             <widget class="QTableView" name="sentTable">
+              <property name="styleSheet">
+               <string notr="true">background-color: rgb(255, 255, 255);</string>
+              </property>
+              <property name="selectionMode">
+               <enum>QAbstractItemView::SingleSelection</enum>
+              </property>
+              <property name="selectionBehavior">
+               <enum>QAbstractItemView::SelectRows</enum>
+              </property>
+              <attribute name="horizontalHeaderVisible">
+               <bool>false</bool>
+              </attribute>
+              <attribute name="horizontalHeaderHighlightSections">
+               <bool>false</bool>
+              </attribute>
+              <attribute name="verticalHeaderVisible">
+               <bool>false</bool>
+              </attribute>
+              <attribute name="verticalHeaderHighlightSections">
+               <bool>false</bool>
+              </attribute>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+          <widget class="QWidget" name="trashTablePage">
+           <layout class="QVBoxLayout" name="verticalLayout_8">
+            <item>
+             <widget class="QTableView" name="trashTable">
+              <property name="styleSheet">
+               <string notr="true">background-color: rgb(255, 255, 255);</string>
+              </property>
+              <property name="selectionMode">
+               <enum>QAbstractItemView::SingleSelection</enum>
+              </property>
+              <property name="selectionBehavior">
+               <enum>QAbstractItemView::SelectRows</enum>
+              </property>
+              <attribute name="horizontalHeaderVisible">
+               <bool>false</bool>
+              </attribute>
+              <attribute name="horizontalHeaderHighlightSections">
+               <bool>false</bool>
+              </attribute>
+              <attribute name="verticalHeaderVisible">
+               <bool>false</bool>
+              </attribute>
+              <attribute name="verticalHeaderHighlightSections">
+               <bool>false</bool>
+              </attribute>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="catalogPage">
+       <layout class="QGridLayout" name="gridLayout_4">
+        <property name="leftMargin">
+         <number>15</number>
+        </property>
+        <property name="topMargin">
+         <number>15</number>
+        </property>
+        <property name="rightMargin">
+         <number>15</number>
+        </property>
+        <item row="2" column="0">
+         <widget class="QComboBox" name="categoryCombo">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>81</width>
+            <height>20</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>158</width>
+            <height>20</height>
+           </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">background-color: rgb(255, 255, 255);</string>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="0" colspan="3">
+         <widget class="QTableView" name="catalogTable">
+          <property name="styleSheet">
+           <string notr="true">alternate-background-color: rgb(241, 241, 241);
+background-color: rgb(255, 255, 255);</string>
+          </property>
+          <property name="sizeAdjustPolicy">
+           <enum>QAbstractScrollArea::AdjustToContents</enum>
+          </property>
+          <property name="sortingEnabled">
+           <bool>true</bool>
+          </property>
+          <attribute name="horizontalHeaderCascadingSectionResizes">
+           <bool>true</bool>
+          </attribute>
+          <attribute name="verticalHeaderVisible">
+           <bool>false</bool>
+          </attribute>
+         </widget>
+        </item>
+        <item row="1" column="0">
+         <widget class="QLabel" name="catLbl">
+          <property name="text">
+           <string>Category Filter:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="2">
+         <widget class="QPushButton" name="addProductBtn">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Ignored" vsizetype="Preferred">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>81</width>
+            <height>20</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>111</width>
+            <height>20</height>
+           </size>
+          </property>
+          <property name="cursor">
+           <cursorShape>PointingHandCursor</cursorShape>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QPushButton{border-color: rgb(62, 112, 201);
+background-color: rgb(255, 255, 255);
+color: rgb(62, 112, 201);
+border-radius: 5px;
+border-style: solid;
+border-width: 1px;
+}
+QPushButton:pressed{
+background-color:  rgb(62, 112, 201);
+border-color: rgb(255,255,255);
+color: rgb(255,255,255);
+}</string>
+          </property>
+          <property name="text">
+           <string>Add Product +</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="0">
+         <widget class="QLabel" name="productCatalogLbl">
+          <property name="text">
+           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt; font-weight:600;&quot;&gt;Product Catalog&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="pendingPage">
+       <layout class="QGridLayout" name="gridLayout_5">
+        <property name="leftMargin">
+         <number>15</number>
+        </property>
+        <property name="topMargin">
+         <number>15</number>
+        </property>
+        <property name="rightMargin">
+         <number>15</number>
+        </property>
+        <item row="1" column="0">
+         <widget class="QLabel" name="pendCatLbl">
+          <property name="text">
+           <string>Category Filter:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="0">
+         <widget class="QComboBox" name="pendCatCombo">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>81</width>
+            <height>20</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>158</width>
+            <height>20</height>
+           </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">background-color: rgb(255, 255, 255);</string>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="0" colspan="3">
+         <widget class="QTableView" name="pendTable">
+          <property name="styleSheet">
+           <string notr="true">alternate-background-color: rgb(241, 241, 241);
+background-color: rgb(255, 255, 255);</string>
+          </property>
+          <property name="sizeAdjustPolicy">
+           <enum>QAbstractScrollArea::AdjustToContents</enum>
+          </property>
+          <property name="sortingEnabled">
+           <bool>true</bool>
+          </property>
+          <attribute name="horizontalHeaderCascadingSectionResizes">
+           <bool>true</bool>
+          </attribute>
+          <attribute name="verticalHeaderVisible">
+           <bool>false</bool>
+          </attribute>
+         </widget>
+        </item>
+        <item row="2" column="2">
+         <widget class="QPushButton" name="addPendProdBtn">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Ignored" vsizetype="Preferred">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>81</width>
+            <height>20</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>111</width>
+            <height>20</height>
+           </size>
+          </property>
+          <property name="cursor">
+           <cursorShape>PointingHandCursor</cursorShape>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QPushButton{border-color: rgb(62, 112, 201);
+background-color: rgb(255, 255, 255);
+color: rgb(62, 112, 201);
+border-radius: 5px;
+border-style: solid;
+border-width: 1px;
+}
+QPushButton:pressed{
+background-color:  rgb(62, 112, 201);
+border-color: rgb(255,255,255);
+color: rgb(255,255,255);
+}</string>
+          </property>
+          <property name="text">
+           <string>Add Product +</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="0">
+         <widget class="QLabel" name="pendUploadsLbl">
+          <property name="text">
+           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt; font-weight:600;&quot;&gt;Pending Uploads&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="profilePage">
+       <layout class="QGridLayout" name="gridLayout_6">
+        <property name="leftMargin">
+         <number>15</number>
+        </property>
+        <property name="topMargin">
+         <number>15</number>
+        </property>
+        <property name="rightMargin">
+         <number>15</number>
+        </property>
+        <item row="3" column="0">
+         <widget class="QPushButton" name="changeIconBtn">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>80</width>
+            <height>22</height>
+           </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QPushButton
+{
+background-color: rgb(63, 112, 199);
+color: rgb(255, 255, 255);
+border: 0px;
+alternate-background-color: rgb(50, 90, 159);
+}
+QPushButton:pressed 
+{
+background-color:rgb(255,255,255);
+color: rgb(63,112,199);
+}</string>
+          </property>
+          <property name="text">
+           <string>Change Icon</string>
+          </property>
+         </widget>
+        </item>
+        <item row="11" column="0">
+         <spacer name="verticalSpacer_2">
+          <property name="orientation">
+           <enum>Qt::Vertical</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>20</width>
+            <height>40</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item row="10" column="0">
+         <widget class="Line" name="line">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+         </widget>
+        </item>
+        <item row="7" column="0" colspan="5">
+         <widget class="QLineEdit" name="paypalEmailLE">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>300</width>
+            <height>0</height>
+           </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">background-color: rgb(255, 255, 255);</string>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="0">
+         <widget class="QLabel" name="profileIcon">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>50</width>
+            <height>50</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>50</width>
+            <height>50</height>
+           </size>
+          </property>
+          <property name="text">
+           <string/>
+          </property>
+          <property name="pixmap">
+           <pixmap resource="RESOURCES.qrc">:/imgs/default-user-icon.jpg</pixmap>
+          </property>
+          <property name="scaledContents">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item row="5" column="0">
+         <widget class="QTextEdit" name="profileDescTE">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>0</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>999999</width>
+            <height>200</height>
+           </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">background-color: rgb(255, 255, 255);</string>
+          </property>
+         </widget>
+        </item>
+        <item row="8" column="0">
+         <widget class="QLabel" name="emailconfidLbl">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="text">
+           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-style:italic; color:#515558;&quot;&gt;We'll never share your email with anyone else.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+          </property>
+         </widget>
+        </item>
+        <item row="6" column="0">
+         <widget class="QLabel" name="paypalEmailLbl">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="text">
+           <string>Paypal Email Address</string>
+          </property>
+         </widget>
+        </item>
+        <item row="4" column="0">
+         <widget class="QLabel" name="profileDescLbl">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="text">
+           <string>Seller Profile Description</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="0">
+         <widget class="QLabel" name="profileLbl">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="text">
+           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:14pt; font-weight:600;&quot;&gt;My Seller Profile&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+          </property>
+         </widget>
+        </item>
+        <item row="9" column="0">
+         <widget class="QPushButton" name="profileSaveBtn">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>90</width>
+            <height>25</height>
+           </size>
+          </property>
+          <property name="cursor">
+           <cursorShape>PointingHandCursor</cursorShape>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QPushButton
+{
+background-color: rgb(63, 112, 199);
+color: rgb(255, 255, 255);
+border: 0px;
+alternate-background-color: rgb(50, 90, 159);
+}
+QPushButton:pressed 
+{
+background-color:rgb(255,255,255);
+color: rgb(63,112,199);
+}</string>
+          </property>
+          <property name="text">
+           <string>Save Changes</string>
+          </property>
+          <property name="flat">
+           <bool>false</bool>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
      </widget>
     </item>
    </layout>
@@ -308,42 +1841,30 @@ QPushButton {cursor:&quot;Pointing Hand&quot;;}</string>
       <string>New</string>
      </property>
      <addaction name="actionNewItem"/>
-     <addaction name="actionTemplate"/>
-    </widget>
-    <widget class="QMenu" name="menuSynchronize">
-     <property name="title">
-      <string>Synchronize</string>
-     </property>
-     <addaction name="actionAll_Items"/>
-     <addaction name="actionCheck_for_New_Items"/>
-     <addaction name="actionUpload_Waiting_Items"/>
     </widget>
     <widget class="QMenu" name="menuLoad">
      <property name="title">
-      <string>Load</string>
+      <string>Import</string>
      </property>
      <addaction name="actionInventory_CSV"/>
     </widget>
     <widget class="QMenu" name="menuExport_CSV">
      <property name="title">
-      <string>Export CSV</string>
+      <string>Export</string>
      </property>
-     <addaction name="actionActive_Catalog"/>
-     <addaction name="actionInactive_Items"/>
-     <addaction name="actionGlobal_Catalog"/>
+     <addaction name="actionProductCatalogCSV"/>
     </widget>
     <addaction name="menuNew"/>
     <addaction name="menuLoad"/>
     <addaction name="menuExport_CSV"/>
     <addaction name="actionClose"/>
-    <addaction name="separator"/>
-    <addaction name="menuSynchronize"/>
    </widget>
    <widget class="QMenu" name="menuHelp">
     <property name="title">
      <string>Help</string>
     </property>
     <addaction name="actionN_A"/>
+    <addaction name="actionHelpGuide"/>
    </widget>
    <addaction name="menuFile"/>
    <addaction name="menuHelp"/>
@@ -381,12 +1902,12 @@ QPushButton {cursor:&quot;Pointing Hand&quot;;}</string>
   </action>
   <action name="actionN_A">
    <property name="text">
-    <string>N/A</string>
+    <string>Program Info</string>
    </property>
   </action>
   <action name="actionInventory_CSV">
    <property name="text">
-    <string>Inventory CSV</string>
+    <string>Inventory Catalog (CSV)</string>
    </property>
   </action>
   <action name="actionActive_Catalog">
@@ -404,16 +1925,470 @@ QPushButton {cursor:&quot;Pointing Hand&quot;;}</string>
     <string>Global Catalog</string>
    </property>
   </action>
+  <action name="actionProductCatalogCSV">
+   <property name="text">
+    <string>Product Catalog (CSV)</string>
+   </property>
+  </action>
+  <action name="actionHelpGuide">
+   <property name="text">
+    <string>Help Guide</string>
+   </property>
+  </action>
  </widget>
  <tabstops>
+  <tabstop>addProductBtn_2</tabstop>
   <tabstop>productsBtn</tabstop>
   <tabstop>pendBtn</tabstop>
   <tabstop>ordersBtn</tabstop>
   <tabstop>messagesBtn</tabstop>
   <tabstop>profileBtn</tabstop>
+  <tabstop>inboxBtn</tabstop>
+  <tabstop>unreadBtn</tabstop>
+  <tabstop>sentBtn</tabstop>
+  <tabstop>trashBtn</tabstop>
  </tabstops>
- <resources/>
- <connections/>
+ <resources>
+  <include location="RESOURCES.qrc"/>
+ </resources>
+ <connections>
+  <connection>
+   <sender>ordersBtn</sender>
+   <signal>clicked()</signal>
+   <receiver>HSMainWindow</receiver>
+   <slot>initOrdersView()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>95</x>
+     <y>213</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>320</x>
+     <y>0</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>messagesBtn</sender>
+   <signal>clicked()</signal>
+   <receiver>HSMainWindow</receiver>
+   <slot>initInboxView()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>92</x>
+     <y>269</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>404</x>
+     <y>0</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>productsBtn</sender>
+   <signal>clicked()</signal>
+   <receiver>HSMainWindow</receiver>
+   <slot>initProductsView()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>58</x>
+     <y>128</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>392</x>
+     <y>0</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pendBtn</sender>
+   <signal>clicked()</signal>
+   <receiver>HSMainWindow</receiver>
+   <slot>initPendingView()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>119</x>
+     <y>157</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>703</x>
+     <y>0</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>profileBtn</sender>
+   <signal>clicked()</signal>
+   <receiver>HSMainWindow</receiver>
+   <slot>initProfileView()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>69</x>
+     <y>298</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>302</x>
+     <y>0</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>changeIconBtn</sender>
+   <signal>clicked()</signal>
+   <receiver>HSMainWindow</receiver>
+   <slot>changeProfileIcon()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>183</x>
+     <y>124</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>250</x>
+     <y>0</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>showCombo</sender>
+   <signal>currentIndexChanged(QString)</signal>
+   <receiver>HSMainWindow</receiver>
+   <slot>changeOrderTableLength(QString)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>237</x>
+     <y>90</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>287</x>
+     <y>0</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>orderSearchLE</sender>
+   <signal>textEdited(QString)</signal>
+   <receiver>HSMainWindow</receiver>
+   <slot>searchOrderTable(QString)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>768</x>
+     <y>90</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>603</x>
+     <y>0</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>addPendProdBtn</sender>
+   <signal>clicked()</signal>
+   <receiver>HSMainWindow</receiver>
+   <slot>addProduct()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>782</x>
+     <y>90</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>661</x>
+     <y>0</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pendCatCombo</sender>
+   <signal>currentIndexChanged(QString)</signal>
+   <receiver>HSMainWindow</receiver>
+   <slot>filterPendingProductsTable(QString)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>280</x>
+     <y>91</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>686</x>
+     <y>0</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>addProductBtn_2</sender>
+   <signal>clicked()</signal>
+   <receiver>HSMainWindow</receiver>
+   <slot>addProduct()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>85</x>
+     <y>99</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>185</x>
+     <y>0</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>categoryCombo</sender>
+   <signal>currentIndexChanged(QString)</signal>
+   <receiver>HSMainWindow</receiver>
+   <slot>filterProductsTable(QString)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>232</x>
+     <y>92</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>268</x>
+     <y>0</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>addProductBtn</sender>
+   <signal>clicked()</signal>
+   <receiver>HSMainWindow</receiver>
+   <slot>addProduct()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>767</x>
+     <y>88</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>636</x>
+     <y>0</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>inboxBtn</sender>
+   <signal>clicked()</signal>
+   <receiver>HSMainWindow</receiver>
+   <slot>switchInboxTable()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>174</x>
+     <y>51</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>171</x>
+     <y>0</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>unreadBtn</sender>
+   <signal>clicked()</signal>
+   <receiver>HSMainWindow</receiver>
+   <slot>switchUnreadTable()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>174</x>
+     <y>50</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>226</x>
+     <y>0</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>sentBtn</sender>
+   <signal>clicked()</signal>
+   <receiver>HSMainWindow</receiver>
+   <slot>switchSentTable()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>174</x>
+     <y>48</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>848</x>
+     <y>9</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>trashBtn</sender>
+   <signal>clicked()</signal>
+   <receiver>HSMainWindow</receiver>
+   <slot>switchTrashTable()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>174</x>
+     <y>47</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>0</x>
+     <y>24</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>profileSaveBtn</sender>
+   <signal>clicked()</signal>
+   <receiver>HSMainWindow</receiver>
+   <slot>saveProfileChanges()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>183</x>
+     <y>433</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>555</x>
+     <y>0</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>addProductBtn_3</sender>
+   <signal>clicked()</signal>
+   <receiver>HSMainWindow</receiver>
+   <slot>addProduct()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>224</x>
+     <y>148</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>0</x>
+     <y>121</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>viewCatalogBtn</sender>
+   <signal>clicked()</signal>
+   <receiver>HSMainWindow</receiver>
+   <slot>initProductsView()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>192</x>
+     <y>176</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>0</x>
+     <y>147</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton</sender>
+   <signal>clicked()</signal>
+   <receiver>HSMainWindow</receiver>
+   <slot>initOrdersView()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>516</x>
+     <y>83</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>0</x>
+     <y>60</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_3</sender>
+   <signal>clicked()</signal>
+   <receiver>HSMainWindow</receiver>
+   <slot>initOrdersView()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>527</x>
+     <y>133</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>0</x>
+     <y>53</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_4</sender>
+   <signal>clicked()</signal>
+   <receiver>HSMainWindow</receiver>
+   <slot>initStorePageView()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>698</x>
+     <y>97</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>0</x>
+     <y>181</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_5</sender>
+   <signal>clicked()</signal>
+   <receiver>HSMainWindow</receiver>
+   <slot>initProductsView()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>725</x>
+     <y>152</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>0</x>
+     <y>233</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_6</sender>
+   <signal>clicked()</signal>
+   <receiver>HSMainWindow</receiver>
+   <slot>initInboxView()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>244</x>
+     <y>578</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>0</x>
+     <y>292</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>newestListingsBtn</sender>
+   <signal>clicked()</signal>
+   <receiver>HSMainWindow</receiver>
+   <slot>initNewProductsView()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>610</x>
+     <y>584</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>-5</x>
+     <y>334</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+ <slots>
+  <slot>initOrdersView()</slot>
+  <slot>initInboxView()</slot>
+  <slot>initProductsView()</slot>
+  <slot>initPendingView()</slot>
+  <slot>initProfileView()</slot>
+  <slot>changeProfileIcon()</slot>
+  <slot>saveProfileChanges()</slot>
+  <slot>changeOrderTableLength(QString)</slot>
+  <slot>searchOrderTable(QString)</slot>
+  <slot>filterPendingProductsTable(QString)</slot>
+  <slot>addProduct()</slot>
+  <slot>filterProductsTable(QString)</slot>
+  <slot>switchInboxTable()</slot>
+  <slot>switchUnreadTable()</slot>
+  <slot>switchSentTable()</slot>
+  <slot>switchTrashTable()</slot>
+  <slot>initStorePageView()</slot>
+  <slot>initNewProductsView()</slot>
+ </slots>
  <buttongroups>
   <buttongroup name="main_view_group"/>
  </buttongroups>
