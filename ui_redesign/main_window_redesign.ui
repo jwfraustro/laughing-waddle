@@ -93,6 +93,9 @@ font: 8pt &quot;Open Sans&quot;;
          <property name="cursor">
           <cursorShape>PointingHandCursor</cursorShape>
          </property>
+         <property name="toolTip">
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;App Main Page&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
          <property name="styleSheet">
           <string notr="true">QPushButton{border-color: rgb(231, 231, 231);
 background-color: rgb(255, 255, 255);
@@ -147,6 +150,9 @@ color: rgb(255,255,255);
             <property name="cursor">
              <cursorShape>PointingHandCursor</cursorShape>
             </property>
+            <property name="toolTip">
+             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Add a New Product&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+            </property>
             <property name="text">
              <string>Add Product</string>
             </property>
@@ -168,6 +174,9 @@ color: rgb(255,255,255);
             </property>
             <property name="cursor">
              <cursorShape>PointingHandCursor</cursorShape>
+            </property>
+            <property name="toolTip">
+             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Active HangarSwap Listings&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
             </property>
             <property name="styleSheet">
              <string notr="true"/>
@@ -196,6 +205,9 @@ color: rgb(255,255,255);
             </property>
             <property name="cursor">
              <cursorShape>PointingHandCursor</cursorShape>
+            </property>
+            <property name="toolTip">
+             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Products Not Yet Uploaded&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
             </property>
             <property name="text">
              <string>Waiting to Upload</string>
@@ -234,6 +246,9 @@ color: rgb(255,255,255);
             <property name="cursor">
              <cursorShape>PointingHandCursor</cursorShape>
             </property>
+            <property name="toolTip">
+             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Sales History&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+            </property>
             <property name="text">
              <string>Order History</string>
             </property>
@@ -268,6 +283,9 @@ color: rgb(255,255,255);
             <property name="cursor">
              <cursorShape>PointingHandCursor</cursorShape>
             </property>
+            <property name="toolTip">
+             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;My Messages&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+            </property>
             <property name="text">
              <string>Messages</string>
             </property>
@@ -283,6 +301,9 @@ color: rgb(255,255,255);
             </property>
             <property name="cursor">
              <cursorShape>PointingHandCursor</cursorShape>
+            </property>
+            <property name="toolTip">
+             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;My HangarSwap Profile&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
             </property>
             <property name="text">
              <string>Profile</string>
@@ -329,7 +350,7 @@ color: rgb(255,255,255);
        <string notr="true">background-color: rgb(231, 234, 239);</string>
       </property>
       <property name="currentIndex">
-       <number>3</number>
+       <number>2</number>
       </property>
       <widget class="QWidget" name="landingPage">
        <layout class="QGridLayout" name="gridLayout_8">
@@ -1325,6 +1346,9 @@ background-color: rgb(255, 255, 255);</string>
                <bool>false</bool>
               </property>
               <attribute name="horizontalHeaderVisible">
+               <bool>true</bool>
+              </attribute>
+              <attribute name="horizontalHeaderCascadingSectionResizes">
                <bool>false</bool>
               </attribute>
               <attribute name="horizontalHeaderHighlightSections">
@@ -1938,8 +1962,8 @@ color: rgb(63,112,199);
     <property name="title">
      <string>Help</string>
     </property>
-    <addaction name="actionN_A"/>
     <addaction name="actionHelpGuide"/>
+    <addaction name="actionAbout"/>
    </widget>
    <addaction name="menuFile"/>
    <addaction name="menuHelp"/>
@@ -1975,9 +1999,9 @@ color: rgb(63,112,199);
     <string>Upload Waiting Items</string>
    </property>
   </action>
-  <action name="actionN_A">
+  <action name="showAbout">
    <property name="text">
-    <string>Program Info</string>
+    <string>About</string>
    </property>
   </action>
   <action name="actionInventory_CSV">
@@ -2008,6 +2032,11 @@ color: rgb(63,112,199);
   <action name="actionHelpGuide">
    <property name="text">
     <string>Help Guide</string>
+   </property>
+  </action>
+  <action name="actionAbout">
+   <property name="text">
+    <string>About</string>
    </property>
   </action>
  </widget>
@@ -2243,7 +2272,7 @@ color: rgb(63,112,199);
    <hints>
     <hint type="sourcelabel">
      <x>180</x>
-     <y>52</y>
+     <y>81</y>
     </hint>
     <hint type="destinationlabel">
      <x>171</x>
@@ -2259,7 +2288,7 @@ color: rgb(63,112,199);
    <hints>
     <hint type="sourcelabel">
      <x>180</x>
-     <y>51</y>
+     <y>110</y>
     </hint>
     <hint type="destinationlabel">
      <x>226</x>
@@ -2275,7 +2304,7 @@ color: rgb(63,112,199);
    <hints>
     <hint type="sourcelabel">
      <x>180</x>
-     <y>49</y>
+     <y>139</y>
     </hint>
     <hint type="destinationlabel">
      <x>848</x>
@@ -2291,7 +2320,7 @@ color: rgb(63,112,199);
    <hints>
     <hint type="sourcelabel">
      <x>180</x>
-     <y>48</y>
+     <y>168</y>
     </hint>
     <hint type="destinationlabel">
      <x>0</x>

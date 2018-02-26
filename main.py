@@ -957,7 +957,7 @@ class loginForm(QtWidgets.QMainWindow, login_form.Ui_LoginDialog):
         print("Made session")
         p = s.get('http://www.hangarswap.com/Main/Login')
         print("posted login")
-        soup = bs4.BeautifulSoup(p.text, "html.parser")
+        soup = bs4.BeautifulSoup(p.text,    "html.parser")
 
         authToken = soup.select('input[name="authToken"]')[0]
         payload['authToken'] = authToken.get('value')

@@ -23,8 +23,8 @@ import new_product_widget
 
 NetworkSession = None
 
-
 sys._excepthook = sys.excepthook
+
 def my_exception_hook(exctype, value, traceback):
     # Print the error and traceback
     print(exctype, value, traceback)
@@ -38,6 +38,19 @@ class HSMainWindow(QtWidgets.QMainWindow, main_window_redesign.Ui_HSMainWindow):
 
         self.setupUi(self)
 
+        self.inbox_model = QtGui.QStandardItemModel(self)
+        item = QtGui.QStandardItem()
+        self.inbox_model.appendRow(item)
+        self.inbox_model.setData(self.inbox_model.index(0, 0), "", 0)
+        self.inboxTable.setModel(self.inbox_model)
+        #self.inboxTable.resizeColumnstoContents()
+
+        self.loadProfile()
+
+
+
+
+
     def initOrdersView(self):
         self.stackedWidget.setCurrentWidget(self.ordersPage)
     def initInboxView(self):
@@ -48,7 +61,7 @@ class HSMainWindow(QtWidgets.QMainWindow, main_window_redesign.Ui_HSMainWindow):
         self.stackedWidget.setCurrentWidget(self.pendingPage)
     def initProfileView(self):
         if self.profileDescTE.toPlainText() == "":
-            self.loadProfile()
+            self.refreshProfilePage()
         self.stackedWidget.setCurrentWidget(self.profilePage)
     def initLandingView(self):
         self.stackedWidget.setCurrentWidget(self.landingPage)
@@ -85,10 +98,32 @@ class HSMainWindow(QtWidgets.QMainWindow, main_window_redesign.Ui_HSMainWindow):
     def filterProductsTable(self):
         return
 
-    def loadProfile(self):
+    def refreshProfilePage(self):
         desc, paypal_email = logic_scripts.getProfilePage(NetworkSession)
         self.profileDescTE.setText(desc)
         self.paypalEmailLE.setText(paypal_email)
+
+    def loadProfile(self):
+        storeName, customerName = logic_scripts.getSellerName(NetworkSession)
+        self.storeNameLbl.setText(storeName)
+        self.customerNameLbl.setText(customerName)
+
+        messagesList = logic_scripts.getInbox(NetworkSession)
+        messagesTemp = messagesList.values.tolist()
+        print(messagesTemp)
+        self.inbox_model.clear()
+        for row in messagesTemp:
+           items = []
+           for field in row:
+             value = str(field)
+             items.append(QtGui.QStandardItem(value))
+           self.inbox_model.appendRow(items)
+        #self.inboxTable.resizeColumnstoContents()
+
+
+
+
+
 
 
 
