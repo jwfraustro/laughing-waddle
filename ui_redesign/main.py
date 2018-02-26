@@ -10,13 +10,19 @@ import webbrowser
 
 #importing GUI elements
 from PyQt5 import QtCore, QtGui, QtWidgets
+import logic_scripts
+import PyQt5.QtNetwork
 from PyQt5.QtGui import QPixmap
 from PyQt5.QtWidgets import QMessageBox
 from requests_toolbelt.multipart.encoder import MultipartEncoder
 
 #importing external widgets
+import login_form
 import main_window_redesign
 import new_product_widget
+
+NetworkSession = None
+
 
 sys._excepthook = sys.excepthook
 def my_exception_hook(exctype, value, traceback):
@@ -25,12 +31,6 @@ def my_exception_hook(exctype, value, traceback):
     # Call the normal Exception hook after
     sys._excepthook(exctype, value, traceback)
     sys.exit(1)
-
-class Login(QtWidgets.QMainWindow, login_form.Ui_Dialog):
-    def __init__(self, parent=None):
-        super(Login, self).__init__(parent)
-
-        self.setupUi(self)
 
 class HSMainWindow(QtWidgets.QMainWindow, main_window_redesign.Ui_HSMainWindow):
     def __init__(self, fileName, parent=None):
@@ -47,8 +47,9 @@ class HSMainWindow(QtWidgets.QMainWindow, main_window_redesign.Ui_HSMainWindow):
     def initPendingView(self):
         self.stackedWidget.setCurrentWidget(self.pendingPage)
     def initProfileView(self):
+        if self.profileDescTE.toPlainText() == "":
+            self.loadProfile()
         self.stackedWidget.setCurrentWidget(self.profilePage)
-
     def initLandingView(self):
         self.stackedWidget.setCurrentWidget(self.landingPage)
     def initStorePageView(self):
@@ -84,15 +85,25 @@ class HSMainWindow(QtWidgets.QMainWindow, main_window_redesign.Ui_HSMainWindow):
     def filterProductsTable(self):
         return
 
+    def loadProfile(self):
+        desc, paypal_email = logic_scripts.getProfilePage(NetworkSession)
+        self.profileDescTE.setText(desc)
+        self.paypalEmailLE.setText(paypal_email)
+
+
 
 def main():
     app = QtWidgets.QApplication(sys.argv)
-    login = Login()
-    login.
+    login = login_form.Ui_Dialog()
 
-    if login.handleLogin() == "True":
+    global NetworkSession
+
+    if login.exec() == QtWidgets.QDialog.Accepted:
+        NetworkSession = login.getNetSesh()
         form = HSMainWindow('')
         form.show()
+    else:
+        return
 
     app.exec()
 

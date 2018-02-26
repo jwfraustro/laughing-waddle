@@ -6,16 +6,27 @@
 #
 # WARNING! All changes made in this file will be lost!
 
+import requests, bs4
+
 from PyQt5 import QtCore, QtGui, QtWidgets
 
+s = None
+
+payload = {
+    'Username':"",
+    'Password':"",
+    'authToken':""
+}
+
 class Ui_Dialog(QtWidgets.QDialog):
-    def setupUi(self, Dialog):
-        Dialog.setObjectName("Dialog")
-        Dialog.resize(547, 391)
-        Dialog.setStyleSheet("font: 9pt \"Open Sans\";")
-        self.verticalLayout = QtWidgets.QVBoxLayout(Dialog)
+    def __init__(self, parent=None):
+        super(Ui_Dialog, self).__init__(parent)
+        self.setObjectName("Dialog")
+        self.resize(547, 391)
+        self.setStyleSheet("font: 9pt \"Open Sans\";")
+        self.verticalLayout = QtWidgets.QVBoxLayout(self)
         self.verticalLayout.setObjectName("verticalLayout")
-        self.hs_logoLbl = QtWidgets.QLabel(Dialog)
+        self.hs_logoLbl = QtWidgets.QLabel(self)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -26,7 +37,7 @@ class Ui_Dialog(QtWidgets.QDialog):
         self.hs_logoLbl.setScaledContents(True)
         self.hs_logoLbl.setObjectName("hs_logoLbl")
         self.verticalLayout.addWidget(self.hs_logoLbl)
-        self.sellerappLbl = QtWidgets.QLabel(Dialog)
+        self.sellerappLbl = QtWidgets.QLabel(self)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -34,12 +45,12 @@ class Ui_Dialog(QtWidgets.QDialog):
         self.sellerappLbl.setSizePolicy(sizePolicy)
         self.sellerappLbl.setObjectName("sellerappLbl")
         self.verticalLayout.addWidget(self.sellerappLbl)
-        self.line = QtWidgets.QFrame(Dialog)
+        self.line = QtWidgets.QFrame(self)
         self.line.setFrameShape(QtWidgets.QFrame.HLine)
         self.line.setFrameShadow(QtWidgets.QFrame.Sunken)
         self.line.setObjectName("line")
         self.verticalLayout.addWidget(self.line)
-        self.unLbl = QtWidgets.QLabel(Dialog)
+        self.unLbl = QtWidgets.QLabel(self)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -47,10 +58,10 @@ class Ui_Dialog(QtWidgets.QDialog):
         self.unLbl.setSizePolicy(sizePolicy)
         self.unLbl.setObjectName("unLbl")
         self.verticalLayout.addWidget(self.unLbl)
-        self.unLE = QtWidgets.QLineEdit(Dialog)
+        self.unLE = QtWidgets.QLineEdit(self)
         self.unLE.setObjectName("unLE")
         self.verticalLayout.addWidget(self.unLE)
-        self.passLbl = QtWidgets.QLabel(Dialog)
+        self.passLbl = QtWidgets.QLabel(self)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -58,14 +69,14 @@ class Ui_Dialog(QtWidgets.QDialog):
         self.passLbl.setSizePolicy(sizePolicy)
         self.passLbl.setObjectName("passLbl")
         self.verticalLayout.addWidget(self.passLbl)
-        self.passLE = QtWidgets.QLineEdit(Dialog)
+        self.passLE = QtWidgets.QLineEdit(self)
         self.passLE.setObjectName("passLE")
         self.verticalLayout.addWidget(self.passLE)
         self.horizontalLayout = QtWidgets.QHBoxLayout()
         self.horizontalLayout.setObjectName("horizontalLayout")
         spacerItem = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
         self.horizontalLayout.addItem(spacerItem)
-        self.pushButton = QtWidgets.QPushButton(Dialog)
+        self.pushButton = QtWidgets.QPushButton(self)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -73,7 +84,7 @@ class Ui_Dialog(QtWidgets.QDialog):
         self.pushButton.setSizePolicy(sizePolicy)
         self.pushButton.setObjectName("pushButton")
         self.horizontalLayout.addWidget(self.pushButton)
-        self.pushButton_2 = QtWidgets.QPushButton(Dialog)
+        self.pushButton_2 = QtWidgets.QPushButton(self)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -83,10 +94,10 @@ class Ui_Dialog(QtWidgets.QDialog):
         self.horizontalLayout.addWidget(self.pushButton_2, 0, QtCore.Qt.AlignRight)
         self.verticalLayout.addLayout(self.horizontalLayout)
 
-        self.retranslateUi(Dialog)
-        self.pushButton.clicked.connect(Dialog.handleLogin)
-        self.pushButton_2.clicked.connect(Dialog.reject)
-        QtCore.QMetaObject.connectSlotsByName(Dialog)
+        self.retranslateUi(self)
+        self.pushButton.clicked.connect(self.handleLogin)
+        self.pushButton_2.clicked.connect(self.reject)
+        QtCore.QMetaObject.connectSlotsByName(self)
 
     def retranslateUi(self, Dialog):
         _translate = QtCore.QCoreApplication.translate
@@ -98,13 +109,36 @@ class Ui_Dialog(QtWidgets.QDialog):
         self.pushButton_2.setText(_translate("Dialog", "Cancel"))
 
     def reject(self):
-        return
+        self.done(0)
 
     def handleLogin(self):
-        if (self.unLE.text()=='admin' and
-            self.passLE.text()=='test'):
-            return True
+        foo = self.loginConnect()
+        if foo is True:
+            self.accept()
         else:
-            QtWidgets.QMessageBox.warning(self, 'Error', 'Bad user or password', QtWidgets.QMessageBox.Ok )
+            QtWidgets.QMessageBox.warning(self, 'Error', 'Bad username or password', QtWidgets.QMessageBox.Ok )
+
+    def loginConnect(self):
+        payload['Username'] = self.unLE.text()
+        payload['Password'] = self.passLE.text()
+
+        global s
+        s = requests.Session()
+        print("Made session")
+        p = s.get('http://www.hangarswap.com/Main/Login')
+        soup = bs4.BeautifulSoup(p.text, "html.parser")
+        print("got soup")
+        authToken = soup.select('input[name="authToken"]')[0]
+        payload['authToken'] = authToken.get('value')
+        print("got auth")
+        p = s.post('https://www.hangarswap.com/Main/ProcessLogin', data=payload, verify=False, allow_redirects=False)
+        print('posted login')
+        if 'location' not in p.headers.keys():
+            return False
+        else:
+            return True
+
+    def getNetSesh(self):
+        return s
 
 import RESOURCES

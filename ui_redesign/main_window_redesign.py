@@ -51,6 +51,7 @@ class Ui_HSMainWindow(object):
         self.sidebar.setSpacing(0)
         self.sidebar.setObjectName("sidebar")
         self.landingBtn = QtWidgets.QPushButton(self.sidebar_2)
+        self.landingBtn.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
         self.landingBtn.setStyleSheet("QPushButton{border-color: rgb(231, 231, 231);\n"
 "background-color: rgb(255, 255, 255);\n"
 "color: rgb(62, 112, 201);\n"
@@ -64,7 +65,7 @@ class Ui_HSMainWindow(object):
 "}")
         self.landingBtn.setText("")
         icon1 = QtGui.QIcon()
-        icon1.addPixmap(QtGui.QPixmap("HangarSwapLogo_sm1_new.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon1.addPixmap(QtGui.QPixmap(":/imgs/HangarSwapLogo_sm1_new.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.landingBtn.setIcon(icon1)
         self.landingBtn.setIconSize(QtCore.QSize(120, 23))
         self.landingBtn.setObjectName("landingBtn")
@@ -312,6 +313,7 @@ class Ui_HSMainWindow(object):
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.landingRevenueBtn.sizePolicy().hasHeightForWidth())
         self.landingRevenueBtn.setSizePolicy(sizePolicy)
+        self.landingRevenueBtn.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
         self.landingRevenueBtn.setStyleSheet("QPushButton{border-color: rgb(65, 184, 105);\n"
 "background-color: rgb(65, 184, 105);\n"
 "color: rgb(255, 255, 255);\n"
@@ -327,6 +329,7 @@ class Ui_HSMainWindow(object):
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.landingProductsBtn.sizePolicy().hasHeightForWidth())
         self.landingProductsBtn.setSizePolicy(sizePolicy)
+        self.landingProductsBtn.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
         self.landingProductsBtn.setStyleSheet("QPushButton\n"
 "{\n"
 "border-color: rgb(63, 112, 199);\n"
@@ -416,6 +419,7 @@ class Ui_HSMainWindow(object):
         self.prod1imgLbl.setSizePolicy(sizePolicy)
         self.prod1imgLbl.setMinimumSize(QtCore.QSize(70, 150))
         self.prod1imgLbl.setMaximumSize(QtCore.QSize(150, 150))
+        self.prod1imgLbl.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
         self.prod1imgLbl.setText("")
         self.prod1imgLbl.setPixmap(QtGui.QPixmap(":/imgs/no_photo_use.jpg"))
         self.prod1imgLbl.setScaledContents(True)
@@ -447,6 +451,7 @@ class Ui_HSMainWindow(object):
         self.prod2imgLbl.setSizePolicy(sizePolicy)
         self.prod2imgLbl.setMinimumSize(QtCore.QSize(150, 150))
         self.prod2imgLbl.setMaximumSize(QtCore.QSize(150, 150))
+        self.prod2imgLbl.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
         self.prod2imgLbl.setText("")
         self.prod2imgLbl.setPixmap(QtGui.QPixmap(":/imgs/no_photo_use.jpg"))
         self.prod2imgLbl.setScaledContents(True)
@@ -477,6 +482,7 @@ class Ui_HSMainWindow(object):
         self.prod3imgLbl.setSizePolicy(sizePolicy)
         self.prod3imgLbl.setMinimumSize(QtCore.QSize(150, 150))
         self.prod3imgLbl.setMaximumSize(QtCore.QSize(150, 150))
+        self.prod3imgLbl.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
         self.prod3imgLbl.setText("")
         self.prod3imgLbl.setPixmap(QtGui.QPixmap(":/imgs/no_photo_use.jpg"))
         self.prod3imgLbl.setScaledContents(True)
@@ -507,6 +513,7 @@ class Ui_HSMainWindow(object):
         self.prod4imgLbl.setSizePolicy(sizePolicy)
         self.prod4imgLbl.setMinimumSize(QtCore.QSize(150, 150))
         self.prod4imgLbl.setMaximumSize(QtCore.QSize(150, 150))
+        self.prod4imgLbl.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
         self.prod4imgLbl.setText("")
         self.prod4imgLbl.setPixmap(QtGui.QPixmap(":/imgs/no_photo_use.jpg"))
         self.prod4imgLbl.setScaledContents(True)
@@ -629,6 +636,7 @@ class Ui_HSMainWindow(object):
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.inboxBtn.sizePolicy().hasHeightForWidth())
         self.inboxBtn.setSizePolicy(sizePolicy)
+        self.inboxBtn.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
         self.inboxBtn.setStyleSheet("background-color: rgb(245, 245, 245);")
         self.inboxBtn.setObjectName("inboxBtn")
         self.verticalLayout.addWidget(self.inboxBtn)
@@ -638,6 +646,7 @@ class Ui_HSMainWindow(object):
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.unreadBtn.sizePolicy().hasHeightForWidth())
         self.unreadBtn.setSizePolicy(sizePolicy)
+        self.unreadBtn.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
         self.unreadBtn.setStyleSheet("background-color: rgb(245, 245, 245);")
         self.unreadBtn.setObjectName("unreadBtn")
         self.verticalLayout.addWidget(self.unreadBtn)
@@ -647,6 +656,7 @@ class Ui_HSMainWindow(object):
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.sentBtn.sizePolicy().hasHeightForWidth())
         self.sentBtn.setSizePolicy(sizePolicy)
+        self.sentBtn.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
         self.sentBtn.setStyleSheet("background-color: rgb(245, 245, 245);")
         self.sentBtn.setObjectName("sentBtn")
         self.verticalLayout.addWidget(self.sentBtn)
@@ -656,6 +666,7 @@ class Ui_HSMainWindow(object):
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.trashBtn.sizePolicy().hasHeightForWidth())
         self.trashBtn.setSizePolicy(sizePolicy)
+        self.trashBtn.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
         self.trashBtn.setStyleSheet("background-color: rgb(245, 245, 245);")
         self.trashBtn.setObjectName("trashBtn")
         self.verticalLayout.addWidget(self.trashBtn)
@@ -862,6 +873,7 @@ class Ui_HSMainWindow(object):
         sizePolicy.setHeightForWidth(self.changeIconBtn.sizePolicy().hasHeightForWidth())
         self.changeIconBtn.setSizePolicy(sizePolicy)
         self.changeIconBtn.setMinimumSize(QtCore.QSize(80, 22))
+        self.changeIconBtn.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
         self.changeIconBtn.setStyleSheet("QPushButton\n"
 "{\n"
 "background-color: rgb(63, 112, 199);\n"
@@ -1031,7 +1043,7 @@ class Ui_HSMainWindow(object):
         self.menubar.addAction(self.menuHelp.menuAction())
 
         self.retranslateUi(HSMainWindow)
-        self.stackedWidget.setCurrentIndex(0)
+        self.stackedWidget.setCurrentIndex(3)
         self.inboxStackedWidget.setCurrentIndex(0)
         self.ordersBtn.clicked.connect(HSMainWindow.initOrdersView)
         self.messagesBtn.clicked.connect(HSMainWindow.initInboxView)
@@ -1146,4 +1158,4 @@ class Ui_HSMainWindow(object):
         self.actionProductCatalogCSV.setText(_translate("HSMainWindow", "Product Catalog (CSV)"))
         self.actionHelpGuide.setText(_translate("HSMainWindow", "Help Guide"))
 
-import RESOURCES
+import RESOURCES_rc
