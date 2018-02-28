@@ -19,7 +19,8 @@ from requests_toolbelt.multipart.encoder import MultipartEncoder
 #importing external widgets
 import login_form
 import main_window_redesign
-import new_product_widget
+import newProductDialog
+import loadingDialog
 
 NetworkSession = None
 
@@ -38,16 +39,24 @@ class HSMainWindow(QtWidgets.QMainWindow, main_window_redesign.Ui_HSMainWindow):
 
         self.setupUi(self)
 
+
         self.inbox_model = QtGui.QStandardItemModel(self)
         item = QtGui.QStandardItem()
         self.inbox_model.appendRow(item)
         self.inbox_model.setData(self.inbox_model.index(0, 0), "", 0)
         self.inboxTable.setModel(self.inbox_model)
-        #self.inboxTable.resizeColumnstoContents()
+
+        self.catalog_model = QtGui.QStandardItemModel(self)
+        self.catalog_model.appendRow(item)
+        self.catalog_model.setData(self.catalog_model.index(0, 0), "", 0)
+        self.catalogTable.setModel(self.catalog_model)
+
+
 
         self.loadProfile()
-
-
+        self.loadLandingListings()
+        self.refreshProfilePage()
+        self.loadActiveCatalog()
 
 
 
@@ -91,7 +100,9 @@ class HSMainWindow(QtWidgets.QMainWindow, main_window_redesign.Ui_HSMainWindow):
         return
 
     def addProduct(self):
-        return
+        addProductWidget = newProductDialog.Ui_newListing()
+        if addProductWidget.exec() == QtWidgets.QDialog.Accepted:
+            print("You theoretically added a product!")
 
     def filterPendingProductsTable(self):
         return
@@ -119,6 +130,38 @@ class HSMainWindow(QtWidgets.QMainWindow, main_window_redesign.Ui_HSMainWindow):
              items.append(QtGui.QStandardItem(value))
            self.inbox_model.appendRow(items)
         #self.inboxTable.resizeColumnstoContents()
+
+    def loadActiveCatalog(self):
+        catalog_data = logic_scripts.getCatalog(NetworkSession)
+        catalogTemp = catalog_data.values.tolist()
+        self.catalog_model.clear()
+        for row in catalogTemp:
+            items = []
+            for field in row:
+                value = str(field)
+                items.append(QtGui.QStandardItem(value))
+            self.catalog_model.appendRow(items)
+
+    def loadLandingListings(self):
+
+        prod1, prod2, prod3, prod4 = logic_scripts.getNewestListings(NetworkSession)
+
+        self.prod1titleLbl.setText(prod1['title'])
+        self.prod1priceLbl.setText(prod1['price'])
+        self.prod1imgLbl.setPixmap(prod1['img'])
+
+        self.prod2titleLbl.setText(prod2['title'])
+        self.prod2priceLbl.setText(prod2['price'])
+        self.prod2imgLbl.setPixmap(prod2['img'])
+
+        self.prod3titleLbl.setText(prod3['title'])
+        self.prod3priceLbl.setText(prod3['price'])
+        self.prod3imgLbl.setPixmap(prod3['img'])
+
+        self.prod4titleLbl.setText(prod4['title'])
+        self.prod4priceLbl.setText(prod4['price'])
+        self.prod4imgLbl.setPixmap(prod4['img'])
+
 
 
 

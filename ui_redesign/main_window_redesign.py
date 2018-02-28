@@ -11,13 +11,13 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_HSMainWindow(object):
     def setupUi(self, HSMainWindow):
         HSMainWindow.setObjectName("HSMainWindow")
-        HSMainWindow.resize(849, 632)
+        HSMainWindow.resize(1024, 768)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(HSMainWindow.sizePolicy().hasHeightForWidth())
         HSMainWindow.setSizePolicy(sizePolicy)
-        HSMainWindow.setMinimumSize(QtCore.QSize(849, 632))
+        HSMainWindow.setMinimumSize(QtCore.QSize(1024, 768))
         font = QtGui.QFont()
         font.setFamily("Open Sans")
         HSMainWindow.setFont(font)
@@ -695,9 +695,10 @@ class Ui_HSMainWindow(object):
         self.inboxTable.setSelectionBehavior(QtWidgets.QAbstractItemView.SelectRows)
         self.inboxTable.setShowGrid(False)
         self.inboxTable.setObjectName("inboxTable")
-        self.inboxTable.horizontalHeader().setVisible(True)
+        self.inboxTable.horizontalHeader().setVisible(False)
         self.inboxTable.horizontalHeader().setCascadingSectionResizes(False)
         self.inboxTable.horizontalHeader().setHighlightSections(False)
+        self.inboxTable.horizontalHeader().setStretchLastSection(True)
         self.inboxTable.verticalHeader().setVisible(False)
         self.inboxTable.verticalHeader().setHighlightSections(False)
         self.verticalLayout_5.addWidget(self.inboxTable)
@@ -989,7 +990,7 @@ class Ui_HSMainWindow(object):
         self.gridLayout.addWidget(self.stackedWidget, 0, 1, 1, 1)
         HSMainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(HSMainWindow)
-        self.menubar.setGeometry(QtCore.QRect(0, 0, 849, 21))
+        self.menubar.setGeometry(QtCore.QRect(0, 0, 1024, 21))
         self.menubar.setObjectName("menubar")
         self.menuFile = QtWidgets.QMenu(self.menubar)
         self.menuFile.setObjectName("menuFile")
@@ -1046,7 +1047,7 @@ class Ui_HSMainWindow(object):
         self.menubar.addAction(self.menuHelp.menuAction())
 
         self.retranslateUi(HSMainWindow)
-        self.stackedWidget.setCurrentIndex(2)
+        self.stackedWidget.setCurrentIndex(0)
         self.inboxStackedWidget.setCurrentIndex(0)
         self.ordersBtn.clicked.connect(HSMainWindow.initOrdersView)
         self.messagesBtn.clicked.connect(HSMainWindow.initInboxView)
@@ -1169,4 +1170,4 @@ class Ui_HSMainWindow(object):
         self.actionHelpGuide.setText(_translate("HSMainWindow", "Help Guide"))
         self.actionAbout.setText(_translate("HSMainWindow", "About"))
 
-import RESOURCES_rc
+import RESOURCES
