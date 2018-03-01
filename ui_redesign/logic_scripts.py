@@ -24,18 +24,49 @@ def getSellerName(NetworkSession):
     return storeName, customerName
 
 def getInbox(NetworkSession):
-    page = NetworkSession.get("https://www.hangarswap.com/Seller/Inbox")
-    inboxdata = pd.read_html(page.text)[0]
-    #inboxTable.to_csv("inbox.csv", header = False, index = False)
-    # pageSoup = bs4.BeautifulSoup(page.text, "html.parser")
-    # inboxTable = pageSoup.select(".unread")
-    # table = pd.read_html(inboxTable[0])
-    return inboxdata
+    inbox_page = NetworkSession.get("https://www.hangarswap.com/Seller/Inbox")
+    unread_page = NetworkSession.get("https://www.hangarswap.com/Seller/Inbox?View=UnRead")
+    sent_page = NetworkSession.get("https://www.hangarswap.com/Seller/Inbox?View=Sent")
+    trash_page = NetworkSession.get("https://www.hangarswap.com/Seller/Inbox?View=Trash")
+
+    inbox_list = []
+    unread_list = []
+    sent_list = []
+    trash_list = []
+
+    try:
+        inbox_data = pd.read_html(inbox_page.text)[0]
+        unread_data = pd.read_html(unread_page.text)[0]
+        sent_data = pd.read_html(sent_page.text)[0]
+        trash_data = pd.read_html(trash_page.text)[0]
+    except IndexError:
+        pass
+
+    try:
+        inbox_list = inbox_data.values.tolist()
+        unread_list = unread_data.values.tolist()
+        sent_list = sent_data.values.tolist()
+        trash_list = trash_data.values.tolist()
+    except:
+        pass
+
+    return inbox_list, unread_list, sent_list, trash_list
 
 def getCatalog(NetworkSession):
-    page = NetworkSession.get("https://www.hangarswap.com/Seller/Catalog")
-    catalog_data = pd.read_html(page.text)[0]
-    return catalog_data
+    active_catalog_page = NetworkSession.get("https://www.hangarswap.com/Seller/Catalog")
+    inactive_catalog_page = NetworkSession.get("https://www.hangarswap.com/Seller/Catalog?View=Inactive")
+
+    active_catalog_df = pd.read_html(active_catalog_page.text)[0]
+    inactive_catalog_df = pd.read_html(inactive_catalog_page.text)[0]
+
+    active_list = active_catalog_df.values.tolist()
+    inactive_list = inactive_catalog_df.values.tolist()
+
+    merged_catalog = active_list + inactive_list
+
+    catalog_headers = list(active_catalog_df.columns.values)
+
+    return merged_catalog, catalog_headers
 
 def getNewestListings(NetworkSession):
 

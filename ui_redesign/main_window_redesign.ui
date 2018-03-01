@@ -662,7 +662,11 @@ border-width: 1px;
             </widget>
            </item>
            <item>
-            <widget class="QListView" name="recentMessagesView"/>
+            <widget class="QListView" name="recentMessagesView">
+             <property name="editTriggers">
+              <set>QAbstractItemView::NoEditTriggers</set>
+             </property>
+            </widget>
            </item>
            <item>
             <widget class="QPushButton" name="landingMessagesBtn">
@@ -1098,6 +1102,9 @@ background-color: rgb(255, 255, 255);</string>
           <property name="sizeAdjustPolicy">
            <enum>QAbstractScrollArea::AdjustToContents</enum>
           </property>
+          <property name="editTriggers">
+           <set>QAbstractItemView::NoEditTriggers</set>
+          </property>
           <property name="alternatingRowColors">
            <bool>true</bool>
           </property>
@@ -1321,7 +1328,7 @@ background-color: rgb(255, 255, 255);</string>
         <item row="1" column="1">
          <widget class="QStackedWidget" name="inboxStackedWidget">
           <property name="currentIndex">
-           <number>0</number>
+           <number>3</number>
           </property>
           <widget class="QWidget" name="inboxTablePage">
            <layout class="QVBoxLayout" name="verticalLayout_5">
@@ -1335,6 +1342,9 @@ background-color: rgb(255, 255, 255);</string>
               </property>
               <property name="sizeAdjustPolicy">
                <enum>QAbstractScrollArea::AdjustToContents</enum>
+              </property>
+              <property name="editTriggers">
+               <set>QAbstractItemView::NoEditTriggers</set>
               </property>
               <property name="selectionMode">
                <enum>QAbstractItemView::SingleSelection</enum>
@@ -1374,13 +1384,28 @@ background-color: rgb(255, 255, 255);</string>
               <property name="styleSheet">
                <string notr="true">background-color: rgb(255, 255, 255);</string>
               </property>
+              <property name="horizontalScrollBarPolicy">
+               <enum>Qt::ScrollBarAlwaysOff</enum>
+              </property>
+              <property name="sizeAdjustPolicy">
+               <enum>QAbstractScrollArea::AdjustToContents</enum>
+              </property>
+              <property name="editTriggers">
+               <set>QAbstractItemView::NoEditTriggers</set>
+              </property>
               <property name="selectionMode">
                <enum>QAbstractItemView::SingleSelection</enum>
               </property>
               <property name="selectionBehavior">
                <enum>QAbstractItemView::SelectRows</enum>
               </property>
+              <property name="showGrid">
+               <bool>false</bool>
+              </property>
               <attribute name="horizontalHeaderVisible">
+               <bool>false</bool>
+              </attribute>
+              <attribute name="horizontalHeaderCascadingSectionResizes">
                <bool>false</bool>
               </attribute>
               <attribute name="horizontalHeaderHighlightSections">
@@ -1403,13 +1428,28 @@ background-color: rgb(255, 255, 255);</string>
               <property name="styleSheet">
                <string notr="true">background-color: rgb(255, 255, 255);</string>
               </property>
+              <property name="horizontalScrollBarPolicy">
+               <enum>Qt::ScrollBarAlwaysOff</enum>
+              </property>
+              <property name="sizeAdjustPolicy">
+               <enum>QAbstractScrollArea::AdjustToContents</enum>
+              </property>
+              <property name="editTriggers">
+               <set>QAbstractItemView::NoEditTriggers</set>
+              </property>
               <property name="selectionMode">
                <enum>QAbstractItemView::SingleSelection</enum>
               </property>
               <property name="selectionBehavior">
                <enum>QAbstractItemView::SelectRows</enum>
               </property>
+              <property name="showGrid">
+               <bool>false</bool>
+              </property>
               <attribute name="horizontalHeaderVisible">
+               <bool>false</bool>
+              </attribute>
+              <attribute name="horizontalHeaderCascadingSectionResizes">
                <bool>false</bool>
               </attribute>
               <attribute name="horizontalHeaderHighlightSections">
@@ -1432,13 +1472,28 @@ background-color: rgb(255, 255, 255);</string>
               <property name="styleSheet">
                <string notr="true">background-color: rgb(255, 255, 255);</string>
               </property>
+              <property name="horizontalScrollBarPolicy">
+               <enum>Qt::ScrollBarAlwaysOff</enum>
+              </property>
+              <property name="sizeAdjustPolicy">
+               <enum>QAbstractScrollArea::AdjustToContents</enum>
+              </property>
+              <property name="editTriggers">
+               <set>QAbstractItemView::NoEditTriggers</set>
+              </property>
               <property name="selectionMode">
                <enum>QAbstractItemView::SingleSelection</enum>
               </property>
               <property name="selectionBehavior">
                <enum>QAbstractItemView::SelectRows</enum>
               </property>
+              <property name="showGrid">
+               <bool>false</bool>
+              </property>
               <attribute name="horizontalHeaderVisible">
+               <bool>false</bool>
+              </attribute>
+              <attribute name="horizontalHeaderCascadingSectionResizes">
                <bool>false</bool>
               </attribute>
               <attribute name="horizontalHeaderHighlightSections">
@@ -1502,6 +1557,9 @@ background-color: rgb(255, 255, 255);</string>
           </property>
           <property name="sizeAdjustPolicy">
            <enum>QAbstractScrollArea::AdjustToContents</enum>
+          </property>
+          <property name="editTriggers">
+           <set>QAbstractItemView::NoEditTriggers</set>
           </property>
           <property name="sortingEnabled">
            <bool>true</bool>
@@ -2178,8 +2236,8 @@ color: rgb(63,112,199);
    <slot>searchOrderTable(QString)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>768</x>
-     <y>90</y>
+     <x>1008</x>
+     <y>99</y>
     </hint>
     <hint type="destinationlabel">
      <x>603</x>
@@ -2194,8 +2252,8 @@ color: rgb(63,112,199);
    <slot>addProduct()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>782</x>
-     <y>90</y>
+     <x>1008</x>
+     <y>99</y>
     </hint>
     <hint type="destinationlabel">
      <x>661</x>
@@ -2258,8 +2316,8 @@ color: rgb(63,112,199);
    <slot>addProduct()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>767</x>
-     <y>88</y>
+     <x>1008</x>
+     <y>99</y>
     </hint>
     <hint type="destinationlabel">
      <x>636</x>
@@ -2386,8 +2444,8 @@ color: rgb(63,112,199);
    <slot>initOrdersView()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>516</x>
-     <y>83</y>
+     <x>797</x>
+     <y>106</y>
     </hint>
     <hint type="destinationlabel">
      <x>0</x>
@@ -2402,8 +2460,8 @@ color: rgb(63,112,199);
    <slot>initOrdersView()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>527</x>
-     <y>133</y>
+     <x>797</x>
+     <y>178</y>
     </hint>
     <hint type="destinationlabel">
      <x>0</x>
@@ -2418,8 +2476,8 @@ color: rgb(63,112,199);
    <slot>initStorePageView()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>698</x>
-     <y>97</y>
+     <x>1004</x>
+     <y>106</y>
     </hint>
     <hint type="destinationlabel">
      <x>0</x>
@@ -2434,8 +2492,8 @@ color: rgb(63,112,199);
    <slot>initProductsView()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>725</x>
-     <y>152</y>
+     <x>1004</x>
+     <y>178</y>
     </hint>
     <hint type="destinationlabel">
      <x>0</x>
@@ -2450,8 +2508,8 @@ color: rgb(63,112,199);
    <slot>initInboxView()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>244</x>
-     <y>578</y>
+     <x>399</x>
+     <y>727</y>
     </hint>
     <hint type="destinationlabel">
      <x>0</x>
@@ -2466,11 +2524,11 @@ color: rgb(63,112,199);
    <slot>initNewProductsView()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>610</x>
-     <y>584</y>
+     <x>1003</x>
+     <y>727</y>
     </hint>
     <hint type="destinationlabel">
-     <x>-5</x>
+     <x>0</x>
      <y>334</y>
     </hint>
    </hints>
@@ -2487,7 +2545,7 @@ color: rgb(63,112,199);
     </hint>
     <hint type="destinationlabel">
      <x>170</x>
-     <y>-8</y>
+     <y>0</y>
     </hint>
    </hints>
   </connection>

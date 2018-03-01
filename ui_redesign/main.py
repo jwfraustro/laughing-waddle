@@ -46,17 +46,32 @@ class HSMainWindow(QtWidgets.QMainWindow, main_window_redesign.Ui_HSMainWindow):
         self.inbox_model.setData(self.inbox_model.index(0, 0), "", 0)
         self.inboxTable.setModel(self.inbox_model)
 
+        self.unread_model = QtGui.QStandardItemModel(self)
+        self.unread_model.appendRow(item)
+        self.unread_model.setData(self.unread_model.index(0,0),"",0)
+
+        self.sent_model = QtGui.QStandardItemModel(self)
+        self.sent_model.appendRow(item)
+        self.sent_model.setData(self.sent_model.index(0, 0), "", 0)
+
+        self.trash_model = QtGui.QStandardItemModel(self)
+        self.trash_model.appendRow(item)
+        self.trash_model.setData(self.trash_model.index(0, 0), "", 0)
+
+        self.unreadTable.setModel(self.unread_model)
+        self.trashTable.setModel(self.trash_model)
+        self.sentTable.setModel(self.sent_model)
+
         self.catalog_model = QtGui.QStandardItemModel(self)
         self.catalog_model.appendRow(item)
         self.catalog_model.setData(self.catalog_model.index(0, 0), "", 0)
         self.catalogTable.setModel(self.catalog_model)
 
-
-
         self.loadProfile()
+        self.loadMessages()
         self.loadLandingListings()
         self.refreshProfilePage()
-        self.loadActiveCatalog()
+        self.loadProductCatalog()
 
 
 
@@ -119,23 +134,48 @@ class HSMainWindow(QtWidgets.QMainWindow, main_window_redesign.Ui_HSMainWindow):
         self.storeNameLbl.setText(storeName)
         self.customerNameLbl.setText(customerName)
 
-        messagesList = logic_scripts.getInbox(NetworkSession)
-        messagesTemp = messagesList.values.tolist()
-        print(messagesTemp)
-        self.inbox_model.clear()
-        for row in messagesTemp:
+
+    def loadMessages(self):
+        inbox_list, unread_list, sent_list, trash_list = logic_scripts.getInbox(NetworkSession)
+
+        self.unread_model.setHorizontalHeaderLabels(["Sender","Message","button","Time Received"])
+        self.sent_model.setHorizontalHeaderLabels(["Recipient","Message","button","Time Sent"])
+        self.trash_model.setHorizontalHeaderLabels(["Sender","Message","button","Time"])
+        self.inbox_model.setHorizontalHeaderLabels(["Sender","Message","button","Time Received"])
+
+        for row in inbox_list:
            items = []
            for field in row:
              value = str(field)
              items.append(QtGui.QStandardItem(value))
            self.inbox_model.appendRow(items)
-        #self.inboxTable.resizeColumnstoContents()
 
-    def loadActiveCatalog(self):
-        catalog_data = logic_scripts.getCatalog(NetworkSession)
-        catalogTemp = catalog_data.values.tolist()
+        for row in unread_list:
+            items = []
+            for field in row:
+                value = str(field)
+                items.append(QtGui.QStandardItem(value))
+            self.unread_model.appendRow(items)
+
+        for row in sent_list:
+            items = []
+            for field in row:
+                value = str(field)
+                items.append(QtGui.QStandardItem(value))
+            self.sent_model.appendRow(items)
+
+        for row in trash_list:
+            items = []
+            for field in row:
+                value = str(field)
+                items.append(QtGui.QStandardItem(value))
+            self.trash_model.appendRow(items)
+
+    def loadProductCatalog(self):
+        catalog_data, catalog_headers = logic_scripts.getCatalog(NetworkSession)
         self.catalog_model.clear()
-        for row in catalogTemp:
+        self.catalog_model.setHorizontalHeaderLabels(catalog_headers)
+        for row in catalog_data:
             items = []
             for field in row:
                 value = str(field)
