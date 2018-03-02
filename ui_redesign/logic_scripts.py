@@ -23,6 +23,19 @@ def getSellerName(NetworkSession):
     print(storeName, customerName)
     return storeName, customerName
 
+def getOrders(NetworkSession):
+
+    orders_page = NetworkSession.get("https://www.hangarswap.com/Seller/OrderHistory")
+
+    orders_list = []
+
+    try:
+        orders_list = pd.read_html(orders_page.text)[0]
+    except:
+        pass
+
+    return orders_list
+
 def getInbox(NetworkSession):
     inbox_page = NetworkSession.get("https://www.hangarswap.com/Seller/Inbox")
     unread_page = NetworkSession.get("https://www.hangarswap.com/Seller/Inbox?View=UnRead")

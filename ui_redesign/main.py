@@ -33,12 +33,12 @@ def my_exception_hook(exctype, value, traceback):
     sys._excepthook(exctype, value, traceback)
     sys.exit(1)
 
+
 class HSMainWindow(QtWidgets.QMainWindow, main_window_redesign.Ui_HSMainWindow):
     def __init__(self, fileName, parent=None):
         super(HSMainWindow, self).__init__(parent)
 
         self.setupUi(self)
-
 
         self.inbox_model = QtGui.QStandardItemModel(self)
         item = QtGui.QStandardItem()
@@ -67,12 +67,21 @@ class HSMainWindow(QtWidgets.QMainWindow, main_window_redesign.Ui_HSMainWindow):
         self.catalog_model.setData(self.catalog_model.index(0, 0), "", 0)
         self.catalogTable.setModel(self.catalog_model)
 
-        self.loadProfile()
-        self.loadMessages()
-        self.loadLandingListings()
-        self.refreshProfilePage()
-        self.loadProductCatalog()
+        self.order_model = QtGui.QStandardItemModel(self)
+        self.order_model.appendRow(item)
+        self.order_model.setData(self.order_model.index(0, 0), "", 0)
+        self.orderTable.setModel(self.order_model)
 
+        try:
+            self.loadProfile()
+            self.loadMessages()
+            self.loadLandingListings()
+            self.refreshProfilePage()
+            self.loadProductCatalog()
+            self.loadOrders()
+
+        except ConnectionError or ConnectionAbortedError or ConnectionRefusedError or ConnectionResetError:
+            QtWidgets.QMessageBox.warning(self, 'Error', 'Network Connection Error: please check network, and restart program.', QtWidgets.QMessageBox.Ok)
 
 
     def initOrdersView(self):
@@ -202,13 +211,17 @@ class HSMainWindow(QtWidgets.QMainWindow, main_window_redesign.Ui_HSMainWindow):
         self.prod4priceLbl.setText(prod4['price'])
         self.prod4imgLbl.setPixmap(prod4['img'])
 
+    def loadOrders(self):
 
-
-
-
-
-
-
+        orders_list = logic_scripts.getOrders(NetworkSession)
+        #self.order_model.clear()
+        self.order_model.setHorizontalHeaderLabels(["OrderId","Customer","Product","Date Shipped","Qty","Unit Price"])
+        for row in orders_list:
+            items = []
+            for field in row:
+                value = str(field)
+                items.append(QtGui.QStandardItem(value))
+            self.order_model.appendRow(items)
 
 def main():
     app = QtWidgets.QApplication(sys.argv)

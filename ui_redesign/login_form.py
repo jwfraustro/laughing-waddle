@@ -6,7 +6,7 @@
 #
 # WARNING! All changes made in this file will be lost!
 
-import requests, bs4
+import requests, bs4, requests.exceptions, time
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 
@@ -113,7 +113,11 @@ class Ui_Dialog(QtWidgets.QDialog):
         self.done(0)
 
     def handleLogin(self):
-        foo = self.loginConnect()
+        try:
+            foo = self.loginConnect()
+        except requests.exceptions.ConnectionError:
+            QtWidgets.QMessageBox.warning(self, 'Network Error', 'Network Connection Error: please check network, and restart program.', QtWidgets.QMessageBox.Ok)
+            return
         if foo is True:
             self.accept()
         else:
@@ -124,6 +128,7 @@ class Ui_Dialog(QtWidgets.QDialog):
         payload['Password'] = self.passLE.text()
 
         global s
+
         s = requests.Session()
         print("Made session")
         p = s.get('http://www.hangarswap.com/Main/Login')
@@ -138,6 +143,7 @@ class Ui_Dialog(QtWidgets.QDialog):
             return False
         else:
             return True
+
 
     def getNetSesh(self):
         return s
