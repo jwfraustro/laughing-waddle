@@ -1067,7 +1067,7 @@ class Ui_HSMainWindow(object):
 
         self.retranslateUi(HSMainWindow)
         self.stackedWidget.setCurrentIndex(0)
-        self.inboxStackedWidget.setCurrentIndex(3)
+        self.inboxStackedWidget.setCurrentIndex(0)
         self.ordersBtn.clicked.connect(HSMainWindow.initOrdersView)
         self.messagesBtn.clicked.connect(HSMainWindow.initInboxView)
         self.productsBtn.clicked.connect(HSMainWindow.initProductsView)

@@ -71,6 +71,7 @@ class Ui_Dialog(QtWidgets.QDialog):
         self.verticalLayout.addWidget(self.passLbl)
         self.passLE = QtWidgets.QLineEdit(self)
         self.passLE.setObjectName("passLE")
+        self.passLE.setEchoMode(2)
         self.verticalLayout.addWidget(self.passLE)
         self.horizontalLayout = QtWidgets.QHBoxLayout()
         self.horizontalLayout.setObjectName("horizontalLayout")
