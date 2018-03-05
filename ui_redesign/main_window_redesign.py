@@ -28,9 +28,7 @@ class Ui_HSMainWindow(object):
         HSMainWindow.setWindowIcon(icon)
         HSMainWindow.setStyleSheet("QMenuBar {\n"
 "    background-color: rgb(54, 56, 67);\n"
-"    \n"
 "    color: rgb(255, 255, 255);\n"
-"\n"
 "}")
         HSMainWindow.setTabShape(QtWidgets.QTabWidget.Rounded)
         HSMainWindow.setUnifiedTitleAndToolBarOnMac(False)
@@ -84,16 +82,21 @@ class Ui_HSMainWindow(object):
         self.verticalLayout_2 = QtWidgets.QVBoxLayout(self.catalogGroupBox)
         self.verticalLayout_2.setObjectName("verticalLayout_2")
         self.addProductBtn_2 = QtWidgets.QPushButton(self.catalogGroupBox)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.addProductBtn_2.sizePolicy().hasHeightForWidth())
         self.addProductBtn_2.setSizePolicy(sizePolicy)
         self.addProductBtn_2.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
+        self.addProductBtn_2.setStyleSheet("background-color: rgb(255, 255, 255);")
+        icon2 = QtGui.QIcon()
+        icon2.addPixmap(QtGui.QPixmap(":/ti/assets/icons/plus.svg"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.addProductBtn_2.setIcon(icon2)
+        self.addProductBtn_2.setFlat(True)
         self.addProductBtn_2.setObjectName("addProductBtn_2")
-        self.verticalLayout_2.addWidget(self.addProductBtn_2)
+        self.verticalLayout_2.addWidget(self.addProductBtn_2, 0, QtCore.Qt.AlignLeft)
         self.productsBtn = QtWidgets.QPushButton(self.catalogGroupBox)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.MinimumExpanding)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.MinimumExpanding)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.productsBtn.sizePolicy().hasHeightForWidth())
@@ -101,23 +104,27 @@ class Ui_HSMainWindow(object):
         self.productsBtn.setMaximumSize(QtCore.QSize(16777215, 23))
         self.productsBtn.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
         self.productsBtn.setStyleSheet("")
+        icon3 = QtGui.QIcon()
+        icon3.addPixmap(QtGui.QPixmap(":/ti/assets/icons/package.svg"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.productsBtn.setIcon(icon3)
         self.productsBtn.setCheckable(False)
         self.productsBtn.setAutoExclusive(True)
-        self.productsBtn.setFlat(False)
+        self.productsBtn.setFlat(True)
         self.productsBtn.setObjectName("productsBtn")
-        self.verticalLayout_2.addWidget(self.productsBtn)
+        self.verticalLayout_2.addWidget(self.productsBtn, 0, QtCore.Qt.AlignLeft)
         self.pendBtn = QtWidgets.QPushButton(self.catalogGroupBox)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.pendBtn.sizePolicy().hasHeightForWidth())
         self.pendBtn.setSizePolicy(sizePolicy)
         self.pendBtn.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
+        self.pendBtn.setFlat(True)
         self.pendBtn.setObjectName("pendBtn")
         self.main_view_group = QtWidgets.QButtonGroup(HSMainWindow)
         self.main_view_group.setObjectName("main_view_group")
         self.main_view_group.addButton(self.pendBtn)
-        self.verticalLayout_2.addWidget(self.pendBtn)
+        self.verticalLayout_2.addWidget(self.pendBtn, 0, QtCore.Qt.AlignLeft)
         self.sidebar.addWidget(self.catalogGroupBox)
         self.salesGroupBox = QtWidgets.QGroupBox(self.sidebar_2)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
@@ -130,14 +137,19 @@ class Ui_HSMainWindow(object):
         self.verticalLayout_3 = QtWidgets.QVBoxLayout(self.salesGroupBox)
         self.verticalLayout_3.setObjectName("verticalLayout_3")
         self.ordersBtn = QtWidgets.QPushButton(self.salesGroupBox)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.ordersBtn.sizePolicy().hasHeightForWidth())
         self.ordersBtn.setSizePolicy(sizePolicy)
         self.ordersBtn.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
+        self.ordersBtn.setStyleSheet("font: 75 9pt \"Open Sans\";")
+        icon4 = QtGui.QIcon()
+        icon4.addPixmap(QtGui.QPixmap(":/ti/assets/icons/money.svg"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.ordersBtn.setIcon(icon4)
+        self.ordersBtn.setFlat(True)
         self.ordersBtn.setObjectName("ordersBtn")
-        self.verticalLayout_3.addWidget(self.ordersBtn)
+        self.verticalLayout_3.addWidget(self.ordersBtn, 0, QtCore.Qt.AlignLeft)
         self.sidebar.addWidget(self.salesGroupBox)
         self.accountGroupBox = QtWidgets.QGroupBox(self.sidebar_2)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
@@ -150,23 +162,31 @@ class Ui_HSMainWindow(object):
         self.verticalLayout_4 = QtWidgets.QVBoxLayout(self.accountGroupBox)
         self.verticalLayout_4.setObjectName("verticalLayout_4")
         self.messagesBtn = QtWidgets.QPushButton(self.accountGroupBox)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.messagesBtn.sizePolicy().hasHeightForWidth())
         self.messagesBtn.setSizePolicy(sizePolicy)
         self.messagesBtn.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
+        icon5 = QtGui.QIcon()
+        icon5.addPixmap(QtGui.QPixmap(":/imgs/assets/icons/email.svg"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.messagesBtn.setIcon(icon5)
+        self.messagesBtn.setFlat(True)
         self.messagesBtn.setObjectName("messagesBtn")
         self.verticalLayout_4.addWidget(self.messagesBtn, 0, QtCore.Qt.AlignLeft)
         self.profileBtn = QtWidgets.QPushButton(self.accountGroupBox)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.profileBtn.sizePolicy().hasHeightForWidth())
         self.profileBtn.setSizePolicy(sizePolicy)
         self.profileBtn.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
+        icon6 = QtGui.QIcon()
+        icon6.addPixmap(QtGui.QPixmap(":/ti/assets/icons/user.svg"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.profileBtn.setIcon(icon6)
+        self.profileBtn.setFlat(True)
         self.profileBtn.setObjectName("profileBtn")
-        self.verticalLayout_4.addWidget(self.profileBtn)
+        self.verticalLayout_4.addWidget(self.profileBtn, 0, QtCore.Qt.AlignLeft)
         self.sidebar.addWidget(self.accountGroupBox)
         spacerItem = QtWidgets.QSpacerItem(20, 345, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.MinimumExpanding)
         self.sidebar.addItem(spacerItem)
@@ -283,6 +303,7 @@ class Ui_HSMainWindow(object):
         self.landingOrdersBtn.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
         self.landingOrdersBtn.setStyleSheet("QPushButton\n"
 "{\n"
+"font: 75 16pt \"Open Sans\";\n"
 "border-color:rgb(243, 65, 53);\n"
 "background-color: rgb(243, 65, 53);\n"
 "color: rgb(255, 255, 255);\n"
@@ -290,6 +311,10 @@ class Ui_HSMainWindow(object):
 "border-width: 1px;\n"
 "}\n"
 "")
+        icon7 = QtGui.QIcon()
+        icon7.addPixmap(QtGui.QPixmap(":/ti/shopping-cart-full.svg"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.landingOrdersBtn.setIcon(icon7)
+        self.landingOrdersBtn.setIconSize(QtCore.QSize(32, 32))
         self.landingOrdersBtn.setObjectName("landingOrdersBtn")
         self.gridLayout_7.addWidget(self.landingOrdersBtn, 0, 0, 1, 1)
         self.landingStoreBtn = QtWidgets.QPushButton(self.landingBtnsFrame)
@@ -301,6 +326,7 @@ class Ui_HSMainWindow(object):
         self.landingStoreBtn.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
         self.landingStoreBtn.setStyleSheet("QPushButton\n"
 "{\n"
+"font: 75 16pt \"Open Sans\";\n"
 "border-color: rgb(244, 146, 71);\n"
 "background-color: rgb(244, 146, 71);\n"
 "color: rgb(255, 255, 255);\n"
@@ -308,6 +334,10 @@ class Ui_HSMainWindow(object):
 "border-width: 1px;\n"
 "}\n"
 "")
+        icon8 = QtGui.QIcon()
+        icon8.addPixmap(QtGui.QPixmap(":/ti/assets/icons/receipt.svg"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.landingStoreBtn.setIcon(icon8)
+        self.landingStoreBtn.setIconSize(QtCore.QSize(32, 32))
         self.landingStoreBtn.setObjectName("landingStoreBtn")
         self.gridLayout_7.addWidget(self.landingStoreBtn, 0, 1, 1, 1)
         self.landingRevenueBtn = QtWidgets.QPushButton(self.landingBtnsFrame)
@@ -321,9 +351,12 @@ class Ui_HSMainWindow(object):
 "background-color: rgb(65, 184, 105);\n"
 "color: rgb(255, 255, 255);\n"
 "border-style: solid;\n"
+"font: 75 16pt \"Open Sans\";\n"
 "border-width: 1px;\n"
 "}\n"
 "")
+        self.landingRevenueBtn.setIcon(icon4)
+        self.landingRevenueBtn.setIconSize(QtCore.QSize(32, 32))
         self.landingRevenueBtn.setObjectName("landingRevenueBtn")
         self.gridLayout_7.addWidget(self.landingRevenueBtn, 1, 0, 1, 1)
         self.landingProductsBtn = QtWidgets.QPushButton(self.landingBtnsFrame)
@@ -336,12 +369,15 @@ class Ui_HSMainWindow(object):
         self.landingProductsBtn.setStyleSheet("QPushButton\n"
 "{\n"
 "border-color: rgb(63, 112, 199);\n"
+"font: 75 16pt \"Open Sans\";\n"
 "background-color: rgb(63, 112, 199);\n"
 "color: rgb(255, 255, 255);\n"
 "border-style: solid;\n"
 "border-width: 1px;\n"
 "}\n"
 "")
+        self.landingProductsBtn.setIcon(icon3)
+        self.landingProductsBtn.setIconSize(QtCore.QSize(32, 32))
         self.landingProductsBtn.setObjectName("landingProductsBtn")
         self.gridLayout_7.addWidget(self.landingProductsBtn, 1, 1, 1, 1)
         self.gridLayout_8.addWidget(self.landingBtnsFrame, 0, 1, 1, 1)
@@ -796,6 +832,7 @@ class Ui_HSMainWindow(object):
 "background-color: rgb(255, 255, 255);")
         self.catalogTable.setSizeAdjustPolicy(QtWidgets.QAbstractScrollArea.AdjustToContents)
         self.catalogTable.setEditTriggers(QtWidgets.QAbstractItemView.NoEditTriggers)
+        self.catalogTable.setSelectionBehavior(QtWidgets.QAbstractItemView.SelectRows)
         self.catalogTable.setSortingEnabled(True)
         self.catalogTable.setObjectName("catalogTable")
         self.catalogTable.horizontalHeader().setCascadingSectionResizes(True)
@@ -810,7 +847,7 @@ class Ui_HSMainWindow(object):
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.addProductBtn.sizePolicy().hasHeightForWidth())
         self.addProductBtn.setSizePolicy(sizePolicy)
-        self.addProductBtn.setMinimumSize(QtCore.QSize(81, 20))
+        self.addProductBtn.setMinimumSize(QtCore.QSize(111, 20))
         self.addProductBtn.setMaximumSize(QtCore.QSize(111, 20))
         self.addProductBtn.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
         self.addProductBtn.setStyleSheet("QPushButton{border-color: rgb(62, 112, 201);\n"
@@ -854,6 +891,7 @@ class Ui_HSMainWindow(object):
         self.pendTable.setStyleSheet("alternate-background-color: rgb(241, 241, 241);\n"
 "background-color: rgb(255, 255, 255);")
         self.pendTable.setSizeAdjustPolicy(QtWidgets.QAbstractScrollArea.AdjustToContents)
+        self.pendTable.setSelectionBehavior(QtWidgets.QAbstractItemView.SelectRows)
         self.pendTable.setSortingEnabled(True)
         self.pendTable.setObjectName("pendTable")
         self.pendTable.horizontalHeader().setCascadingSectionResizes(True)
@@ -865,7 +903,7 @@ class Ui_HSMainWindow(object):
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.addPendProdBtn.sizePolicy().hasHeightForWidth())
         self.addPendProdBtn.setSizePolicy(sizePolicy)
-        self.addPendProdBtn.setMinimumSize(QtCore.QSize(81, 20))
+        self.addPendProdBtn.setMinimumSize(QtCore.QSize(111, 20))
         self.addPendProdBtn.setMaximumSize(QtCore.QSize(111, 20))
         self.addPendProdBtn.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
         self.addPendProdBtn.setStyleSheet("QPushButton{border-color: rgb(62, 112, 201);\n"
@@ -1070,7 +1108,7 @@ class Ui_HSMainWindow(object):
         self.menubar.addAction(self.menuHelp.menuAction())
 
         self.retranslateUi(HSMainWindow)
-        self.stackedWidget.setCurrentIndex(0)
+        self.stackedWidget.setCurrentIndex(4)
         self.inboxStackedWidget.setCurrentIndex(0)
         self.ordersBtn.clicked.connect(HSMainWindow.initOrdersView)
         self.messagesBtn.clicked.connect(HSMainWindow.initInboxView)
@@ -1135,6 +1173,7 @@ class Ui_HSMainWindow(object):
         self.addProductBtn_3.setText(_translate("HSMainWindow", "Add Product +"))
         self.viewCatalogBtn.setText(_translate("HSMainWindow", "View My Catalog"))
         self.landingOrdersBtn.setText(_translate("HSMainWindow", "Orders"))
+        self.landingOrdersBtn.setShortcut(_translate("HSMainWindow", "Enter"))
         self.landingStoreBtn.setText(_translate("HSMainWindow", "View My Store"))
         self.landingRevenueBtn.setText(_translate("HSMainWindow", "Revenue"))
         self.landingProductsBtn.setText(_translate("HSMainWindow", "Products"))

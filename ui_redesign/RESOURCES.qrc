@@ -1,7 +1,18 @@
 <RCC>
   <qresource prefix="imgs">
+    <file>assets/icons/email.svg</file>
     <file>no_photo_use.jpg</file>
     <file>HangarSwapLogo_sm1_new.png</file>
     <file>default-user-icon.jpg</file>
+  </qresource>
+  <qresource prefix="ti">
+    <file>assets/icons/receipt.svg</file>
+    <file>assets/icons/package.svg</file>
+    <file>assets/icons/user.svg</file>
+    <file>assets/icons/money.svg</file>
+    <file>assets/icons/plus.svg</file>
+    <file>assets/icons/package.svg</file>
+    <file>shopping-cart-full.png</file>
+    <file>shopping-cart-full.svg</file>
   </qresource>
 </RCC>
