@@ -1,6 +1,7 @@
 import requests
 import bs4
 import pandas as pd
+import imghdr
 import csv
 from PyQt5.QtGui import QPixmap
 from PyQt5 import QtCore, QtGui, QtWidgets
@@ -256,5 +257,32 @@ def validateForm(form_data):
         return 'Shipping Cost'
     return 0
 
-def submitItem(item_form, img_names):
+def submitItem(item_form, img_names, NetworkSession):
+    # encode product dictionary into multi-part/form
+    product_data = MultipartEncoder(fields=item_form, boundary='-----WebKitFormBoundarymkISNjkugjjFZdvE')
+
+    # making the post to submit listing
+    t = NetworkSession.post('https://www.hangarswap.com/Seller/SaveProduct', data=product_data,
+               headers={'Content-Type': product_data.content_type})
+
+    # checks if there is more than one image in the upload list
+    if (len(img_names) > 1):
+
+        # checks to see what productID HS has assigned the item, and grabs it
+        soup = bs4.BeautifulSoup(t.text, "html.parser")
+        pr_id = soup.select('[href*="ProductID"]')[0].get("href")[-5:].strip("=")
+
+        # iterates through image upload list and hits 'AddAditionalPhotos' successively
+        for i in range(2, len(img_names) + 1):
+            # encoding, determining image type and uploading
+            photo_form = MultipartEncoder(
+                fields={
+                    'productid': str(pr_id),
+                    'ProductImage': (
+                        'filename', open(img_names['img' + str(i) + '_lbl'], 'rb'),
+                        ('image/' + str(imghdr.what(img_names['img' + str(i) + '_lbl'])))),
+                }, boundary='-----WebKitFormBoundarydMG06kgczAncwn4B')
+            t = NetworkSession.post('https://www.hangarswap.com/Seller/SaveExtraImages', data=photo_form,
+                       headers={'Content-Type': photo_form.content_type})
+
     return

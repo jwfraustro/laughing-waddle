@@ -120,7 +120,7 @@ class Ui_Dialog(QtWidgets.QDialog):
             return
         if foo is True:
             self.accept()
-        else:
+        if foo is False:
             QtWidgets.QMessageBox.warning(self, 'Error', 'Bad username or password', QtWidgets.QMessageBox.Ok )
 
     def loginConnect(self):

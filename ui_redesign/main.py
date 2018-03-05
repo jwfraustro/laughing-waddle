@@ -7,6 +7,7 @@ import login_form
 import bs4
 import requests
 import webbrowser
+import urllib3.exceptions
 import logic_scripts
 
 #importing GUI elements
@@ -78,8 +79,9 @@ class HSMainWindow(QtWidgets.QMainWindow, main_window_redesign.Ui_HSMainWindow):
             self.refreshProfilePage()
             self.loadProductCatalog()
             self.loadOrders()
-        except ConnectionError or ConnectionAbortedError or ConnectionRefusedError or ConnectionResetError:
+        except TimeoutError or ConnectionRefusedError or ConnectionError:
             QtWidgets.QMessageBox.warning(self, 'Error', 'Network Connection Error: please check network, and restart program.', QtWidgets.QMessageBox.Ok)
+            return
 
 
     def initOrdersView(self):
@@ -240,6 +242,9 @@ def main():
         return
 
     app.exec()
+
+def getNetworkSession():
+    return NetworkSession
 
 
 if __name__ == '__main__':

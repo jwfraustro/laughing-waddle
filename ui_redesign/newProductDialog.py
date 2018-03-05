@@ -8,7 +8,7 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtGui import QPixmap
-import imghdr, logic_scripts
+import imghdr, logic_scripts, main
 
 
 airboat_subcats = [
@@ -998,28 +998,21 @@ class Ui_newListing(QtWidgets.QDialog):
         item_form, img_names = self.processForm(self.img_names)
         validate_code = logic_scripts.validateForm(item_form)
         if validate_code == 0:
-            # try:
-            #     #logic_scripts.submitItem(item_form, img_names)
-            #     return
-            # except:
-            #     pass
             return
         else:
             QtWidgets.QMessageBox.warning(self, 'Product Error', 'Please complete required field: ' + validate_code, QtWidgets.QMessageBox.Ok)
             return
+
     def saveProduct(self):
         item_form, img_names = self.processForm(self.img_names)
         validate_code = logic_scripts.validateForm(item_form)
         if validate_code == 0:
-            # try:
-            #     #logic_scripts.submitItem(item_form, img_names)
-            #     return
-            # except:
-            #     pass
-            return
+            NetworkSession = main.getNetworkSession()
+            logic_scripts.submitItem(item_form, img_names, NetworkSession)
         else:
             QtWidgets.QMessageBox.warning(self, 'Product Error', 'Please complete required field: ' + validate_code,
                                           QtWidgets.QMessageBox.Ok)
             return
+
     def reject(self):
         self.done(0)
