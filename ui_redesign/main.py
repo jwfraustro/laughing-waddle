@@ -13,7 +13,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 import logic_scripts
 import PyQt5.QtNetwork
 from PyQt5.QtGui import QPixmap
-from PyQt5.QtWidgets import QMessageBox
+from PyQt5.QtWidgets import QMessageBox, QSplashScreen
 from requests_toolbelt.multipart.encoder import MultipartEncoder
 
 #importing external widgets
@@ -227,12 +227,17 @@ def main():
     app = QtWidgets.QApplication(sys.argv)
     login = login_form.Ui_Dialog()
 
+    splash_pic = QPixmap('loading_splash.png')
+    splash = QSplashScreen(splash_pic)
+
     global NetworkSession
 
     if login.exec() == QtWidgets.QDialog.Accepted:
         NetworkSession = login.getNetSesh()
+        splash.show()
         form = HSMainWindow('')
         form.show()
+        splash.finish(form)
     else:
         return
 
