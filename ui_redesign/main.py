@@ -7,10 +7,10 @@ import login_form
 import bs4
 import requests
 import webbrowser
+import logic_scripts
 
 #importing GUI elements
 from PyQt5 import QtCore, QtGui, QtWidgets
-import logic_scripts
 import PyQt5.QtNetwork
 from PyQt5.QtGui import QPixmap
 from PyQt5.QtWidgets import QMessageBox, QSplashScreen
@@ -20,7 +20,6 @@ from requests_toolbelt.multipart.encoder import MultipartEncoder
 import login_form
 import main_window_redesign
 import newProductDialog
-import loadingDialog
 
 NetworkSession = None
 
@@ -79,7 +78,6 @@ class HSMainWindow(QtWidgets.QMainWindow, main_window_redesign.Ui_HSMainWindow):
             self.refreshProfilePage()
             self.loadProductCatalog()
             self.loadOrders()
-
         except ConnectionError or ConnectionAbortedError or ConnectionRefusedError or ConnectionResetError:
             QtWidgets.QMessageBox.warning(self, 'Error', 'Network Connection Error: please check network, and restart program.', QtWidgets.QMessageBox.Ok)
 
@@ -126,7 +124,7 @@ class HSMainWindow(QtWidgets.QMainWindow, main_window_redesign.Ui_HSMainWindow):
     def addProduct(self):
         addProductWidget = newProductDialog.Ui_newListing()
         if addProductWidget.exec() == QtWidgets.QDialog.Accepted:
-            print("You theoretically added a product!")
+            print("Nice....")
 
     def filterPendingProductsTable(self):
         return

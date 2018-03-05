@@ -3,6 +3,109 @@ import bs4
 import pandas as pd
 import csv
 from PyQt5.QtGui import QPixmap
+from PyQt5 import QtCore, QtGui, QtWidgets
+from requests_toolbelt.multipart.encoder import MultipartEncoder
+
+airboat_subcats = [
+
+    'Airboats',
+    'Engines',
+    'Hulls',
+    'Other',
+    'Parts'
+]
+aircraft_for_sale_subcats = [
+
+    'Aircraft for Sale',
+    'Amphibian',
+    'Helicopters',
+    'Other',
+    'Projects',
+    'Singles',
+    'Twins',
+]
+airframe_subcats=[
+    'Aerobatic',
+    'Aeronca',
+    'Amphibian',
+    'Antique',
+    'Beechcraft',
+    'Bellanca',
+    'Cessna',
+    'Cirrus',
+    'Control Surfaces',
+    'General Parts',
+    'Helicopter',
+    'Interior',
+    'Luscombe',
+    'Mooney',
+    'Other',
+    'Piper',
+    'Taylorcraft',
+    'Warbird',
+]
+avionics_subcats = [
+    'Antennas',
+    'Audio Panels',
+    'AutoPilot',
+    'ELTs',
+    'Engine Monitors',
+    'GPS',
+    'Indicators',
+    'Intercom',
+    'Nav/Coms',
+    'Other',
+    'Packages',
+    'Pitot Tubes',
+    'Transponders',
+    'Trays & Connectors',
+    'Weather Systems'
+]
+electrical_subcats = [
+    'Batteries',
+    'Lighting',
+    'Other'
+]
+hardware_subcats = [
+    'Jacks',
+    'Nuts & Bolts',
+    'Other',
+    'Rivets',
+    'Testing Equipment',
+    'Tools'
+]
+gear_subcats = [
+    'Amphibian',
+    'Skis',
+    'Tailwheel',
+    'Tires & Tubes',
+    'Wheels & Brakes'
+]
+pilot_supp_subcats = [
+    'Aviator Accessories',
+    'Bags',
+    'Books',
+    'Collectibles',
+    'Cover & Accessories',
+    'Headsets',
+    'Manuals',
+    'Oils, Liquids, & Sprays',
+    'Other',
+    'Pilot Wear',
+    'Safety',
+    'Stickers & Decals',
+    'Tow'
+
+]
+powerplant_subcats = [
+    'Engine Parts',
+    'Engines',
+    'Environmental',
+    'Exhaust',
+    'Fuel System',
+    'General Parts',
+    'Propellers'
+]
 
 
 def getProfilePage(NetworkSession):
@@ -134,3 +237,24 @@ def getNewestListings(NetworkSession):
     product4['img'] = pixmap4
 
     return (product1, product2, product3, product4)
+
+def validateForm(form_data):
+
+    if not form_data['productName']:
+        return 'Product Name'
+    if not form_data['productDescription']:
+        return 'Product Description'
+    if not form_data['CategoryID']:
+        return 'Product Category'
+    if not form_data['productCondition']:
+        return 'Product Condition'
+    if not form_data['Qty']:
+        return 'Quantity Available'
+    if not form_data['Price']:
+        return 'Price'
+    if not form_data['ShippingCost']:
+        return 'Shipping Cost'
+    return 0
+
+def submitItem(item_form, img_names):
+    return
