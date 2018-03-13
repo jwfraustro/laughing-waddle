@@ -172,19 +172,19 @@ def getInbox(NetworkSession):
 
 def getCatalog(NetworkSession):
     active_catalog_page = NetworkSession.get("https://www.hangarswap.com/Seller/Catalog")
-    inactive_catalog_page = NetworkSession.get("https://www.hangarswap.com/Seller/Catalog?View=Inactive")
+    #inactive_catalog_page = NetworkSession.get("https://www.hangarswap.com/Seller/Catalog?View=Inactive")
 
     active_catalog_df = pd.read_html(active_catalog_page.text)[0]
-    inactive_catalog_df = pd.read_html(inactive_catalog_page.text)[0]
+    #inactive_catalog_df = pd.read_html(inactive_catalog_page.text)[0]
 
     active_list = active_catalog_df.values.tolist()
-    inactive_list = inactive_catalog_df.values.tolist()
+    #inactive_list = inactive_catalog_df.values.tolist()
 
-    merged_catalog = active_list + inactive_list
+    #merged_catalog = active_list + inactive_list
 
     catalog_headers = list(active_catalog_df.columns.values)
 
-    return merged_catalog, catalog_headers
+    return active_list, catalog_headers
 
 def getNewestListings(NetworkSession):
 

@@ -11,10 +11,9 @@ import urllib3.exceptions
 import logic_scripts
 
 #importing GUI elements
-from PyQt5 import QtCore, QtGui, QtWidgets
-import PyQt5.QtNetwork
-from PyQt5.QtGui import QPixmap
-from PyQt5.QtWidgets import QMessageBox, QSplashScreen
+from PyQt5 import QtCore, QtGui, QtWidgets, QtPrintSupport
+from PyQt5.QtGui import QPixmap,QPainter
+from PyQt5.QtWidgets import QMessageBox, QSplashScreen, QHeaderView
 from requests_toolbelt.multipart.encoder import MultipartEncoder
 
 #importing external widgets
@@ -62,10 +61,15 @@ class HSMainWindow(QtWidgets.QMainWindow, main_window_redesign.Ui_HSMainWindow):
         self.catalog_model = QtGui.QStandardItemModel(self)
         self.catalog_model.setData(self.catalog_model.index(0, 0), "", 0)
         self.catalogTable.setModel(self.catalog_model)
+        self.catalogTable.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
+        self.catalogTable.horizontalHeader().setSectionResizeMode(QHeaderView.Interactive)
+
 
         self.order_model = QtGui.QStandardItemModel(self)
         self.order_model.setData(self.order_model.index(0, 0), "", 0)
         self.orderTable.setModel(self.order_model)
+
+        self.catalogTable.customContextMenuRequested.connect(self.catalogContextMenu)
 
         try:
             #self.loadProfile()
@@ -110,12 +114,89 @@ class HSMainWindow(QtWidgets.QMainWindow, main_window_redesign.Ui_HSMainWindow):
         self.inboxStackedWidget.setCurrentWidget(self.unreadTablePage)
 
     def changeProfileIcon(self):
-        return
+        profileIconFile, _ = QtWidgets.QFileDialog.getOpenFileName(self, "Select Profile Icon", (QtCore.QDir.homePath()))
+
+        profilePixmap = QPixmap(profileIconFile)
+        scaledProfilePixmap = QPixmap(profilePixmap.scaled(50,50))
+        self.profileIcon.setPixmap(scaledProfilePixmap)
+
     def saveProfileChanges(self):
         return
 
     def changeOrderTableLength(self):
         return
+
+    def orderContextMenu(self,event):
+
+        self.order_context = QtWidgets.QMenu(self)
+
+        printPreviewContext = QtWidgets.QAction('View Order', self)
+        printPreviewContext.triggered.connect(lambda: self.orderPrintPreview)
+
+        self.order_context.addAction(printPreviewContext)
+
+        self.order_context.popup(QtGui.QCursor.pos())
+
+    def orderPrintPreview(self):
+        return
+
+
+    def catalogContextMenu(self,event):
+
+        self.catalog_context = QtWidgets.QMenu(self)
+
+        addProductContext = QtWidgets.QAction('Add New Product', self)
+        addProductContext.triggered.connect(self.addProduct)
+
+        viewProductContext = QtWidgets.QAction('View Product Online', self)
+        viewProductContext.triggered.connect(lambda: self.viewProductAction(event))
+
+        disableProductContext = QtWidgets.QAction('Disable Product', self)
+        disableProductContext.triggered.connect(lambda: self.disableProductAction(event))
+
+        markSoldContext = QtWidgets.QAction('Mark Product Sold', self)
+        markSoldContext.triggered.connect(lambda: self.markProductSoldAction(event))
+
+        editProductContext = QtWidgets.QAction('Edit Product', self)
+        editProductContext.triggered.connect(lambda: self.editProductAction(event))
+
+        self.catalog_context.addAction(addProductContext)
+        self.catalog_context.addSeparator()
+        self.catalog_context.addAction(viewProductContext)
+        self.catalog_context.addSeparator()
+        self.catalog_context.addAction(disableProductContext)
+        self.catalog_context.addAction(markSoldContext)
+        self.catalog_context.addAction(editProductContext)
+
+        self.catalog_context.popup(QtGui.QCursor.pos())
+
+    def viewProductAction(self, event):
+        row = self.catalogTable.selectionModel().selection().indexes()[0].row()
+        pid = self.catalog_model.item(row, 0)
+
+        webbrowser.open('http://www.hangarswap.com/Shop/DisplayProduct?ProductID='+pid.text())
+        return
+
+    def disableProductAction(self, event):
+        row = self.catalogTable.selectionModel().selection().indexes()[0].row()
+        pid = self.catalog_model.item(row, 0)
+
+        try:
+            NetworkSession.get("https://www.hangarswap.com/Seller/RemoveProduct?ProductID="+pid.text())
+            QtWidgets.QMessageBox.information(self, 'Success','Product ID '+pid.text()+" disabled.",QtWidgets.QMessageBox.Ok)
+        except:
+            QtWidgets.QMessageBox.warning(self, 'Error','Unable to disable product.',QtWidgets.QMessageBox.Ok)
+
+
+    def markProductSoldAction(self, event):
+        return
+
+    def editProductAction(self, event):
+        row = self.catalogTable.selectionModel().selection().indexes()[0].row()
+        pid = self.catalog_model.item(row, 0)
+
+        webbrowser.open('https://www.hangarswap.com/Seller/EditProduct?ProductID='+pid.text())
+
     def searchOrderTable(self):
         if self.orderSearchLE.text():
             search_results = self.order_model.findItems(self.orderSearchLE.text(), flags=QtCore.Qt.MatchContains, column=self.orderSearchCatCombo.currentIndex())
@@ -215,10 +296,10 @@ class HSMainWindow(QtWidgets.QMainWindow, main_window_redesign.Ui_HSMainWindow):
     def loadProductCatalog(self):
         catalog_data, catalog_headers = logic_scripts.getCatalog(NetworkSession)
         self.catalog_model.clear()
-        self.catalog_model.setHorizontalHeaderLabels(catalog_headers)
+        self.catalog_model.setHorizontalHeaderLabels(catalog_headers[0:8])
         for row in catalog_data:
             items = []
-            for field in row:
+            for field in row[0:8]:
                 value = str(field)
                 items.append(QtGui.QStandardItem(value))
             self.catalog_model.appendRow(items)
@@ -227,19 +308,19 @@ class HSMainWindow(QtWidgets.QMainWindow, main_window_redesign.Ui_HSMainWindow):
 
         prod1, prod2, prod3, prod4 = logic_scripts.getNewestListings(NetworkSession)
 
-        self.prod1titleLbl.setText(prod1['title'])
+        self.prod1titleLbl.setText(prod1['title'][0:50]+"...")
         self.prod1priceLbl.setText(prod1['price'])
         self.prod1imgLbl.setPixmap(prod1['img'])
 
-        self.prod2titleLbl.setText(prod2['title'])
+        self.prod2titleLbl.setText(prod2['title'][0:50]+"...")
         self.prod2priceLbl.setText(prod2['price'])
         self.prod2imgLbl.setPixmap(prod2['img'])
 
-        self.prod3titleLbl.setText(prod3['title'])
+        self.prod3titleLbl.setText(prod3['title'][0:50]+"...")
         self.prod3priceLbl.setText(prod3['price'])
         self.prod3imgLbl.setPixmap(prod3['img'])
 
-        self.prod4titleLbl.setText(prod4['title'])
+        self.prod4titleLbl.setText(prod4['title'][0:50]+"...")
         self.prod4priceLbl.setText(prod4['price'])
         self.prod4imgLbl.setPixmap(prod4['img'])
 
