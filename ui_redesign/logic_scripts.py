@@ -119,7 +119,7 @@ def getProfilePage(NetworkSession):
     return desc, paypal_email
 
 def getSellerName(NetworkSession):
-    page = NetworkSession.get("https://www.hangarswap.com/Seller/Dashboard")
+    page = NetworkSession.get("https://www.hangarswap.com/Seller/Dashboard", verify = False)
 
     pageSoup = bs4.BeautifulSoup(page.text, "html.parser")
     storeName = pageSoup.select("body > div > div.site-content > div > div > div.row.row-md.mb-1 > div.col-md-4 > div > div.u-content > h5 > a")[0].text.strip()

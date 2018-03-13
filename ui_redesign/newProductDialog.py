@@ -993,7 +993,6 @@ class Ui_newListing(QtWidgets.QDialog):
 
         return (item_form, self.img_names)
 
-
     def uploadProduct(self):
         item_form, img_names = self.processForm(self.img_names)
         validate_code = logic_scripts.validateForm(item_form)

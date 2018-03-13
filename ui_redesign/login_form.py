@@ -130,6 +130,7 @@ class Ui_Dialog(QtWidgets.QDialog):
         global s
 
         s = requests.Session()
+        s.headers.update({'User-Agent':'Joshua Fraustro','Company':'HangarSwap.com'})
         print("Made session")
         p = s.get('http://www.hangarswap.com/Main/Login')
         soup = bs4.BeautifulSoup(p.text, "html.parser")

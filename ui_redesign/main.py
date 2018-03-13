@@ -40,8 +40,9 @@ class HSMainWindow(QtWidgets.QMainWindow, main_window_redesign.Ui_HSMainWindow):
 
         self.setupUi(self)
 
-        self.inbox_model = QtGui.QStandardItemModel(self)
         item = QtGui.QStandardItem()
+
+        self.inbox_model = QtGui.QStandardItemModel(self)
         self.inbox_model.setData(self.inbox_model.index(0, 0), "", 0)
         self.inboxTable.setModel(self.inbox_model)
 
@@ -71,8 +72,8 @@ class HSMainWindow(QtWidgets.QMainWindow, main_window_redesign.Ui_HSMainWindow):
             #self.loadMessages()
             #self.loadLandingListings()
             #self.refreshProfilePage()
-            #self.loadProductCatalog()
-            self.loadOrders()
+            self.loadProductCatalog()
+            #self.loadOrders()
         except TimeoutError or ConnectionRefusedError or ConnectionError:
             QtWidgets.QMessageBox.warning(self, 'Error', 'Network Connection Error: please check network, and restart program.', QtWidgets.QMessageBox.Ok)
             return
@@ -116,9 +117,23 @@ class HSMainWindow(QtWidgets.QMainWindow, main_window_redesign.Ui_HSMainWindow):
     def changeOrderTableLength(self):
         return
     def searchOrderTable(self):
-        string = self.orderSearchLE.text()
-        search_results = self.order_model.findItems(self.orderSearchLE.text(), flags=QtCore.Qt.MatchContains, column=1)
-        print(search_results[0].text())
+        if self.orderSearchLE.text():
+            search_results = self.order_model.findItems(self.orderSearchLE.text(), flags=QtCore.Qt.MatchContains, column=self.orderSearchCatCombo.currentIndex())
+
+            proxy_model = QtGui.QStandardItemModel(self)
+            proxy_model.clear()
+            proxy_model.setHorizontalHeaderLabels(["OrderId","Customer","Product","Date Shipped","Qty","Unit Price"])
+
+            if len(search_results)>0:
+                for result in search_results:
+                    row = []
+                    for col in range(0,self.order_model.columnCount()):
+                        row.append(self.order_model.item(result.row(), col).clone())
+                    proxy_model.appendRow(row)
+
+            self.orderTable.setModel(proxy_model)
+        if not self.orderSearchLE.text():
+            self.orderTable.setModel(self.order_model)
 
     def addProduct(self):
         addProductWidget = newProductDialog.Ui_newListing()
@@ -129,6 +144,26 @@ class HSMainWindow(QtWidgets.QMainWindow, main_window_redesign.Ui_HSMainWindow):
         return
     def filterProductsTable(self):
         return
+
+    def searchCatalogTable(self):
+
+        if self.catalogSearchLE.text():
+            catalog_search_results = self.catalog_model.findItems(self.catalogSearchLE.text(), flags=QtCore.Qt.MatchContains, column=self.catalogSearchColCombo.currentIndex())
+
+            catalog_proxy_model = QtGui.QStandardItemModel(self)
+            catalog_proxy_model.clear()
+            catalog_proxy_model.setHorizontalHeaderLabels(["ProductID","Name","Description","MPN","SKU","Price", "Active","OnSale","Featured","Action"])
+
+            if len(catalog_search_results)>0:
+                for result in catalog_search_results:
+                    row = []
+                    for col in range(0,self.catalog_model.columnCount()):
+                        row.append(self.catalog_model.item(result.row(), col).clone())
+                    catalog_proxy_model.appendRow(row)
+
+            self.catalogTable.setModel(catalog_proxy_model)
+        if not self.catalogSearchLE.text():
+            self.catalogTable.setModel(self.catalog_model)
 
     def refreshProfilePage(self):
         desc, paypal_email = logic_scripts.getProfilePage(NetworkSession)
