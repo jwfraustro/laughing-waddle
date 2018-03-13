@@ -42,20 +42,16 @@ class HSMainWindow(QtWidgets.QMainWindow, main_window_redesign.Ui_HSMainWindow):
 
         self.inbox_model = QtGui.QStandardItemModel(self)
         item = QtGui.QStandardItem()
-        self.inbox_model.appendRow(item)
         self.inbox_model.setData(self.inbox_model.index(0, 0), "", 0)
         self.inboxTable.setModel(self.inbox_model)
 
         self.unread_model = QtGui.QStandardItemModel(self)
-        self.unread_model.appendRow(item)
         self.unread_model.setData(self.unread_model.index(0,0),"",0)
 
         self.sent_model = QtGui.QStandardItemModel(self)
-        self.sent_model.appendRow(item)
         self.sent_model.setData(self.sent_model.index(0, 0), "", 0)
 
         self.trash_model = QtGui.QStandardItemModel(self)
-        self.trash_model.appendRow(item)
         self.trash_model.setData(self.trash_model.index(0, 0), "", 0)
 
         self.unreadTable.setModel(self.unread_model)
@@ -63,21 +59,19 @@ class HSMainWindow(QtWidgets.QMainWindow, main_window_redesign.Ui_HSMainWindow):
         self.sentTable.setModel(self.sent_model)
 
         self.catalog_model = QtGui.QStandardItemModel(self)
-        self.catalog_model.appendRow(item)
         self.catalog_model.setData(self.catalog_model.index(0, 0), "", 0)
         self.catalogTable.setModel(self.catalog_model)
 
         self.order_model = QtGui.QStandardItemModel(self)
-        self.order_model.appendRow(item)
         self.order_model.setData(self.order_model.index(0, 0), "", 0)
         self.orderTable.setModel(self.order_model)
 
         try:
-            self.loadProfile()
-            self.loadMessages()
-            self.loadLandingListings()
-            self.refreshProfilePage()
-            self.loadProductCatalog()
+            #self.loadProfile()
+            #self.loadMessages()
+            #self.loadLandingListings()
+            #self.refreshProfilePage()
+            #self.loadProductCatalog()
             self.loadOrders()
         except TimeoutError or ConnectionRefusedError or ConnectionError:
             QtWidgets.QMessageBox.warning(self, 'Error', 'Network Connection Error: please check network, and restart program.', QtWidgets.QMessageBox.Ok)
@@ -101,6 +95,7 @@ class HSMainWindow(QtWidgets.QMainWindow, main_window_redesign.Ui_HSMainWindow):
     def initStorePageView(self):
         return
     def initNewProductsView(self):
+        webbrowser.open("http://www.hangarswap.com/Search/Newest")
         return
 
 
@@ -121,7 +116,9 @@ class HSMainWindow(QtWidgets.QMainWindow, main_window_redesign.Ui_HSMainWindow):
     def changeOrderTableLength(self):
         return
     def searchOrderTable(self):
-        return
+        string = self.orderSearchLE.text()
+        search_results = self.order_model.findItems(self.orderSearchLE.text(), flags=QtCore.Qt.MatchContains, column=1)
+        print(search_results[0].text())
 
     def addProduct(self):
         addProductWidget = newProductDialog.Ui_newListing()
@@ -214,7 +211,7 @@ class HSMainWindow(QtWidgets.QMainWindow, main_window_redesign.Ui_HSMainWindow):
     def loadOrders(self):
 
         orders_list = logic_scripts.getOrders(NetworkSession)
-        #self.order_model.clear()
+        self.order_model.clear()
         self.order_model.setHorizontalHeaderLabels(["OrderId","Customer","Product","Date Shipped","Qty","Unit Price"])
         for row in orders_list:
             items = []

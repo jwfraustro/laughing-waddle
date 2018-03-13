@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1024</width>
-    <height>768</height>
+    <width>1603</width>
+    <height>900</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -18,8 +18,8 @@
   </property>
   <property name="minimumSize">
    <size>
-    <width>1024</width>
-    <height>768</height>
+    <width>1600</width>
+    <height>900</height>
    </size>
   </property>
   <property name="font">
@@ -306,6 +306,9 @@ color: rgb(255,255,255);
          <layout class="QVBoxLayout" name="verticalLayout_4">
           <item alignment="Qt::AlignLeft">
            <widget class="QPushButton" name="messagesBtn">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
             <property name="sizePolicy">
              <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
               <horstretch>0</horstretch>
@@ -396,7 +399,7 @@ color: rgb(255,255,255);
        <string notr="true">background-color: rgb(231, 234, 239);</string>
       </property>
       <property name="currentIndex">
-       <number>4</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="landingPage">
        <layout class="QGridLayout" name="gridLayout_8">
@@ -594,7 +597,7 @@ border-width: 1px;
               <string>Orders</string>
              </property>
              <property name="icon">
-              <iconset resource="RESOURCES.qrc">
+              <iconset>
                <normaloff>:/ti/shopping-cart-full.svg</normaloff>:/ti/shopping-cart-full.svg</iconset>
              </property>
              <property name="iconSize">
@@ -1220,6 +1223,9 @@ background-color: rgb(255, 255, 255);</string>
            <bool>false</bool>
           </property>
           <attribute name="horizontalHeaderCascadingSectionResizes">
+           <bool>true</bool>
+          </attribute>
+          <attribute name="horizontalHeaderStretchLastSection">
            <bool>true</bool>
           </attribute>
           <attribute name="verticalHeaderVisible">
@@ -2090,8 +2096,8 @@ color: rgb(63,112,199);
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1024</width>
-     <height>21</height>
+     <width>1603</width>
+     <height>31</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
@@ -2226,8 +2232,8 @@ color: rgb(63,112,199);
    <slot>initOrdersView()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>95</x>
-     <y>213</y>
+     <x>121</x>
+     <y>323</y>
     </hint>
     <hint type="destinationlabel">
      <x>320</x>
@@ -2242,8 +2248,8 @@ color: rgb(63,112,199);
    <slot>initInboxView()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>92</x>
-     <y>269</y>
+     <x>118</x>
+     <y>406</y>
     </hint>
     <hint type="destinationlabel">
      <x>404</x>
@@ -2258,8 +2264,8 @@ color: rgb(63,112,199);
    <slot>initProductsView()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>58</x>
-     <y>128</y>
+     <x>84</x>
+     <y>197</y>
     </hint>
     <hint type="destinationlabel">
      <x>392</x>
@@ -2274,8 +2280,8 @@ color: rgb(63,112,199);
    <slot>initPendingView()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>119</x>
-     <y>157</y>
+     <x>145</x>
+     <y>240</y>
     </hint>
     <hint type="destinationlabel">
      <x>703</x>
@@ -2290,8 +2296,8 @@ color: rgb(63,112,199);
    <slot>initProfileView()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>69</x>
-     <y>298</y>
+     <x>95</x>
+     <y>450</y>
     </hint>
     <hint type="destinationlabel">
      <x>302</x>
@@ -2306,8 +2312,8 @@ color: rgb(63,112,199);
    <slot>addProduct()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>85</x>
-     <y>99</y>
+     <x>111</x>
+     <y>165</y>
     </hint>
     <hint type="destinationlabel">
      <x>185</x>
@@ -2322,8 +2328,8 @@ color: rgb(63,112,199);
    <slot>initLandingView()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>52</x>
-     <y>39</y>
+     <x>65</x>
+     <y>95</y>
     </hint>
     <hint type="destinationlabel">
      <x>170</x>
@@ -2338,8 +2344,8 @@ color: rgb(63,112,199);
    <slot>changeProfileIcon()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>183</x>
-     <y>124</y>
+     <x>308</x>
+     <y>169</y>
     </hint>
     <hint type="destinationlabel">
      <x>250</x>
@@ -2354,8 +2360,8 @@ color: rgb(63,112,199);
    <slot>switchTrashTable()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>180</x>
-     <y>168</y>
+     <x>300</x>
+     <y>220</y>
     </hint>
     <hint type="destinationlabel">
      <x>0</x>
@@ -2370,8 +2376,8 @@ color: rgb(63,112,199);
    <slot>switchUnreadTable()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>180</x>
-     <y>110</y>
+     <x>300</x>
+     <y>161</y>
     </hint>
     <hint type="destinationlabel">
      <x>226</x>
@@ -2386,8 +2392,8 @@ color: rgb(63,112,199);
    <slot>changeOrderTableLength(QString)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>237</x>
-     <y>90</y>
+     <x>377</x>
+     <y>133</y>
     </hint>
     <hint type="destinationlabel">
      <x>287</x>
@@ -2402,8 +2408,8 @@ color: rgb(63,112,199);
    <slot>initProductsView()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>192</x>
-     <y>176</y>
+     <x>412</x>
+     <y>235</y>
     </hint>
     <hint type="destinationlabel">
      <x>0</x>
@@ -2418,8 +2424,8 @@ color: rgb(63,112,199);
    <slot>addProduct()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>224</x>
-     <y>148</y>
+     <x>444</x>
+     <y>205</y>
     </hint>
     <hint type="destinationlabel">
      <x>0</x>
@@ -2434,27 +2440,11 @@ color: rgb(63,112,199);
    <slot>filterPendingProductsTable(QString)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>280</x>
-     <y>91</y>
+     <x>377</x>
+     <y>131</y>
     </hint>
     <hint type="destinationlabel">
      <x>686</x>
-     <y>0</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>orderSearchLE</sender>
-   <signal>textEdited(QString)</signal>
-   <receiver>HSMainWindow</receiver>
-   <slot>searchOrderTable(QString)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>1008</x>
-     <y>99</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>603</x>
      <y>0</y>
     </hint>
    </hints>
@@ -2466,8 +2456,8 @@ color: rgb(63,112,199);
    <slot>initOrdersView()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>797</x>
-     <y>106</y>
+     <x>1285</x>
+     <y>142</y>
     </hint>
     <hint type="destinationlabel">
      <x>0</x>
@@ -2482,8 +2472,8 @@ color: rgb(63,112,199);
    <slot>filterProductsTable(QString)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>232</x>
-     <y>92</y>
+     <x>377</x>
+     <y>131</y>
     </hint>
     <hint type="destinationlabel">
      <x>268</x>
@@ -2499,7 +2489,7 @@ color: rgb(63,112,199);
    <hints>
     <hint type="sourcelabel">
      <x>1008</x>
-     <y>99</y>
+     <y>131</y>
     </hint>
     <hint type="destinationlabel">
      <x>661</x>
@@ -2515,7 +2505,7 @@ color: rgb(63,112,199);
    <hints>
     <hint type="sourcelabel">
      <x>1008</x>
-     <y>99</y>
+     <y>131</y>
     </hint>
     <hint type="destinationlabel">
      <x>636</x>
@@ -2530,8 +2520,8 @@ color: rgb(63,112,199);
    <slot>saveProfileChanges()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>183</x>
-     <y>433</y>
+     <x>317</x>
+     <y>522</y>
     </hint>
     <hint type="destinationlabel">
      <x>555</x>
@@ -2546,8 +2536,8 @@ color: rgb(63,112,199);
    <slot>initOrdersView()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>797</x>
-     <y>178</y>
+     <x>1285</x>
+     <y>236</y>
     </hint>
     <hint type="destinationlabel">
      <x>0</x>
@@ -2562,8 +2552,8 @@ color: rgb(63,112,199);
    <slot>switchInboxTable()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>180</x>
-     <y>81</y>
+     <x>300</x>
+     <y>132</y>
     </hint>
     <hint type="destinationlabel">
      <x>171</x>
@@ -2578,8 +2568,8 @@ color: rgb(63,112,199);
    <slot>switchSentTable()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>180</x>
-     <y>139</y>
+     <x>300</x>
+     <y>191</y>
     </hint>
     <hint type="destinationlabel">
      <x>848</x>
@@ -2594,8 +2584,8 @@ color: rgb(63,112,199);
    <slot>initInboxView()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>399</x>
-     <y>727</y>
+     <x>619</x>
+     <y>971</y>
     </hint>
     <hint type="destinationlabel">
      <x>0</x>
@@ -2610,8 +2600,8 @@ color: rgb(63,112,199);
    <slot>initNewProductsView()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>1003</x>
-     <y>727</y>
+     <x>1629</x>
+     <y>971</y>
     </hint>
     <hint type="destinationlabel">
      <x>0</x>
@@ -2626,8 +2616,8 @@ color: rgb(63,112,199);
    <slot>initProductsView()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>1004</x>
-     <y>178</y>
+     <x>1630</x>
+     <y>236</y>
     </hint>
     <hint type="destinationlabel">
      <x>0</x>
@@ -2642,12 +2632,28 @@ color: rgb(63,112,199);
    <slot>initStorePageView()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>1004</x>
-     <y>106</y>
+     <x>1630</x>
+     <y>142</y>
     </hint>
     <hint type="destinationlabel">
      <x>0</x>
      <y>181</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>orderSearchLE</sender>
+   <signal>returnPressed()</signal>
+   <receiver>HSMainWindow</receiver>
+   <slot>searchOrderTable()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>1474</x>
+     <y>116</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>1450</x>
+     <y>-10</y>
     </hint>
    </hints>
   </connection>
@@ -2661,7 +2667,6 @@ color: rgb(63,112,199);
   <slot>changeProfileIcon()</slot>
   <slot>saveProfileChanges()</slot>
   <slot>changeOrderTableLength(QString)</slot>
-  <slot>searchOrderTable(QString)</slot>
   <slot>filterPendingProductsTable(QString)</slot>
   <slot>addProduct()</slot>
   <slot>filterProductsTable(QString)</slot>
@@ -2672,6 +2677,7 @@ color: rgb(63,112,199);
   <slot>initStorePageView()</slot>
   <slot>initNewProductsView()</slot>
   <slot>initLandingView()</slot>
+  <slot>searchOrderTable()</slot>
  </slots>
  <buttongroups>
   <buttongroup name="main_view_group"/>

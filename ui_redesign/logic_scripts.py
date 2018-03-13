@@ -134,7 +134,8 @@ def getOrders(NetworkSession):
     orders_list = []
 
     try:
-        orders_list = pd.read_html(orders_page.text)[0]
+        orders_list_df = pd.read_html(orders_page.text)[0]
+        orders_list = orders_list_df.values.tolist()
     except:
         pass
 
@@ -286,3 +287,4 @@ def submitItem(item_form, img_names, NetworkSession):
                        headers={'Content-Type': photo_form.content_type})
 
     return
+
