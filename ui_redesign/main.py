@@ -13,7 +13,7 @@ import newProductDialog
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtGui import QPixmap
 from PyQt5.QtWidgets import QSplashScreen, QHeaderView
-import time, os
+import time, os, threading
 
 try:
     os.makedirs("./logs")
@@ -116,6 +116,7 @@ class HSMainWindow(QtWidgets.QMainWindow, main_window_redesign.Ui_HSMainWindow):
         logging.debug("Switched to Inbox Page")
 
     def initProductsView(self):
+        threading
         self.stackedWidget.setCurrentWidget(self.catalogPage)
         logging.debug("Switched to Catalog Page")
 
