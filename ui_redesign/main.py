@@ -13,9 +13,14 @@ import newProductDialog
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtGui import QPixmap
 from PyQt5.QtWidgets import QSplashScreen, QHeaderView
-import time
+import time, os
 
-logging.basicConfig(filename=str(time.time())+".log", level=logging.DEBUG, format='%(asctime)s %(message)s')
+try:
+    os.makedirs("./logs")
+except:
+    pass
+
+logging.basicConfig(filename="./logs/"+str(time.time())+".log", level=logging.DEBUG, format='%(asctime)s %(message)s')
 
 NetworkSession = None
 
@@ -84,17 +89,17 @@ class HSMainWindow(QtWidgets.QMainWindow, main_window_redesign.Ui_HSMainWindow):
         logging.debug("Loading Account Info")
         try:
             logging.debug("Load Profile")
-            self.loadProfile()
+            #self.loadProfile()
             logging.debug("load messages")
             self.loadMessages()
             logging.debug("load landing")
-            self.loadLandingListings()
+            #self.loadLandingListings()
             logging.debug("refresh profile")
-            self.refreshProfilePage()
+            #self.refreshProfilePage()
             logging.debug("product catalog")
-            self.loadProductCatalog()
+            #self.loadProductCatalog()
             logging.debug("orders")
-            self.loadOrders()
+            #self.loadOrders()
         except TimeoutError or ConnectionRefusedError or ConnectionError:
             logging.debug("network failure -- loading account info")
             QtWidgets.QMessageBox.warning(self, 'Error',
@@ -337,6 +342,8 @@ class HSMainWindow(QtWidgets.QMainWindow, main_window_redesign.Ui_HSMainWindow):
         logging.debug("Load Messages -- pinging network")
         inbox_list, unread_list, sent_list, trash_list = logic_scripts.getInbox(NetworkSession)
 
+        self.inbox_model.clear()
+
         self.unread_model.setHorizontalHeaderLabels(["Sender", "Message", "button", "Time Received"])
         self.sent_model.setHorizontalHeaderLabels(["Recipient", "Message", "button", "Time Sent"])
         self.trash_model.setHorizontalHeaderLabels(["Sender", "Message", "button", "Time"])
@@ -412,8 +419,7 @@ class HSMainWindow(QtWidgets.QMainWindow, main_window_redesign.Ui_HSMainWindow):
         logging.debug("loading orders list")
         orders_list = logic_scripts.getOrders(NetworkSession)
         self.order_model.clear()
-        self.order_model.setHorizontalHeaderLabels(
-            ["OrderId", "Customer", "Product", "Date Shipped", "Qty", "Unit Price"])
+        self.order_model.setHorizontalHeaderLabels(["OrderId", "Customer", "Product", "Date Shipped", "Qty", "Unit Price"])
         for row in orders_list:
             items = []
             for field in row:
