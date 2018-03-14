@@ -24,7 +24,7 @@ class Ui_HSMainWindow(object):
         HSMainWindow.setMouseTracking(True)
         HSMainWindow.setContextMenuPolicy(QtCore.Qt.CustomContextMenu)
         icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap("favicon-32x32.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon.addPixmap(QtGui.QPixmap("assets/icons/HSAPP.ico"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         HSMainWindow.setWindowIcon(icon)
         HSMainWindow.setAutoFillBackground(False)
         HSMainWindow.setStyleSheet("QMenuBar {\n"
@@ -64,7 +64,7 @@ class Ui_HSMainWindow(object):
 "}")
         self.landingBtn.setText("")
         icon1 = QtGui.QIcon()
-        icon1.addPixmap(QtGui.QPixmap(":/imgs/HangarSwapLogo_sm1_new.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon1.addPixmap(QtGui.QPixmap("assets/imgs/HangarSwapLogo_sm1_new.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.landingBtn.setIcon(icon1)
         self.landingBtn.setIconSize(QtCore.QSize(120, 23))
         self.landingBtn.setObjectName("landingBtn")

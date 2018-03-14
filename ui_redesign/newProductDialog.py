@@ -538,6 +538,10 @@ class Ui_newListing(QtWidgets.QDialog):
         self.img9_lbl.customContextMenuRequested.connect(self.contextMenuEvent)
         self.img10_lbl.customContextMenuRequested.connect(self.contextMenuEvent)
 
+        icon = QtGui.QIcon()
+        icon.addPixmap(QtGui.QPixmap("assets/icons/HSAPP.ico"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.setWindowIcon(icon)
+
     def retranslateUi(self):
         _translate = QtCore.QCoreApplication.translate
         self.setWindowTitle(_translate("newListing", "List a New Product"))

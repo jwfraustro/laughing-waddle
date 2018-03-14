@@ -1,32 +1,26 @@
-#importing misc modules
-import csv
-import imghdr
+# importing misc modules
+import logging
 import sys
-import login_form
-#importing networking modules
-import bs4
-import requests
+# importing networking modules
 import webbrowser
-import urllib3.exceptions
+
 import logic_scripts
-
-#importing GUI elements
-from PyQt5 import QtCore, QtGui, QtWidgets, QtPrintSupport
-from PyQt5.QtGui import QPixmap,QPainter
-from PyQt5.QtWidgets import QMessageBox, QSplashScreen, QHeaderView
-from requests_toolbelt.multipart.encoder import MultipartEncoder
-
-#importing external widgets
+# importing external widgets
 import login_form
 import main_window_redesign
 import newProductDialog
-import logging
+# importing GUI elements
+from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5.QtGui import QPixmap
+from PyQt5.QtWidgets import QSplashScreen, QHeaderView
+import time
 
-logging.basicConfig(filename="runtime.log", level=logging.DEBUG, format='%(asctime)s %(message)s')
+logging.basicConfig(filename=str(time.time())+".log", level=logging.DEBUG, format='%(asctime)s %(message)s')
 
 NetworkSession = None
 
 sys._excepthook = sys.excepthook
+
 
 def my_exception_hook(exctype, value, traceback):
     # Print the error and traceback
@@ -37,7 +31,7 @@ def my_exception_hook(exctype, value, traceback):
 
 
 class HSMainWindow(QtWidgets.QMainWindow, main_window_redesign.Ui_HSMainWindow):
-    def __init__(self, fileName, parent=None):
+    def __init__(self, parent=None):
         super(HSMainWindow, self).__init__(parent)
         logging.debug("UI Setup")
         self.setupUi(self)
@@ -50,21 +44,18 @@ class HSMainWindow(QtWidgets.QMainWindow, main_window_redesign.Ui_HSMainWindow):
 
         logging.debug("Unread Model")
         self.unread_model = QtGui.QStandardItemModel(self)
-        self.unread_model.setData(self.unread_model.index(0,0),"",0)
+        self.unread_model.setData(self.unread_model.index(0, 0), "", 0)
         logging.debug("Built")
-
 
         logging.debug("Sent Model")
         self.sent_model = QtGui.QStandardItemModel(self)
         self.sent_model.setData(self.sent_model.index(0, 0), "", 0)
         logging.debug("Built")
 
-
         logging.debug("Trash Model")
         self.trash_model = QtGui.QStandardItemModel(self)
         self.trash_model.setData(self.trash_model.index(0, 0), "", 0)
         logging.debug("Built")
-
 
         logging.debug("Model Assignment")
         self.unreadTable.setModel(self.unread_model)
@@ -106,13 +97,15 @@ class HSMainWindow(QtWidgets.QMainWindow, main_window_redesign.Ui_HSMainWindow):
             self.loadOrders()
         except TimeoutError or ConnectionRefusedError or ConnectionError:
             logging.debug("network failure -- loading account info")
-            QtWidgets.QMessageBox.warning(self, 'Error', 'Network Connection Error: please check network, and restart program.', QtWidgets.QMessageBox.Ok)
+            QtWidgets.QMessageBox.warning(self, 'Error',
+                                          'Network Connection Error: please check network, and restart program.',
+                                          QtWidgets.QMessageBox.Ok)
             return
-
 
     def initOrdersView(self):
         self.stackedWidget.setCurrentWidget(self.ordersPage)
         logging.debug("Switched to Orders Page")
+
     def initInboxView(self):
         self.stackedWidget.setCurrentWidget(self.inboxPage)
         logging.debug("Switched to Inbox Page")
@@ -120,47 +113,55 @@ class HSMainWindow(QtWidgets.QMainWindow, main_window_redesign.Ui_HSMainWindow):
     def initProductsView(self):
         self.stackedWidget.setCurrentWidget(self.catalogPage)
         logging.debug("Switched to Catalog Page")
+
     def initPendingView(self):
         self.stackedWidget.setCurrentWidget(self.pendingPage)
         logging.debug("Switched to Pending Page")
+
     def initProfileView(self):
         logging.debug("Checked if profile info already loaded")
         if self.profileDescTE.toPlainText() == "":
             self.refreshProfilePage()
         self.stackedWidget.setCurrentWidget(self.profilePage)
         logging.debug("Switched to Profile Page")
+
     def initLandingView(self):
         self.stackedWidget.setCurrentWidget(self.landingPage)
         logging.debug("Switched to Landing Page")
+
     def initStorePageView(self):
         logging.debug("tried initStorePageView")
         return
+
     def initNewProductsView(self):
         webbrowser.open("http://www.hangarswap.com/Search/Newest")
         logging.debug("opened newest online listings")
         return
 
-
     def switchInboxTable(self):
         self.inboxStackedWidget.setCurrentWidget(self.inboxTablePage)
         logging.debug("Switched to inbox table")
+
     def switchSentTable(self):
         self.inboxStackedWidget.setCurrentWidget(self.sentTablePage)
         logging.debug("Switched to sent table")
+
     def switchTrashTable(self):
         self.inboxStackedWidget.setCurrentWidget(self.trashTablePage)
         logging.debug("Switched to trash table")
+
     def switchUnreadTable(self):
         self.inboxStackedWidget.setCurrentWidget(self.unreadTablePage)
         logging.debug("Switched to unread table")
 
     def changeProfileIcon(self):
         logging.debug("tried to change profile pic")
-        profileIconFile, _ = QtWidgets.QFileDialog.getOpenFileName(self, "Select Profile Icon", (QtCore.QDir.homePath()))
+        profileIconFile, _ = QtWidgets.QFileDialog.getOpenFileName(self, "Select Profile Icon",
+                                                                   (QtCore.QDir.homePath()))
         logging.debug("pic: %s", profileIconFile)
 
         profilePixmap = QPixmap(profileIconFile)
-        scaledProfilePixmap = QPixmap(profilePixmap.scaled(50,50))
+        scaledProfilePixmap = QPixmap(profilePixmap.scaled(50, 50))
         self.profileIcon.setPixmap(scaledProfilePixmap)
         logging.debug("Successfully set profile pic")
 
@@ -172,7 +173,7 @@ class HSMainWindow(QtWidgets.QMainWindow, main_window_redesign.Ui_HSMainWindow):
         logging.debug("tried to change order table length")
         return
 
-    def orderContextMenu(self,event):
+    def orderContextMenu(self):
 
         self.order_context = QtWidgets.QMenu(self)
 
@@ -188,8 +189,7 @@ class HSMainWindow(QtWidgets.QMainWindow, main_window_redesign.Ui_HSMainWindow):
         logging.debug("tried to get order print preview")
         return
 
-
-    def catalogContextMenu(self,event):
+    def catalogContextMenu(self):
 
         self.catalog_context = QtWidgets.QMenu(self)
 
@@ -197,16 +197,16 @@ class HSMainWindow(QtWidgets.QMainWindow, main_window_redesign.Ui_HSMainWindow):
         addProductContext.triggered.connect(self.addProduct)
 
         viewProductContext = QtWidgets.QAction('View Product Online', self)
-        viewProductContext.triggered.connect(lambda: self.viewProductAction(event))
+        viewProductContext.triggered.connect(lambda: self.viewProductAction())
 
         disableProductContext = QtWidgets.QAction('Disable Product', self)
-        disableProductContext.triggered.connect(lambda: self.disableProductAction(event))
+        disableProductContext.triggered.connect(lambda: self.disableProductAction())
 
         markSoldContext = QtWidgets.QAction('Mark Product Sold', self)
-        markSoldContext.triggered.connect(lambda: self.markProductSoldAction(event))
+        markSoldContext.triggered.connect(lambda: self.markProductSoldAction())
 
         editProductContext = QtWidgets.QAction('Edit Product', self)
-        editProductContext.triggered.connect(lambda: self.editProductAction(event))
+        editProductContext.triggered.connect(lambda: self.editProductAction())
 
         self.catalog_context.addAction(addProductContext)
         self.catalog_context.addSeparator()
@@ -219,54 +219,57 @@ class HSMainWindow(QtWidgets.QMainWindow, main_window_redesign.Ui_HSMainWindow):
         self.catalog_context.popup(QtGui.QCursor.pos())
         logging.debug("requested catalog context menu")
 
-    def viewProductAction(self, event):
+    def viewProductAction(self):
         logging.debug("clicked view product")
         row = self.catalogTable.selectionModel().selection().indexes()[0].row()
         pid = self.catalog_model.item(row, 0)
 
-        webbrowser.open('http://www.hangarswap.com/Shop/DisplayProduct?ProductID='+pid.text())
+        webbrowser.open('http://www.hangarswap.com/Shop/DisplayProduct?ProductID=' + pid.text())
         logging.debug("opened product %s online", pid)
         return
 
-    def disableProductAction(self, event):
+    def disableProductAction(self):
         logging.debug("clicked disable product")
         row = self.catalogTable.selectionModel().selection().indexes()[0].row()
         pid = self.catalog_model.item(row, 0)
 
         try:
             logging.debug("sent disable request")
-            NetworkSession.get("https://www.hangarswap.com/Seller/RemoveProduct?ProductID="+pid.text())
+            NetworkSession.get("https://www.hangarswap.com/Seller/RemoveProduct?ProductID=" + pid.text())
             logging.debug("disable product %s request successful", pid)
-            QtWidgets.QMessageBox.information(self, 'Success','Product ID '+pid.text()+" disabled.",QtWidgets.QMessageBox.Ok)
+            QtWidgets.QMessageBox.information(self, 'Success', 'Product ID ' + pid.text() + " disabled.",
+                                              QtWidgets.QMessageBox.Ok)
         except:
-            QtWidgets.QMessageBox.warning(self, 'Error','Unable to disable product.',QtWidgets.QMessageBox.Ok)
+            QtWidgets.QMessageBox.warning(self, 'Error', 'Unable to disable product.', QtWidgets.QMessageBox.Ok)
 
-
-    def markProductSoldAction(self, event):
+    def markProductSoldAction(self):
         logging.debug("clicked mark as sold")
         return
 
-    def editProductAction(self, event):
+    def editProductAction(self):
         logging.debug("clicked edit product action")
         row = self.catalogTable.selectionModel().selection().indexes()[0].row()
         pid = self.catalog_model.item(row, 0)
 
-        webbrowser.open('https://www.hangarswap.com/Seller/EditProduct?ProductID='+pid.text())
+        webbrowser.open('https://www.hangarswap.com/Seller/EditProduct?ProductID=' + pid.text())
         logging.debug("opened edit product %s page", pid)
 
     def searchOrderTable(self):
-        logging.debug("searching order table, category %s, search text %s", self.orderSearchCatCombo.currentText(), self.orderSearchLE.text())
+        logging.debug("searching order table, category %s, search text %s", self.orderSearchCatCombo.currentText(),
+                      self.orderSearchLE.text())
         if self.orderSearchLE.text():
-            search_results = self.order_model.findItems(self.orderSearchLE.text(), flags=QtCore.Qt.MatchContains, column=self.orderSearchCatCombo.currentIndex())
+            search_results = self.order_model.findItems(self.orderSearchLE.text(), flags=QtCore.Qt.MatchContains,
+                                                        column=self.orderSearchCatCombo.currentIndex())
 
             proxy_model = QtGui.QStandardItemModel(self)
             proxy_model.clear()
-            proxy_model.setHorizontalHeaderLabels(["OrderId","Customer","Product","Date Shipped","Qty","Unit Price"])
+            proxy_model.setHorizontalHeaderLabels(
+                ["OrderId", "Customer", "Product", "Date Shipped", "Qty", "Unit Price"])
 
-            if len(search_results)>0:
+            if len(search_results) > 0:
                 for result in search_results:
                     row = []
-                    for col in range(0,self.order_model.columnCount()):
+                    for col in range(0, self.order_model.columnCount()):
                         row.append(self.order_model.item(result.row(), col).clone())
                     proxy_model.appendRow(row)
 
@@ -286,23 +289,28 @@ class HSMainWindow(QtWidgets.QMainWindow, main_window_redesign.Ui_HSMainWindow):
     def filterPendingProductsTable(self):
         logging.debug("filter pending table")
         return
+
     def filterProductsTable(self):
         logging.debug("filter products table")
         return
 
     def searchCatalogTable(self):
-        logging.debug("searching order table, category %s, search text %s", self.catalogSearchColCombo.currentText(), self.catalogSearchLE.text())
+        logging.debug("searching order table, category %s, search text %s", self.catalogSearchColCombo.currentText(),
+                      self.catalogSearchLE.text())
         if self.catalogSearchLE.text():
-            catalog_search_results = self.catalog_model.findItems(self.catalogSearchLE.text(), flags=QtCore.Qt.MatchContains, column=self.catalogSearchColCombo.currentIndex())
+            catalog_search_results = self.catalog_model.findItems(self.catalogSearchLE.text(),
+                                                                  flags=QtCore.Qt.MatchContains,
+                                                                  column=self.catalogSearchColCombo.currentIndex())
 
             catalog_proxy_model = QtGui.QStandardItemModel(self)
             catalog_proxy_model.clear()
-            catalog_proxy_model.setHorizontalHeaderLabels(["ProductID","Name","Description","MPN","SKU","Price", "Active","OnSale","Featured","Action"])
+            catalog_proxy_model.setHorizontalHeaderLabels(
+                ["ProductID", "Name", "Description", "MPN", "SKU", "Price", "Active", "OnSale", "Featured", "Action"])
 
-            if len(catalog_search_results)>0:
+            if len(catalog_search_results) > 0:
                 for result in catalog_search_results:
                     row = []
-                    for col in range(0,self.catalog_model.columnCount()):
+                    for col in range(0, self.catalog_model.columnCount()):
                         row.append(self.catalog_model.item(result.row(), col).clone())
                     catalog_proxy_model.appendRow(row)
 
@@ -325,22 +333,21 @@ class HSMainWindow(QtWidgets.QMainWindow, main_window_redesign.Ui_HSMainWindow):
         self.storeNameLbl.setText(storeName)
         self.customerNameLbl.setText(customerName)
 
-
     def loadMessages(self):
         logging.debug("Load Messages -- pinging network")
         inbox_list, unread_list, sent_list, trash_list = logic_scripts.getInbox(NetworkSession)
 
-        self.unread_model.setHorizontalHeaderLabels(["Sender","Message","button","Time Received"])
-        self.sent_model.setHorizontalHeaderLabels(["Recipient","Message","button","Time Sent"])
-        self.trash_model.setHorizontalHeaderLabels(["Sender","Message","button","Time"])
-        self.inbox_model.setHorizontalHeaderLabels(["Sender","Message","button","Time Received"])
+        self.unread_model.setHorizontalHeaderLabels(["Sender", "Message", "button", "Time Received"])
+        self.sent_model.setHorizontalHeaderLabels(["Recipient", "Message", "button", "Time Sent"])
+        self.trash_model.setHorizontalHeaderLabels(["Sender", "Message", "button", "Time"])
+        self.inbox_model.setHorizontalHeaderLabels(["Sender", "Message", "button", "Time Received"])
 
         for row in inbox_list:
-           items = []
-           for field in row:
-             value = str(field)
-             items.append(QtGui.QStandardItem(value))
-           self.inbox_model.appendRow(items)
+            items = []
+            for field in row:
+                value = str(field)
+                items.append(QtGui.QStandardItem(value))
+            self.inbox_model.appendRow(items)
 
         for row in unread_list:
             items = []
@@ -383,19 +390,19 @@ class HSMainWindow(QtWidgets.QMainWindow, main_window_redesign.Ui_HSMainWindow):
         logging.debug("loading landing listings")
         prod1, prod2, prod3, prod4 = logic_scripts.getNewestListings(NetworkSession)
 
-        self.prod1titleLbl.setText(prod1['title'][0:50]+"...")
+        self.prod1titleLbl.setText(prod1['title'][0:50] + "...")
         self.prod1priceLbl.setText(prod1['price'])
         self.prod1imgLbl.setPixmap(prod1['img'])
 
-        self.prod2titleLbl.setText(prod2['title'][0:50]+"...")
+        self.prod2titleLbl.setText(prod2['title'][0:50] + "...")
         self.prod2priceLbl.setText(prod2['price'])
         self.prod2imgLbl.setPixmap(prod2['img'])
 
-        self.prod3titleLbl.setText(prod3['title'][0:50]+"...")
+        self.prod3titleLbl.setText(prod3['title'][0:50] + "...")
         self.prod3priceLbl.setText(prod3['price'])
         self.prod3imgLbl.setPixmap(prod3['img'])
 
-        self.prod4titleLbl.setText(prod4['title'][0:50]+"...")
+        self.prod4titleLbl.setText(prod4['title'][0:50] + "...")
         self.prod4priceLbl.setText(prod4['price'])
         self.prod4imgLbl.setPixmap(prod4['img'])
 
@@ -405,7 +412,8 @@ class HSMainWindow(QtWidgets.QMainWindow, main_window_redesign.Ui_HSMainWindow):
         logging.debug("loading orders list")
         orders_list = logic_scripts.getOrders(NetworkSession)
         self.order_model.clear()
-        self.order_model.setHorizontalHeaderLabels(["OrderId","Customer","Product","Date Shipped","Qty","Unit Price"])
+        self.order_model.setHorizontalHeaderLabels(
+            ["OrderId", "Customer", "Product", "Date Shipped", "Qty", "Unit Price"])
         for row in orders_list:
             items = []
             for field in row:
@@ -414,12 +422,13 @@ class HSMainWindow(QtWidgets.QMainWindow, main_window_redesign.Ui_HSMainWindow):
             self.order_model.appendRow(items)
         logging.debug("orders list loaded")
 
+
 def main():
     logging.debug("loading app / login")
     app = QtWidgets.QApplication(sys.argv)
     login = login_form.Ui_Dialog()
     logging.debug("setting splash pic")
-    splash_pic = QPixmap('loading_splash.png')
+    splash_pic = QPixmap('assets/imgs/loading_splash.png')
     splash = QSplashScreen(splash_pic)
 
     global NetworkSession
@@ -430,7 +439,7 @@ def main():
         NetworkSession = login.getNetSesh()
         logging.debug("showed splash")
         splash.show()
-        form = HSMainWindow('')
+        form = HSMainWindow()
         form.show()
         splash.finish(form)
     else:
@@ -438,6 +447,7 @@ def main():
         return
 
     app.exec()
+
 
 def getNetworkSession():
     return NetworkSession

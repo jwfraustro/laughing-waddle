@@ -6,7 +6,7 @@
 #
 # WARNING! All changes made in this file will be lost!
 
-import requests, bs4, requests.exceptions, time
+import requests, bs4, requests.exceptions
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 
@@ -33,7 +33,7 @@ class Ui_Dialog(QtWidgets.QDialog):
         sizePolicy.setHeightForWidth(self.hs_logoLbl.sizePolicy().hasHeightForWidth())
         self.hs_logoLbl.setSizePolicy(sizePolicy)
         self.hs_logoLbl.setText("")
-        self.hs_logoLbl.setPixmap(QtGui.QPixmap(":/imgs/HangarSwapLogo_sm1_new.png"))
+        self.hs_logoLbl.setPixmap(QtGui.QPixmap("assets/imgs/HangarSwapLogo_sm1_new.png"))
         self.hs_logoLbl.setScaledContents(True)
         self.hs_logoLbl.setObjectName("hs_logoLbl")
         self.verticalLayout.addWidget(self.hs_logoLbl)
@@ -94,6 +94,9 @@ class Ui_Dialog(QtWidgets.QDialog):
         self.pushButton_2.setObjectName("pushButton_2")
         self.horizontalLayout.addWidget(self.pushButton_2, 0, QtCore.Qt.AlignRight)
         self.verticalLayout.addLayout(self.horizontalLayout)
+        icon = QtGui.QIcon()
+        icon.addPixmap(QtGui.QPixmap("assets/icons/HSAPP.ico"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.setWindowIcon(icon)
 
         self.retranslateUi(self)
         self.pushButton.clicked.connect(self.handleLogin)
