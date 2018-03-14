@@ -9,6 +9,7 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtGui import QPixmap
 import imghdr, logic_scripts, main
+import logging
 
 
 airboat_subcats = [
@@ -599,6 +600,7 @@ class Ui_newListing(QtWidgets.QDialog):
         self.cancel_new_button.setText(_translate("newListing", "Cancel"))
 
     def changedCat(self):
+        logging.debug("changed product category")
         # clears and displays relevant subcategories
         self.subcat_options.clear()
         #adds appropriate subcategories to subcat widget
@@ -623,6 +625,7 @@ class Ui_newListing(QtWidgets.QDialog):
 
     def contextMenuEvent(self, event):
         #creates a context menu for image thumbnails
+        logging.debug("new product context menu")
         self.menu2 = QtWidgets.QMenu(self)
 
         #creating actions for context menu

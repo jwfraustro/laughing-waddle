@@ -6,6 +6,7 @@ import csv
 from PyQt5.QtGui import QPixmap
 from PyQt5 import QtCore, QtGui, QtWidgets
 from requests_toolbelt.multipart.encoder import MultipartEncoder
+import logging
 
 airboat_subcats = [
 
