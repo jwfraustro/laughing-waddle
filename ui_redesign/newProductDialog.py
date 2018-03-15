@@ -1004,7 +1004,8 @@ class Ui_newListing(QtWidgets.QDialog):
         item_form, img_names = self.processForm(self.img_names)
         validate_code = logic_scripts.validateForm(item_form)
         if validate_code == 0:
-            return
+            NetworkSession = main.getNetworkSession()
+            logic_scripts.submitItem(item_form, img_names, NetworkSession)
         else:
             QtWidgets.QMessageBox.warning(self, 'Product Error', 'Please complete required field: ' + validate_code, QtWidgets.QMessageBox.Ok)
             return
@@ -1013,8 +1014,8 @@ class Ui_newListing(QtWidgets.QDialog):
         item_form, img_names = self.processForm(self.img_names)
         validate_code = logic_scripts.validateForm(item_form)
         if validate_code == 0:
-            NetworkSession = main.getNetworkSession()
-            logic_scripts.submitItem(item_form, img_names, NetworkSession)
+            logic_scripts.savePendingProduct(item_form, img_names)
+            self.accept()
         else:
             QtWidgets.QMessageBox.warning(self, 'Product Error', 'Please complete required field: ' + validate_code,
                                           QtWidgets.QMessageBox.Ok)

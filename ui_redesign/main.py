@@ -8,19 +8,21 @@ import logic_scripts
 # importing external widgets
 import login_form
 import main_window_redesign
+import csv
 import newProductDialog
 # importing GUI elements
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtGui import QPixmap
 from PyQt5.QtWidgets import QSplashScreen, QHeaderView
-import time, os, threading
+import time, os
+from multiprocessing import Process
 
 try:
     os.makedirs("./logs")
 except:
     pass
 
-logging.basicConfig(filename="./logs/"+str(time.time())+".log", level=logging.DEBUG, format='%(asctime)s %(message)s')
+logging.basicConfig(filename="./logs/runtime.log", level=logging.DEBUG, format='%(asctime)s %(message)s')
 
 NetworkSession = None
 
@@ -34,6 +36,11 @@ def my_exception_hook(exctype, value, traceback):
     sys._excepthook(exctype, value, traceback)
     sys.exit(1)
 
+def runInParallel(*fns):
+    proc = []
+    for fn in fns:
+        p = Process(target=fn)
+        p.start()
 
 class HSMainWindow(QtWidgets.QMainWindow, main_window_redesign.Ui_HSMainWindow):
     def __init__(self, parent=None):
@@ -51,6 +58,10 @@ class HSMainWindow(QtWidgets.QMainWindow, main_window_redesign.Ui_HSMainWindow):
         self.unread_model = QtGui.QStandardItemModel(self)
         self.unread_model.setData(self.unread_model.index(0, 0), "", 0)
         logging.debug("Built")
+
+        self.pending_model = QtGui.QStandardItemModel(self)
+        self.pending_model.setData(self.pending_model.index(0,0),"",0)
+        self.pendTable.setModel(self.pending_model)
 
         logging.debug("Sent Model")
         self.sent_model = QtGui.QStandardItemModel(self)
@@ -84,22 +95,30 @@ class HSMainWindow(QtWidgets.QMainWindow, main_window_redesign.Ui_HSMainWindow):
 
         logging.debug("Catalog Context Menu")
         self.catalogTable.customContextMenuRequested.connect(self.catalogContextMenu)
+        self.pendTable.customContextMenuRequested.connect(self.pendingContextMenu)
         logging.debug("Built")
 
         logging.debug("Loading Account Info")
         try:
-            logging.debug("Load Profile")
-            #self.loadProfile()
-            logging.debug("load messages")
-            self.loadMessages()
-            logging.debug("load landing")
-            #self.loadLandingListings()
-            logging.debug("refresh profile")
-            #self.refreshProfilePage()
-            logging.debug("product catalog")
-            #self.loadProductCatalog()
-            logging.debug("orders")
-            #self.loadOrders()
+            start = time.time()
+            runInParallel(self.loadProfile(), self.loadPending(), self.loadMessages(), self.loadLandingListings(), self.refreshProfilePage(), self.loadProductCatalog(), self.loadOrders())
+            print(str(time.time()-start)+"s")
+
+            # start = time.time()
+            # # logging.debug("Load Profile")
+            # self.loadProfile()
+            # # logging.debug("load messages")
+            # self.loadMessages()
+            # # logging.debug("load landing")
+            # self.loadLandingListings()
+            # # logging.debug("refresh profile")
+            # self.refreshProfilePage()
+            # # logging.debug("product catalog")
+            # self.loadProductCatalog()
+            # # logging.debug("orders")
+            # self.loadOrders()
+            # print(str(time.time()-start)+"s")
+
         except TimeoutError or ConnectionRefusedError or ConnectionError:
             logging.debug("network failure -- loading account info")
             QtWidgets.QMessageBox.warning(self, 'Error',
@@ -116,7 +135,6 @@ class HSMainWindow(QtWidgets.QMainWindow, main_window_redesign.Ui_HSMainWindow):
         logging.debug("Switched to Inbox Page")
 
     def initProductsView(self):
-        threading
         self.stackedWidget.setCurrentWidget(self.catalogPage)
         logging.debug("Switched to Catalog Page")
 
@@ -290,7 +308,8 @@ class HSMainWindow(QtWidgets.QMainWindow, main_window_redesign.Ui_HSMainWindow):
         logging.debug("launch add product screen")
         addProductWidget = newProductDialog.Ui_newListing()
         if addProductWidget.exec() == QtWidgets.QDialog.Accepted:
-            logging.debug("added product, theoretically")
+            self.loadPending()
+            return
 
     def filterPendingProductsTable(self):
         logging.debug("filter pending table")
@@ -429,6 +448,73 @@ class HSMainWindow(QtWidgets.QMainWindow, main_window_redesign.Ui_HSMainWindow):
             self.order_model.appendRow(items)
         logging.debug("orders list loaded")
 
+    def loadPending(self):
+        self.pending_model.clear()
+        self.pending_model.setHorizontalHeaderLabels(["Item Number","Title","Description","Category","Condition","Qty","Part Number","Alt P/N","S/N","SKU","Manufacturer","Price","Shipping Price","Core","Core Charge","Active","On Sale","Best Offer","Featured"])
+        try:
+            with open("pend.dat", "r") as r:
+                reader = csv.reader(r)
+                for row in reader:
+                    items=[]
+                    for field in row:
+                        value = str(field)
+                        items.append(QtGui.QStandardItem(value))
+                    self.pending_model.appendRow(items)
+        except:
+            pass
+
+    def pendingContextMenu(self):
+
+        self.pending_context = QtWidgets.QMenu(self)
+
+        addProductContext = QtWidgets.QAction('Add New Product', self)
+        addProductContext.triggered.connect(self.addProduct)
+
+        editProductContext = QtWidgets.QAction('Edit Product',self)
+        editProductContext.triggered.connect(lambda: self.editPendingAction())
+
+        uploadPendingContext = QtWidgets.QAction('Upload Product', self)
+        uploadPendingContext.triggered.connect(lambda: self.uploadPendingAction())
+
+        deleteProductContext = QtWidgets.QAction('Delete Product', self)
+        deleteProductContext.triggered.connect(lambda: self.deletePendingProductAction())
+
+        self.pending_context.addAction(addProductContext)
+        self.pending_context.addAction(editProductContext)
+        self.pending_context.addSeparator()
+        self.pending_context.addAction(uploadPendingContext)
+        self.pending_context.addSeparator()
+        self.pending_context.addAction(deleteProductContext)
+
+        self.pending_context.popup(QtGui.QCursor.pos())
+        logging.debug("requested catalog context menu")
+
+    def deletePendingProductAction(self):
+        row = self.pendTable.selectionModel().selection().indexes()[0].row()
+        item_num = self.pending_model.item(row, 0)
+
+        QtWidgets.QMessageBox.information(self, 'Delete Pending',
+                                     'Unimplemented: This function would delete pending item ' + str(
+                                         item_num),
+                                     QtWidgets.QMessageBox.Ok)
+        return
+
+    def editPendingAction(self):
+        row = self.pendTable.selectionModel().selection().indexes()[0].row()
+        item_num = self.pending_model.item(row, 0)
+
+        QtWidgets.QMessageBox.information(self, 'Edit Pending',
+                                     'Unimplemented: This function would open the edit dialog for item ' + str(item_num),
+                                     QtWidgets.QMessageBox.Ok)
+        return
+
+    def uploadPendingAction(self):
+        row = self.pendTable.selectionModel().selection().indexes()[0].row()
+        item_num = self.pending_model.item(row, 0)
+
+        QtWidgets.QMessageBox.information(self, 'Upload Pending',
+                                      'Unimplemented: This function would upload item '+str(item_num),
+                                      QtWidgets.QMessageBox.Ok)
 
 def main():
     logging.debug("loading app / login")

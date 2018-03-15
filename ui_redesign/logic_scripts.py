@@ -3,6 +3,9 @@ import pandas as pd
 import imghdr
 from PyQt5.QtGui import QPixmap
 from requests_toolbelt.multipart.encoder import MultipartEncoder
+import csv
+from random import randint
+import threading
 
 airboat_subcats = [
 
@@ -285,3 +288,28 @@ def submitItem(item_form, img_names, NetworkSession):
 
     return
 
+def savePendingProduct(item_form, img_names):
+    with open("pend.dat", "a", newline="") as f:
+        writer = csv.writer(f, delimiter=",")
+        writer.writerow([
+            randint(0,2147483647),
+            item_form['productName'],
+            item_form['productDescription'],
+            item_form['CategoryID'],
+            item_form['productCondition'],
+            item_form['Qty'],
+            item_form['PartNumber'],
+            item_form['APN'],
+            item_form['SerialNumber'],
+            item_form['SKU'],
+            item_form['Manufacturer'],
+            item_form['Price'],
+            item_form['ShippingCost'],
+            item_form['HasCore'],
+            item_form['CoreCharge'],
+            item_form['Active'],
+            item_form['OnSale'],
+            item_form['AllowBestOffer'],
+            item_form['Featured']
+        ])
+    return
