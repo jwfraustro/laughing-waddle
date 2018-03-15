@@ -17,6 +17,11 @@ from PyQt5.QtWidgets import QSplashScreen, QHeaderView
 import time, os
 from multiprocessing import Process
 
+VERSION = "0.031"
+
+with open('version.txt','w') as w:
+    w.write(VERSION)
+
 try:
     os.makedirs("./logs")
 except:

@@ -1,11 +1,10 @@
-import bs4
+from bs4 import BeautifulSoup
 import pandas as pd
 import imghdr
 from PyQt5.QtGui import QPixmap
 from requests_toolbelt.multipart.encoder import MultipartEncoder
 import csv
 from random import randint
-import threading
 
 airboat_subcats = [
 
@@ -112,7 +111,7 @@ powerplant_subcats = [
 def getProfilePage(NetworkSession):
     page = NetworkSession.get("https://www.hangarswap.com/Seller/Profile")
 
-    pageSoup = bs4.BeautifulSoup(page.text, "html.parser")
+    pageSoup = BeautifulSoup(page.text, "html.parser")
     desc = pageSoup.select("textarea[name='profile']")[0].text
     paypal_email = pageSoup.select("input[name='PaypalEmail']")[0].get('value')
     print(desc, paypal_email)
@@ -121,7 +120,7 @@ def getProfilePage(NetworkSession):
 def getSellerName(NetworkSession):
     page = NetworkSession.get("https://www.hangarswap.com/Seller/Dashboard", verify = False)
 
-    pageSoup = bs4.BeautifulSoup(page.text, "html.parser")
+    pageSoup = BeautifulSoup(page.text, "html.parser")
     storeName = pageSoup.select("body > div > div.site-content > div > div > div.row.row-md.mb-1 > div.col-md-4 > div > div.u-content > h5 > a")[0].text.strip()
     customerName = pageSoup.select("body > div > div.site-content > div > div > div.row.row-md.mb-1 > div.col-md-4 > div > div.u-content > p")[0].text
     print(storeName, customerName)
@@ -191,7 +190,7 @@ def getNewestListings(NetworkSession):
     #s = requests.Session()
 
     page = NetworkSession.get("http://www.hangarswap.com/Shop/index")
-    pageSoup = bs4.BeautifulSoup(page.content, "html.parser")
+    pageSoup = BeautifulSoup(page.content, "html.parser")
 
     product1 = {
         "img" : ("http://www.hangarswap.com" + pageSoup.select(".fp_images.relative img")[0].attrs['src']),
@@ -270,7 +269,7 @@ def submitItem(item_form, img_names, NetworkSession):
     if (len(img_names) > 1):
 
         # checks to see what productID HS has assigned the item, and grabs it
-        soup = bs4.BeautifulSoup(t.text, "html.parser")
+        soup = BeautifulSoup(t.text, "html.parser")
         pr_id = soup.select('[href*="ProductID"]')[0].get("href")[-5:].strip("=")
 
         # iterates through image upload list and hits 'AddAditionalPhotos' successively
