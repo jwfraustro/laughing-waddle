@@ -18,6 +18,8 @@ from PyQt5.QtWidgets import QSplashScreen, QHeaderView
 import time, os
 from multiprocessing import Process
 
+version = "Skycent"
+
 if not os.path.exists("./logs"):
     os.makedirs("./logs")
 if not os.path.exists("./bin/cache"):
