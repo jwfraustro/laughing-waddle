@@ -5,6 +5,7 @@ import sys
 import webbrowser
 
 import logic_scripts
+from modular_product_test import Ui_newListing as ProductDialog
 # importing external widgets
 import login_form
 import main_window_redesign
@@ -25,6 +26,7 @@ if not os.path.exists("./bin/cache"):
 logging.basicConfig(filename="./logs/runtime.log", level=logging.DEBUG, format='%(asctime)s %(message)s')
 
 NetworkSession = None
+username = ""
 
 sys._excepthook = sys.excepthook
 
@@ -295,10 +297,11 @@ class HSMainWindow(QtWidgets.QMainWindow, main_window_redesign.Ui_HSMainWindow):
 
     def addProduct(self):
         logging.debug("launch add product screen")
-        addProductWidget = newProductDialog.Ui_newListing()
-        if addProductWidget.exec() == QtWidgets.QDialog.Accepted:
-            self.loadPending()
-            return
+        # addProductWidget = newProductDialog.Ui_newListing()
+        # if addProductWidget.exec() == QtWidgets.QDialog.Accepted:
+        #     self.loadPending()
+        #     return
+        logic_scripts.launchProductDialog()
 
     def filterPendingProductsTable(self):
         logging.debug("filter pending table")
@@ -308,15 +311,19 @@ class HSMainWindow(QtWidgets.QMainWindow, main_window_redesign.Ui_HSMainWindow):
         logging.debug("filter products table")
         if self.categoryCombo.currentText() == 'Active':
             self.loadProductCatalog("Active")
+            self.productCatalogLbl.setText("<html><head/><body><p><span style=\" font-size:12pt; font-weight:600;\">Product Catalog - Active</span></p></body></html>")
             return
         if self.categoryCombo.currentText() == 'Inactive':
             self.loadProductCatalog("Inactive")
+            self.productCatalogLbl.setText("<html><head/><body><p><span style=\" font-size:12pt; font-weight:600;\">Product Catalog - Inactive</span></p></body></html>")
             return
         if self.categoryCombo.currentText() == 'Disabled':
             self.loadProductCatalog("Disabled")
+            self.productCatalogLbl.setText("<html><head/><body><p><span style=\" font-size:12pt; font-weight:600;\">Product Catalog - Disabled</span></p></body></html>")
             return
         if self.categoryCombo.currentText() == 'Sold':
             self.loadProductCatalog("Sold")
+            self.productCatalogLbl.setText("<html><head/><body><p><span style=\" font-size:12pt; font-weight:600;\">Product Catalog - Sold</span></p></body></html>")
             return
         return
 
@@ -401,22 +408,74 @@ class HSMainWindow(QtWidgets.QMainWindow, main_window_redesign.Ui_HSMainWindow):
         logging.debug("Messages Load Success")
 
     def loadProductCatalog(self, category):
+        global username
+        if not os.path.exists("./bin/cache/"+username):
+            os.makedirs("./bin/cache/"+username)
         logging.debug("loading catalog data")
         if category == "Active":
-            if not os.path.exists("./bin/cache/active_cat.dat"):
+            if os.path.exists("./bin/cache/"+username+"/active_cat.dat"):
+                catalog_data = []
+                catalog_headers = []
+                with open("./bin/cache/"+username+"/active_cat.dat") as f:
+                    reader = csv.reader(f, delimiter=',')
+                    catalog_headers = next(reader)
+                    for row in reader:
+                        catalog_data.append(row)
+            if not os.path.exists("./bin/cache/"+username+"/active_cat.dat"):
                 catalog_data, catalog_headers = logic_scripts.getActiveCatalog(NetworkSession)
-                with open("active_cat.dat","w") as f:
-                    writer = csv.writer(f)
-                    writer.writerow([catalog_headers])
-                    for product in catalog_data:
-                        writer.writerow([catalog_data[product]])
+                with open("./bin/cache/"+username+"/active_cat.dat","w",newline='') as f:
+                    writer = csv.writer(f, delimiter=",")
+                    writer.writerow(catalog_headers)
+                    for product in range(0, len(catalog_data)):
+                        writer.writerow(catalog_data[product])
         if category == "Inactive":
-            catalog_data, catalog_headers = logic_scripts.getInactiveCatalog(NetworkSession)
+            if os.path.exists("./bin/cache/"+username+"/inactive_cat.dat"):
+                catalog_data = []
+                catalog_headers = []
+                with open("./bin/cache/"+username+"/inactive_cat.dat") as f:
+                    reader = csv.reader(f, delimiter=',')
+                    catalog_headers = next(reader)
+                    for row in reader:
+                        catalog_data.append(row)
+            if not os.path.exists("./bin/cache/"+username+"/inactive_cat.dat"):
+                catalog_data, catalog_headers = logic_scripts.getInactiveCatalog(NetworkSession)
+                with open("./bin/cache/"+username+"/inactive_cat.dat","w",newline='') as f:
+                    writer = csv.writer(f, delimiter=",")
+                    writer.writerow(catalog_headers)
+                    for product in range(0, len(catalog_data)):
+                        writer.writerow(catalog_data[product])
         if category == "Disabled":
-            catalog_data, catalog_headers = logic_scripts.getDisabledCatalog(NetworkSession)
+            if os.path.exists("./bin/cache/"+username+"/disabled_cat.dat"):
+                catalog_data = []
+                catalog_headers = []
+                with open("./bin/cache/"+username+"/disabled_cat.dat") as f:
+                    reader = csv.reader(f, delimiter=',')
+                    catalog_headers = next(reader)
+                    for row in reader:
+                        catalog_data.append(row)
+            if not os.path.exists("./bin/cache/"+username+"/disabled_cat.dat"):
+                catalog_data, catalog_headers = logic_scripts.getDisabledCatalog(NetworkSession)
+                with open("./bin/cache/"+username+"/disabled_cat.dat","w",newline='') as f:
+                    writer = csv.writer(f, delimiter=",")
+                    writer.writerow(catalog_headers)
+                    for product in range(0, len(catalog_data)):
+                        writer.writerow(catalog_data[product])
         if category == "Sold":
-            catalog_data, catalog_headers = logic_scripts.getSoldCatalog(NetworkSession)
-
+            if os.path.exists("./bin/cache/"+username+"/sold_cat.dat"):
+                catalog_data = []
+                catalog_headers = []
+                with open("./bin/cache/"+username+"/sold_cat.dat") as f:
+                    reader = csv.reader(f, delimiter=',')
+                    catalog_headers = next(reader)
+                    for row in reader:
+                        catalog_data.append(row)
+            if not os.path.exists("./bin/cache/"+username+"/sold_cat.dat"):
+                catalog_data, catalog_headers = logic_scripts.getSoldCatalog(NetworkSession)
+                with open("./bin/cache/"+username+"/sold_cat.dat","w",newline='') as f:
+                    writer = csv.writer(f, delimiter=",")
+                    writer.writerow(catalog_headers)
+                    for product in range(0, len(catalog_data)):
+                        writer.writerow(catalog_data[product])
         self.catalog_model.clear()
         self.catalog_model.setHorizontalHeaderLabels(catalog_headers[0:8])
         for row in catalog_data:
@@ -540,11 +599,12 @@ def main():
     splash = QSplashScreen(splash_pic)
 
     global NetworkSession
+    global username
 
     logging.debug("displayed login")
     if login.exec() == QtWidgets.QDialog.Accepted:
         logging.debug("login accepted")
-        NetworkSession = login.getNetSesh()
+        NetworkSession, username = login.getNetSesh()
         logging.debug("showed splash")
         splash.show()
         form = HSMainWindow()

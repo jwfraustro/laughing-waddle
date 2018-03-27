@@ -150,6 +150,6 @@ class Ui_Dialog(QtWidgets.QDialog):
 
 
     def getNetSesh(self):
-        return s
+        return s, payload['Username']
 
 import RESOURCES

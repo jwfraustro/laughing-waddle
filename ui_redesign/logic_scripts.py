@@ -1,8 +1,9 @@
 from bs4 import BeautifulSoup
 import pandas as pd
 import imghdr
+from PyQt5 import QtWidgets
 from PyQt5.QtGui import QPixmap
-import main
+from modular_product_test import Ui_newListing as ProductForm
 from requests_toolbelt.multipart.encoder import MultipartEncoder
 import csv
 from random import randint
@@ -25,7 +26,7 @@ aircraft_for_sale_subcats = [
     'Singles',
     'Twins',
 ]
-airframe_subcats=[
+airframe_subcats = [
     'Aerobatic',
     'Aeronca',
     'Amphibian',
@@ -108,7 +109,6 @@ powerplant_subcats = [
     'Propellers'
 ]
 
-
 def getProfilePage(NetworkSession):
     page = NetworkSession.get("https://www.hangarswap.com/Seller/Profile")
 
@@ -118,17 +118,22 @@ def getProfilePage(NetworkSession):
     print(desc, paypal_email)
     return desc, paypal_email
 
+
 def getSellerName(NetworkSession):
-    page = NetworkSession.get("https://www.hangarswap.com/Seller/Dashboard", verify = False)
+    page = NetworkSession.get("https://www.hangarswap.com/Seller/Dashboard", verify=False)
 
     pageSoup = BeautifulSoup(page.text, "html.parser")
-    storeName = pageSoup.select("body > div > div.site-content > div > div > div.row.row-md.mb-1 > div.col-md-4 > div > div.u-content > h5 > a")[0].text.strip()
-    customerName = pageSoup.select("body > div > div.site-content > div > div > div.row.row-md.mb-1 > div.col-md-4 > div > div.u-content > p")[0].text
+    storeName = pageSoup.select(
+        "body > div > div.site-content > div > div > div.row.row-md.mb-1 > div.col-md-4 > div > div.u-content > h5 > a")[
+        0].text.strip()
+    customerName = pageSoup.select(
+        "body > div > div.site-content > div > div > div.row.row-md.mb-1 > div.col-md-4 > div > div.u-content > p")[
+        0].text
     print(storeName, customerName)
     return storeName, customerName
 
-def getOrders(NetworkSession):
 
+def getOrders(NetworkSession):
     orders_page = NetworkSession.get("https://www.hangarswap.com/Seller/OrderHistory")
 
     orders_list = []
@@ -140,6 +145,7 @@ def getOrders(NetworkSession):
         pass
 
     return orders_list
+
 
 def getInbox(NetworkSession):
     inbox_page = NetworkSession.get("https://www.hangarswap.com/Seller/Inbox")
@@ -170,6 +176,7 @@ def getInbox(NetworkSession):
 
     return inbox_list, unread_list, sent_list, trash_list
 
+
 def getActiveCatalog(NetworkSession):
     active_catalog_page = NetworkSession.get("https://www.hangarswap.com/Seller/Catalog")
     active_catalog_df = pd.read_html(active_catalog_page.text)[0]
@@ -177,6 +184,7 @@ def getActiveCatalog(NetworkSession):
     catalog_headers = list(active_catalog_df.columns.values)
 
     return active_list, catalog_headers
+
 
 def getInactiveCatalog(NetworkSession):
     inactive_catalog_page = NetworkSession.get("https://www.hangarswap.com/Seller/Catalog?View=Inactive")
@@ -186,6 +194,7 @@ def getInactiveCatalog(NetworkSession):
 
     return inactive_list, inactive_headers
 
+
 def getDisabledCatalog(NetworkSession):
     disabled_catalog_page = NetworkSession.get("https://www.hangarswap.com/Seller/Catalog?View=Disabled")
     disabled_catalog_df = pd.read_html(disabled_catalog_page.text)[0]
@@ -193,6 +202,7 @@ def getDisabledCatalog(NetworkSession):
     disabled_headers = list(disabled_catalog_df.columns.values)
 
     return disabled_list, disabled_headers
+
 
 def getSoldCatalog(NetworkSession):
     sold_catalog_page = NetworkSession.get("https://www.hangarswap.com/Seller/Catalog?View=Sold")
@@ -202,17 +212,17 @@ def getSoldCatalog(NetworkSession):
 
     return sold_list, sold_headers
 
-def getNewestListings(NetworkSession):
 
-    #s = requests.Session()
+def getNewestListings(NetworkSession):
+    # s = requests.Session()
 
     page = NetworkSession.get("http://www.hangarswap.com/Shop/index")
     pageSoup = BeautifulSoup(page.content, "html.parser")
 
     product1 = {
-        "img" : ("http://www.hangarswap.com" + pageSoup.select(".fp_images.relative img")[0].attrs['src']),
-        "title" : str(pageSoup.select("figure a")[0].contents[0]),
-        "price" : str(pageSoup.select(".fp_price.with_ie")[0].contents[0])
+        "img": ("http://www.hangarswap.com" + pageSoup.select(".fp_images.relative img")[0].attrs['src']),
+        "title": str(pageSoup.select("figure a")[0].contents[0]),
+        "price": str(pageSoup.select(".fp_price.with_ie")[0].contents[0])
     }
 
     product2 = {
@@ -256,8 +266,8 @@ def getNewestListings(NetworkSession):
 
     return (product1, product2, product3, product4)
 
-def validateForm(form_data):
 
+def validateForm(form_data):
     if not form_data['productName']:
         return 'Product Name'
     if not form_data['productDescription']:
@@ -274,13 +284,14 @@ def validateForm(form_data):
         return 'Shipping Cost'
     return 0
 
+
 def submitItem(item_form, img_names, NetworkSession):
     # encode product dictionary into multi-part/form
     product_data = MultipartEncoder(fields=item_form, boundary='-----WebKitFormBoundarymkISNjkugjjFZdvE')
 
     # making the post to submit listing
     t = NetworkSession.post('https://www.hangarswap.com/Seller/SaveProduct', data=product_data,
-               headers={'Content-Type': product_data.content_type})
+                            headers={'Content-Type': product_data.content_type})
 
     # checks if there is more than one image in the upload list
     if (len(img_names) > 1):
@@ -300,15 +311,16 @@ def submitItem(item_form, img_names, NetworkSession):
                         ('image/' + str(imghdr.what(img_names['img' + str(i) + '_lbl'])))),
                 }, boundary='-----WebKitFormBoundarydMG06kgczAncwn4B')
             t = NetworkSession.post('https://www.hangarswap.com/Seller/SaveExtraImages', data=photo_form,
-                       headers={'Content-Type': photo_form.content_type})
+                                    headers={'Content-Type': photo_form.content_type})
 
     return
+
 
 def savePendingProduct(item_form, img_names):
     with open("pend.dat", "a", newline="") as f:
         writer = csv.writer(f, delimiter=",")
         writer.writerow([
-            randint(0,2147483647),
+            randint(0, 2147483647),
             item_form['productName'],
             item_form['productDescription'],
             item_form['CategoryID'],
@@ -329,3 +341,14 @@ def savePendingProduct(item_form, img_names):
             item_form['Featured']
         ])
     return
+
+def launchProductDialog():
+    dialog = QtWidgets.QDialog()
+    dialog.ui = ProductForm()
+    dialog.ui.setupUi(dialog)
+
+    dialog.ui.upload_new_button.clicked.connect(lambda: print("Upload Button"))
+    dialog.ui.save_templ_button.clicked.connect(lambda: print("Saved Template Button"))
+    dialog.ui.cancel_new_button.clicked.connect(lambda: dialog.done(0))
+
+    dialog.exec_()

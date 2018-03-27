@@ -9,8 +9,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1148</width>
-    <height>1001</height>
+    <width>1097</width>
+    <height>1073</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -68,28 +68,28 @@
        <item row="0" column="1">
         <widget class="QLineEdit" name="name_le"/>
        </item>
-       <item row="1" column="0">
+       <item row="2" column="0">
         <widget class="QLabel" name="desc_lbl">
          <property name="text">
           <string>Product Description*</string>
          </property>
         </widget>
        </item>
-       <item row="1" column="1">
+       <item row="2" column="1">
         <widget class="QTextEdit" name="desc_te">
          <property name="textInteractionFlags">
           <set>Qt::LinksAccessibleByKeyboard|Qt::LinksAccessibleByMouse|Qt::TextBrowserInteraction|Qt::TextEditable|Qt::TextEditorInteraction|Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse</set>
          </property>
         </widget>
        </item>
-       <item row="2" column="0">
+       <item row="3" column="0">
         <widget class="QLabel" name="cat_lbl">
          <property name="text">
           <string>Product Category*</string>
          </property>
         </widget>
        </item>
-       <item row="2" column="1">
+       <item row="3" column="1">
         <layout class="QHBoxLayout" name="horizontalLayout_10">
          <property name="spacing">
           <number>15</number>
@@ -195,14 +195,14 @@
          </item>
         </layout>
        </item>
-       <item row="3" column="0">
+       <item row="4" column="0">
         <widget class="QLabel" name="cond_lbl">
          <property name="text">
           <string>Product Condition*</string>
          </property>
         </widget>
        </item>
-       <item row="3" column="1">
+       <item row="4" column="1">
         <widget class="QComboBox" name="cond_options">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
@@ -269,14 +269,14 @@
          </item>
         </widget>
        </item>
-       <item row="4" column="0">
+       <item row="5" column="0">
         <widget class="QLabel" name="qty_lbl">
          <property name="text">
           <string>Qty Available*</string>
          </property>
         </widget>
        </item>
-       <item row="4" column="1">
+       <item row="5" column="1">
         <widget class="QLineEdit" name="qty_le">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
@@ -286,14 +286,14 @@
          </property>
         </widget>
        </item>
-       <item row="5" column="0">
+       <item row="6" column="0">
         <widget class="QLabel" name="mpn_lbl">
          <property name="text">
           <string>Part Number</string>
          </property>
         </widget>
        </item>
-       <item row="5" column="1">
+       <item row="6" column="1">
         <widget class="QLineEdit" name="pn_le">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
@@ -303,14 +303,14 @@
          </property>
         </widget>
        </item>
-       <item row="6" column="0">
+       <item row="7" column="0">
         <widget class="QLabel" name="ampn_lbl">
          <property name="text">
           <string>Alt Part Number</string>
          </property>
         </widget>
        </item>
-       <item row="6" column="1">
+       <item row="7" column="1">
         <widget class="QLineEdit" name="apn_le">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
@@ -320,14 +320,14 @@
          </property>
         </widget>
        </item>
-       <item row="7" column="0">
+       <item row="8" column="0">
         <widget class="QLabel" name="sn_lbl">
          <property name="text">
           <string>Serial Number</string>
          </property>
         </widget>
        </item>
-       <item row="7" column="1">
+       <item row="8" column="1">
         <widget class="QLineEdit" name="sn_le">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
@@ -337,14 +337,14 @@
          </property>
         </widget>
        </item>
-       <item row="8" column="0">
+       <item row="9" column="0">
         <widget class="QLabel" name="sku_lbl">
          <property name="text">
           <string>SKU</string>
          </property>
         </widget>
        </item>
-       <item row="8" column="1">
+       <item row="9" column="1">
         <widget class="QLineEdit" name="sku_le">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
@@ -354,14 +354,14 @@
          </property>
         </widget>
        </item>
-       <item row="9" column="0">
+       <item row="10" column="0">
         <widget class="QLabel" name="mfr_lbl">
          <property name="text">
           <string>Manufacturer</string>
          </property>
         </widget>
        </item>
-       <item row="9" column="1">
+       <item row="10" column="1">
         <widget class="QLineEdit" name="mfr_le">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
@@ -371,14 +371,14 @@
          </property>
         </widget>
        </item>
-       <item row="10" column="0">
+       <item row="11" column="0">
         <widget class="QLabel" name="price_lbl">
          <property name="text">
           <string>Price*</string>
          </property>
         </widget>
        </item>
-       <item row="10" column="1">
+       <item row="11" column="1">
         <widget class="QLineEdit" name="price_le">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
@@ -388,14 +388,14 @@
          </property>
         </widget>
        </item>
-       <item row="11" column="0">
+       <item row="12" column="0">
         <widget class="QLabel" name="ship_lbl">
          <property name="text">
           <string>Shipping Cost*</string>
          </property>
         </widget>
        </item>
-       <item row="11" column="1">
+       <item row="12" column="1">
         <widget class="QLineEdit" name="ship_le">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
@@ -405,14 +405,14 @@
          </property>
         </widget>
        </item>
-       <item row="12" column="0">
+       <item row="13" column="0">
         <widget class="QLabel" name="core_lbl">
          <property name="text">
           <string>Has Core Charge?</string>
          </property>
         </widget>
        </item>
-       <item row="12" column="1">
+       <item row="13" column="1">
         <layout class="QHBoxLayout" name="horizontalLayout">
          <item>
           <widget class="QRadioButton" name="core_yes">
@@ -442,14 +442,14 @@
          </item>
         </layout>
        </item>
-       <item row="13" column="0">
+       <item row="14" column="0">
         <widget class="QLabel" name="img_lbl">
          <property name="text">
           <string>Product Images</string>
          </property>
         </widget>
        </item>
-       <item row="13" column="1">
+       <item row="14" column="1">
         <widget class="QPushButton" name="img_upload_btn">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
@@ -462,14 +462,14 @@
          </property>
         </widget>
        </item>
-       <item row="14" column="0">
+       <item row="15" column="0">
         <widget class="QLabel" name="active_lbl">
          <property name="text">
           <string>Active</string>
          </property>
         </widget>
        </item>
-       <item row="14" column="1">
+       <item row="15" column="1">
         <layout class="QHBoxLayout" name="horizontalLayout_6">
          <item>
           <widget class="QRadioButton" name="active_yes">
@@ -493,14 +493,14 @@
          </item>
         </layout>
        </item>
-       <item row="15" column="0">
+       <item row="16" column="0">
         <widget class="QLabel" name="onsale_lbl">
          <property name="text">
           <string>On Sale</string>
          </property>
         </widget>
        </item>
-       <item row="15" column="1">
+       <item row="16" column="1">
         <layout class="QHBoxLayout" name="horizontalLayout_7">
          <item>
           <widget class="QRadioButton" name="sale_yes">
@@ -524,14 +524,14 @@
          </item>
         </layout>
        </item>
-       <item row="16" column="0">
+       <item row="17" column="0">
         <widget class="QLabel" name="offer_lbl">
          <property name="text">
           <string>Allow Best Offer</string>
          </property>
         </widget>
        </item>
-       <item row="16" column="1">
+       <item row="17" column="1">
         <layout class="QHBoxLayout" name="horizontalLayout_8">
          <item>
           <widget class="QRadioButton" name="offer_yes">
@@ -555,14 +555,14 @@
          </item>
         </layout>
        </item>
-       <item row="17" column="0">
+       <item row="18" column="0">
         <widget class="QLabel" name="feat_lbl">
          <property name="text">
           <string>Featured</string>
          </property>
         </widget>
        </item>
-       <item row="17" column="1">
+       <item row="18" column="1">
         <layout class="QHBoxLayout" name="horizontalLayout_9">
          <item>
           <widget class="QRadioButton" name="feat_yes">
@@ -585,6 +585,16 @@
           </widget>
          </item>
         </layout>
+       </item>
+       <item row="1" column="1">
+        <widget class="QFrame" name="toolbarFrame">
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>30</height>
+          </size>
+         </property>
+        </widget>
        </item>
       </layout>
      </item>
@@ -866,59 +876,17 @@
      </item>
     </layout>
    </item>
+   <item row="1" column="1">
+    <widget class="QLabel" name="label">
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+   </item>
   </layout>
  </widget>
  <resources/>
- <connections>
-  <connection>
-   <sender>upload_new_button</sender>
-   <signal>clicked()</signal>
-   <receiver>newListing</receiver>
-   <slot>uploadProduct()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>62</x>
-     <y>612</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>221</x>
-     <y>-13</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>save_templ_button</sender>
-   <signal>clicked()</signal>
-   <receiver>newListing</receiver>
-   <slot>saveProduct()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>227</x>
-     <y>610</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>305</x>
-     <y>-11</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>cancel_new_button</sender>
-   <signal>clicked()</signal>
-   <receiver>newListing</receiver>
-   <slot>reject()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>335</x>
-     <y>620</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>412</x>
-     <y>-9</y>
-    </hint>
-   </hints>
-  </connection>
- </connections>
+ <connections/>
  <slots>
   <slot>uploadProduct()</slot>
   <slot>saveProduct()</slot>
