@@ -2,6 +2,7 @@ from bs4 import BeautifulSoup
 import pandas as pd
 import imghdr
 from PyQt5.QtGui import QPixmap
+import main
 from requests_toolbelt.multipart.encoder import MultipartEncoder
 import csv
 from random import randint
@@ -169,21 +170,37 @@ def getInbox(NetworkSession):
 
     return inbox_list, unread_list, sent_list, trash_list
 
-def getCatalog(NetworkSession):
+def getActiveCatalog(NetworkSession):
     active_catalog_page = NetworkSession.get("https://www.hangarswap.com/Seller/Catalog")
-    #inactive_catalog_page = NetworkSession.get("https://www.hangarswap.com/Seller/Catalog?View=Inactive")
-
     active_catalog_df = pd.read_html(active_catalog_page.text)[0]
-    #inactive_catalog_df = pd.read_html(inactive_catalog_page.text)[0]
-
     active_list = active_catalog_df.values.tolist()
-    #inactive_list = inactive_catalog_df.values.tolist()
-
-    #merged_catalog = active_list + inactive_list
-
     catalog_headers = list(active_catalog_df.columns.values)
 
     return active_list, catalog_headers
+
+def getInactiveCatalog(NetworkSession):
+    inactive_catalog_page = NetworkSession.get("https://www.hangarswap.com/Seller/Catalog?View=Inactive")
+    inactive_catalog_df = pd.read_html(inactive_catalog_page.text)[0]
+    inactive_list = inactive_catalog_df.values.tolist()
+    inactive_headers = list(inactive_catalog_df.columns.values)
+
+    return inactive_list, inactive_headers
+
+def getDisabledCatalog(NetworkSession):
+    disabled_catalog_page = NetworkSession.get("https://www.hangarswap.com/Seller/Catalog?View=Disabled")
+    disabled_catalog_df = pd.read_html(disabled_catalog_page.text)[0]
+    disabled_list = disabled_catalog_df.values.tolist()
+    disabled_headers = list(disabled_catalog_df.columns.values)
+
+    return disabled_list, disabled_headers
+
+def getSoldCatalog(NetworkSession):
+    sold_catalog_page = NetworkSession.get("https://www.hangarswap.com/Seller/Catalog?View=Sold")
+    sold_catalog_df = pd.read_html(sold_catalog_page.text)[0]
+    sold_list = sold_catalog_df.values.tolist()
+    sold_headers = list(sold_catalog_df.columns.values)
+
+    return sold_list, sold_headers
 
 def getNewestListings(NetworkSession):
 

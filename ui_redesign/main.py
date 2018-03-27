@@ -17,15 +17,10 @@ from PyQt5.QtWidgets import QSplashScreen, QHeaderView
 import time, os
 from multiprocessing import Process
 
-VERSION = "0.031"
-
-with open('version.txt','w') as w:
-    w.write(VERSION)
-
-try:
+if not os.path.exists("./logs"):
     os.makedirs("./logs")
-except:
-    pass
+if not os.path.exists("./bin/cache"):
+    os.makedirs("./bin/cache")
 
 logging.basicConfig(filename="./logs/runtime.log", level=logging.DEBUG, format='%(asctime)s %(message)s')
 
@@ -103,26 +98,15 @@ class HSMainWindow(QtWidgets.QMainWindow, main_window_redesign.Ui_HSMainWindow):
         self.pendTable.customContextMenuRequested.connect(self.pendingContextMenu)
         logging.debug("Built")
 
+        self.categoryCombo.addItem("Active")
+        self.categoryCombo.addItem("Inactive")
+        self.categoryCombo.addItem("Disabled")
+        self.categoryCombo.addItem("Sold")
+        self.categoryCombo.setCurrentIndex(0)
+
         logging.debug("Loading Account Info")
         try:
-            start = time.time()
-            runInParallel(self.loadProfile(), self.loadPending(), self.loadMessages(), self.loadLandingListings(), self.refreshProfilePage(), self.loadProductCatalog(), self.loadOrders())
-            print(str(time.time()-start)+"s")
-
-            # start = time.time()
-            # # logging.debug("Load Profile")
-            # self.loadProfile()
-            # # logging.debug("load messages")
-            # self.loadMessages()
-            # # logging.debug("load landing")
-            # self.loadLandingListings()
-            # # logging.debug("refresh profile")
-            # self.refreshProfilePage()
-            # # logging.debug("product catalog")
-            # self.loadProductCatalog()
-            # # logging.debug("orders")
-            # self.loadOrders()
-            # print(str(time.time()-start)+"s")
+            runInParallel(self.loadProfile(), self.loadPending(), self.loadMessages(), self.loadLandingListings(), self.refreshProfilePage(), self.loadProductCatalog("Active"), self.loadOrders())
 
         except TimeoutError or ConnectionRefusedError or ConnectionError:
             logging.debug("network failure -- loading account info")
@@ -322,6 +306,18 @@ class HSMainWindow(QtWidgets.QMainWindow, main_window_redesign.Ui_HSMainWindow):
 
     def filterProductsTable(self):
         logging.debug("filter products table")
+        if self.categoryCombo.currentText() == 'Active':
+            self.loadProductCatalog("Active")
+            return
+        if self.categoryCombo.currentText() == 'Inactive':
+            self.loadProductCatalog("Inactive")
+            return
+        if self.categoryCombo.currentText() == 'Disabled':
+            self.loadProductCatalog("Disabled")
+            return
+        if self.categoryCombo.currentText() == 'Sold':
+            self.loadProductCatalog("Sold")
+            return
         return
 
     def searchCatalogTable(self):
@@ -404,9 +400,23 @@ class HSMainWindow(QtWidgets.QMainWindow, main_window_redesign.Ui_HSMainWindow):
 
         logging.debug("Messages Load Success")
 
-    def loadProductCatalog(self):
+    def loadProductCatalog(self, category):
         logging.debug("loading catalog data")
-        catalog_data, catalog_headers = logic_scripts.getCatalog(NetworkSession)
+        if category == "Active":
+            if not os.path.exists("./bin/cache/active_cat.dat"):
+                catalog_data, catalog_headers = logic_scripts.getActiveCatalog(NetworkSession)
+                with open("active_cat.dat","w") as f:
+                    writer = csv.writer(f)
+                    writer.writerow([catalog_headers])
+                    for product in catalog_data:
+                        writer.writerow([catalog_data[product]])
+        if category == "Inactive":
+            catalog_data, catalog_headers = logic_scripts.getInactiveCatalog(NetworkSession)
+        if category == "Disabled":
+            catalog_data, catalog_headers = logic_scripts.getDisabledCatalog(NetworkSession)
+        if category == "Sold":
+            catalog_data, catalog_headers = logic_scripts.getSoldCatalog(NetworkSession)
+
         self.catalog_model.clear()
         self.catalog_model.setHorizontalHeaderLabels(catalog_headers[0:8])
         for row in catalog_data:
