@@ -2,7 +2,9 @@ from bs4 import BeautifulSoup
 import pandas as pd
 import imghdr
 from PyQt5 import QtWidgets
-from PyQt5.QtGui import QPixmap
+from PyQt5 import QtGui, QtCore
+from PyQt5.QtGui import QPixmap, QIcon
+import logging
 from modular_product_test import Ui_newListing as ProductForm
 from requests_toolbelt.multipart.encoder import MultipartEncoder
 import csv
@@ -343,12 +345,171 @@ def savePendingProduct(item_form, img_names):
     return
 
 def launchProductDialog():
+    img_names = {}
+
     dialog = QtWidgets.QDialog()
     dialog.ui = ProductForm()
     dialog.ui.setupUi(dialog)
 
-    dialog.ui.upload_new_button.clicked.connect(lambda: print("Upload Button"))
-    dialog.ui.save_templ_button.clicked.connect(lambda: print("Saved Template Button"))
+    dialog.ui.img_upload_btn.clicked.connect(lambda: insertImages())
+    dialog.ui.upload_new_button.clicked.connect(lambda: parseProductForm("upload"))
+    dialog.ui.save_templ_button.clicked.connect(lambda: parseProductForm("save"))
     dialog.ui.cancel_new_button.clicked.connect(lambda: dialog.done(0))
+
+    dialog.ui.cat_options.currentTextChanged.connect(lambda: changedCat())
+
+    dialog.ui.img1_lbl.customContextMenuRequested.connect(lambda: contextMenuEvent())
+    dialog.ui.img2_lbl.customContextMenuRequested.connect(lambda: contextMenuEvent())
+    dialog.ui.img3_lbl.customContextMenuRequested.connect(lambda: contextMenuEvent())
+    dialog.ui.img4_lbl.customContextMenuRequested.connect(lambda: contextMenuEvent())
+    dialog.ui.img5_lbl.customContextMenuRequested.connect(lambda: contextMenuEvent())
+    dialog.ui.img6_lbl.customContextMenuRequested.connect(lambda: contextMenuEvent())
+    dialog.ui.img7_lbl.customContextMenuRequested.connect(lambda: contextMenuEvent())
+    dialog.ui.img8_lbl.customContextMenuRequested.connect(lambda: contextMenuEvent())
+    dialog.ui.img9_lbl.customContextMenuRequested.connect(lambda: contextMenuEvent())
+    dialog.ui.img10_lbl.customContextMenuRequested.connect(lambda: contextMenuEvent())
+
+    dialog.ui.img1_lbl.setScaledContents(True)
+    dialog.ui.img2_lbl.setScaledContents(True)
+    dialog.ui.img3_lbl.setScaledContents(True)
+    dialog.ui.img4_lbl.setScaledContents(True)
+
+
+    icon = QIcon()
+    icon.addPixmap(QPixmap("assets/icons/HSAPP.ico"), QIcon.Normal, QIcon.Off)
+    dialog.setWindowIcon(icon)
+
+    def resizePhotos():
+        print("resized")
+
+    def contextMenuEvent():
+        # creates a context menu for image thumbnails
+        logging.debug("new product context menu")
+        menu2 = QtWidgets.QMenu(dialog)
+
+        w = QtWidgets.QApplication.widgetAt(QtGui.QCursor.pos())
+
+        # creating actions for context menu
+        removePhotoAction = QtWidgets.QAction('Remove Photo', dialog)
+        removePhotoAction.triggered.connect(lambda: removePhotoContext(w))
+        addPhotoAction = QtWidgets.QAction('Add/Replace Photo', dialog)
+        addPhotoAction.triggered.connect(lambda: addPhotoContext(w))
+        defaultPhotoAction = QtWidgets.QAction('Set as Default Photo', dialog)
+        defaultPhotoAction.triggered.connect(lambda: defaultPhotoContext(w))
+
+        menu2.addAction(addPhotoAction)
+        menu2.addAction(removePhotoAction)
+        menu2.addSeparator()
+        menu2.addAction(defaultPhotoAction)
+
+        # show context menu at cursor location
+        menu2.popup(QtGui.QCursor.pos())
+        return
+    def removePhotoContext(loc):
+        loc.clear()
+        del img_names[loc.objectName()]
+        return
+    def addPhotoContext(loc):
+        img, _ = QtWidgets.QFileDialog.getOpenFileName(dialog, "Select Images", (QtCore.QDir.homePath()))
+        pixmap = QPixmap(img)
+        pixmap = QPixmap(pixmap.scaled(125, 125, QtCore.Qt.SmoothTransformation))
+        loc.setPixmap(pixmap)
+        img_names[loc.objectName()] = img
+    def defaultPhotoContext(loc):
+        temp_list = []
+        temp = img_names.get(loc.objectName())
+
+        # remove selected image from dict and populate temp list
+        del img_names[loc.objectName()]
+        for labels, imgs in img_names.items():
+            temp_list.append(imgs)
+        img_names.clear()
+
+        # reinsert temp img
+        temp_list.insert(0, temp)
+
+        # clear pixmaps
+        col = 0
+        row = 0
+        for i in range(0, 11):
+            if col == 2:
+                col = 0
+                row += 1
+            w = dialog.ui.gridLayout.itemAtPosition(row, col).widget()
+            w.clear()
+
+        # update pixmaps and file list
+        col = 0
+        row = 0
+        for img in range(0, len(temp_list)):
+            pixmap = QPixmap(temp_list[img])
+            pixmap = QPixmap(pixmap.scaled(97, 97))
+            if col == 2:
+                col = 0
+                row += 1
+            w = dialog.ui.gridLayout.itemAtPosition(row, col).widget()
+            img_names[w.objectName()] = temp_list[img]
+            w.setPixmap(QPixmap(pixmap))
+            col += 1
+        return
+
+    def changedCat():
+        logging.debug("changed product category")
+        # clears and displays relevant subcategories
+        dialog.ui.subcat_options.clear()
+        # adds appropriate subcategories to subcat widget
+        if dialog.ui.cat_options.currentText() == 'Airboat':
+            dialog.ui.subcat_options.addItems(airboat_subcats)
+        if dialog.ui.cat_options.currentText() == 'Aircraft For Sale':
+            dialog.ui.subcat_options.addItems(aircraft_for_sale_subcats)
+        if dialog.ui.cat_options.currentText() == 'Airframe':
+            dialog.ui.subcat_options.addItems(airframe_subcats)
+        if dialog.ui.cat_options.currentText() == 'Avionics':
+            dialog.ui.subcat_options.addItems(avionics_subcats)
+        if dialog.ui.cat_options.currentText() == 'Electrical':
+            dialog.ui.subcat_options.addItems(electrical_subcats)
+        if dialog.ui.cat_options.currentText() == 'Hardware & Tools':
+            dialog.ui.subcat_options.addItems(hardware_subcats)
+        if dialog.ui.cat_options.currentText() == 'Landing Gear':
+            dialog.ui.subcat_options.addItems(gear_subcats)
+        if dialog.ui.cat_options.currentText() == 'Pilot Supplies':
+            dialog.ui.subcat_options.addItems(pilot_supp_subcats)
+        if dialog.ui.cat_options.currentText() == 'Powerplant':
+            dialog.ui.subcat_options.addItems(powerplant_subcats)
+        return
+
+    def insertImages():
+        # get images
+        input_filenames, _ = QtWidgets.QFileDialog.getOpenFileNames(dialog, "Select Images",
+                                                                         (QtCore.QDir.homePath()))
+        # iterate through labels, set pixmaps, add to images dict
+        col = 0
+        row = 0
+        for item in range(0, len(input_filenames)):
+            pixmap = QPixmap(input_filenames[item])
+            print("got pixmap")
+            pixmap = QPixmap(pixmap.scaled(125, 125))
+            print("scaled")
+            if col == 2:
+                col = 0
+                row += 1
+            w = dialog.ui.gridLayout.itemAtPosition(row, col).widget()
+            print(item)
+            w.setPixmap(QPixmap(pixmap))
+            img_names[w.objectName()] = input_filenames[item]
+            print("placed")
+            print(('image/' + str(imghdr.what(input_filenames[item]))))
+            col += 1
+
+        print(img_names)
+        return
+    def validateProductForm():
+        return
+    def parseProductForm(save_code):
+        return
+    def uploadProductForm():
+        return
+    def saveProductForm():
+        return
 
     dialog.exec_()

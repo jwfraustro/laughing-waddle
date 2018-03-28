@@ -490,3 +490,5 @@ class Ui_newListing(object):
         self.save_templ_button.setText(_translate("newListing", "Upload Later"))
         self.cancel_new_button.setText(_translate("newListing", "Cancel"))
 
+    def resizeEvent(self, resizeEvent):
+        print(self.width())

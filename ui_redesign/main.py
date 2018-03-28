@@ -5,12 +5,10 @@ import sys
 import webbrowser
 
 import logic_scripts
-from modular_product_test import Ui_newListing as ProductDialog
 # importing external widgets
 import login_form
 import main_window_redesign
 import csv
-import newProductDialog
 # importing GUI elements
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtGui import QPixmap
@@ -109,15 +107,12 @@ class HSMainWindow(QtWidgets.QMainWindow, main_window_redesign.Ui_HSMainWindow):
         self.categoryCombo.setCurrentIndex(0)
 
         logging.debug("Loading Account Info")
-        try:
-            runInParallel(self.loadProfile(), self.loadPending(), self.loadMessages(), self.loadLandingListings(), self.refreshProfilePage(), self.loadProductCatalog("Active"), self.loadOrders())
-
-        except TimeoutError or ConnectionRefusedError or ConnectionError:
-            logging.debug("network failure -- loading account info")
-            QtWidgets.QMessageBox.warning(self, 'Error',
-                                          'Network Connection Error: please check network, and restart program.',
-                                          QtWidgets.QMessageBox.Ok)
-            return
+        # try:
+        #     runInParallel(self.loadProfile(), self.loadPending(), self.loadMessages(), self.loadLandingListings(), self.refreshProfilePage(), self.loadProductCatalog("Active"), self.loadOrders())
+        #
+        # except:
+        #     logging.debug("network failure -- loading account info")
+        #     pass
 
     def initOrdersView(self):
         self.stackedWidget.setCurrentWidget(self.ordersPage)
@@ -604,6 +599,7 @@ def main():
     global username
 
     logging.debug("displayed login")
+
     if login.exec() == QtWidgets.QDialog.Accepted:
         logging.debug("login accepted")
         NetworkSession, username = login.getNetSesh()

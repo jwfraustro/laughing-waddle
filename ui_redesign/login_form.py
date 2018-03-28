@@ -15,7 +15,7 @@ s = None
 payload = {
     'Username':"",
     'Password':"",
-    'authToken':""
+    # 'authToken':""
 }
 
 class Ui_Dialog(QtWidgets.QDialog):
@@ -133,14 +133,14 @@ class Ui_Dialog(QtWidgets.QDialog):
         global s
 
         s = requests.Session()
-        s.headers.update({'User-Agent':'Joshua Fraustro','Company':'HangarSwap.com'})
-        print("Made session")
-        p = s.get('http://www.hangarswap.com/Main/Login')
-        soup = bs4.BeautifulSoup(p.text, "html.parser")
-        print("got soup")
-        authToken = soup.select('input[name="authToken"]')[0]
-        payload['authToken'] = authToken.get('value')
-        print("got auth")
+        # s.headers.update({'User-Agent':'Joshua Fraustro','Company':'HangarSwap.com'})
+        # print("Made session")
+        # p = s.get('http://www.hangarswap.com/Main/Login')
+        # soup = bs4.BeautifulSoup(p.text, "html.parser")
+        # print("got soup")
+        # authToken = soup.select('input[name="authToken"]')[0]
+        # payload['authToken'] = authToken.get('value')
+        # print("got auth")
         p = s.post('https://www.hangarswap.com/Main/ProcessLogin', data=payload, verify=False, allow_redirects=False)
         print('posted login')
         if 'location' not in p.headers.keys():
