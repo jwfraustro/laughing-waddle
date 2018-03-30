@@ -11,6 +11,7 @@ import requests, bs4, requests.exceptions
 from PyQt5 import QtCore, QtGui, QtWidgets
 
 s = None
+username = None
 
 payload = {
     'Username':"",
@@ -131,25 +132,19 @@ class Ui_Dialog(QtWidgets.QDialog):
         payload['Password'] = self.passLE.text()
 
         global s
+        global username
 
         s = requests.Session()
-        # s.headers.update({'User-Agent':'Joshua Fraustro','Company':'HangarSwap.com'})
-        # print("Made session")
-        # p = s.get('http://www.hangarswap.com/Main/Login')
-        # soup = bs4.BeautifulSoup(p.text, "html.parser")
-        # print("got soup")
-        # authToken = soup.select('input[name="authToken"]')[0]
-        # payload['authToken'] = authToken.get('value')
-        # print("got auth")
         p = s.post('https://www.hangarswap.com/Main/ProcessLogin', data=payload, verify=False, allow_redirects=False)
         print('posted login')
         if 'location' not in p.headers.keys():
             return False
         else:
+            username = payload['Username']
             return True
 
 
     def getNetSesh(self):
-        return s, payload['Username']
+        return s, username
 
 import RESOURCES

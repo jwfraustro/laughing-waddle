@@ -93,6 +93,7 @@ class HSMainWindow(QtWidgets.QMainWindow, main_window_redesign.Ui_HSMainWindow):
         self.order_model = QtGui.QStandardItemModel(self)
         self.order_model.setData(self.order_model.index(0, 0), "", 0)
         self.orderTable.setModel(self.order_model)
+        self.orderTable.customContextMenuRequested.connect(self.orderContextMenu)
         logging.debug("Built")
 
         logging.debug("Catalog Context Menu")
@@ -107,12 +108,11 @@ class HSMainWindow(QtWidgets.QMainWindow, main_window_redesign.Ui_HSMainWindow):
         self.categoryCombo.setCurrentIndex(0)
 
         logging.debug("Loading Account Info")
-        # try:
-        #     runInParallel(self.loadProfile(), self.loadPending(), self.loadMessages(), self.loadLandingListings(), self.refreshProfilePage(), self.loadProductCatalog("Active"), self.loadOrders())
-        #
-        # except:
-        #     logging.debug("network failure -- loading account info")
-        #     pass
+        try:
+            runInParallel(self.loadProfile(), self.loadPending(), self.loadMessages(), self.loadLandingListings(), self.refreshProfilePage(), self.loadProductCatalog("Active"), self.loadOrders())
+        except:
+            logging.debug("network failure -- loading account info")
+            pass
 
     def initOrdersView(self):
         self.stackedWidget.setCurrentWidget(self.ordersPage)
@@ -234,25 +234,66 @@ class HSMainWindow(QtWidgets.QMainWindow, main_window_redesign.Ui_HSMainWindow):
     def viewProductAction(self):
         logging.debug("clicked view product")
         row = self.catalogTable.selectionModel().selection().indexes()[0].row()
-        pid = self.catalog_model.item(row, 0)
+        pid = self.catalog_model.item(row, 0).text()
 
-        webbrowser.open('http://www.hangarswap.com/Shop/DisplayProduct?ProductID=' + pid.text())
+        webbrowser.open('http://www.hangarswap.com/Shop/DisplayProduct?ProductID=' + pid)
         logging.debug("opened product %s online", pid)
         return
 
     def disableProductAction(self):
         logging.debug("clicked disable product")
         row = self.catalogTable.selectionModel().selection().indexes()[0].row()
-        pid = self.catalog_model.item(row, 0)
+        pid = self.catalog_model.item(row, 0).text()
+
+        if self.categoryCombo.currentText() == "Disabled":
+            QtWidgets.QMessageBox.information(self, 'Product Disabled', 'Product ID ' + str(pid) + " is already disabled.",
+                                              QtWidgets.QMessageBox.Ok)
+            return
 
         try:
             logging.debug("sent disable request")
-            NetworkSession.get("https://www.hangarswap.com/Seller/RemoveProduct?ProductID=" + pid.text())
+            NetworkSession.get("https://www.hangarswap.com/Seller/RemoveProduct?ProductID=" + pid, verify=False)
             logging.debug("disable product %s request successful", pid)
-            QtWidgets.QMessageBox.information(self, 'Success', 'Product ID ' + pid.text() + " disabled.",
+            self.catalog_model.removeRow(row)
+
+            temp_list = []
+
+            if self.categoryCombo.currentText() == "Active":
+                with open("./bin/cache/"+username+"/active_cat.dat", 'r') as f:
+                    reader = csv.reader(f, delimiter=',')
+                    for row in reader:
+                        if pid not in row:
+                            temp_list.append(row)
+                with open("./bin/cache/"+username+"/active_cat.dat", 'w', newline='') as f:
+                    writer = csv.writer(f, delimiter=',')
+                    for item in temp_list:
+                        writer.writerow(item)
+            if self.categoryCombo.currentText() == "Inactive":
+                with open("./bin/cache/"+username+"/inactive_cat.dat", 'r') as f:
+                    reader = csv.reader(f, delimiter=',')
+                    for row in reader:
+                        if pid not in row:
+                            temp_list.append(row)
+                with open("./bin/cache/"+username+"/inactive_cat.dat", 'w', newline='') as f:
+                    writer = csv.writer(f, delimiter=',')
+                    for item in temp_list:
+                        writer.writerow(item)
+            if self.categoryCombo.currentText() == "Sold":
+                with open("./bin/cache/"+username+"/sold_cat.dat", 'r') as f:
+                    reader = csv.reader(f, delimiter=',')
+                    for row in reader:
+                        if pid not in row:
+                            temp_list.append(row)
+                with open("./bin/cache/"+username+"/sold_cat.dat", 'w', newline='') as f:
+                    writer = csv.writer(f, delimiter=',')
+                    for item in temp_list:
+                        writer.writerow(item)
+            QtWidgets.QMessageBox.information(self, 'Success', 'Product ID ' + str(pid) + " disabled.",
                                               QtWidgets.QMessageBox.Ok)
-        except:
+        except Exception as e:
+            logging.exception(e)
             QtWidgets.QMessageBox.warning(self, 'Error', 'Unable to disable product.', QtWidgets.QMessageBox.Ok)
+
 
     def markProductSoldAction(self):
         logging.debug("clicked mark as sold")
@@ -261,9 +302,9 @@ class HSMainWindow(QtWidgets.QMainWindow, main_window_redesign.Ui_HSMainWindow):
     def editProductAction(self):
         logging.debug("clicked edit product action")
         row = self.catalogTable.selectionModel().selection().indexes()[0].row()
-        pid = self.catalog_model.item(row, 0)
+        pid = self.catalog_model.item(row, 0).text()
 
-        webbrowser.open('https://www.hangarswap.com/Seller/EditProduct?ProductID=' + pid.text())
+        webbrowser.open('https://www.hangarswap.com/Seller/EditProduct?ProductID=' + pid)
         logging.debug("opened edit product %s page", pid)
 
     def searchOrderTable(self):
@@ -294,11 +335,8 @@ class HSMainWindow(QtWidgets.QMainWindow, main_window_redesign.Ui_HSMainWindow):
 
     def addProduct(self):
         logging.debug("launch add product screen")
-        # addProductWidget = newProductDialog.Ui_newListing()
-        # if addProductWidget.exec() == QtWidgets.QDialog.Accepted:
-        #     self.loadPending()
-        #     return
-        logic_scripts.launchProductDialog()
+        logic_scripts.launchProductDialog(username, NetworkSession)
+        self.loadPending()
 
     def filterPendingProductsTable(self):
         logging.debug("filter pending table")
@@ -523,7 +561,7 @@ class HSMainWindow(QtWidgets.QMainWindow, main_window_redesign.Ui_HSMainWindow):
         self.pending_model.clear()
         self.pending_model.setHorizontalHeaderLabels(["Item Number","Title","Description","Category","Condition","Qty","Part Number","Alt P/N","S/N","SKU","Manufacturer","Price","Shipping Price","Core","Core Charge","Active","On Sale","Best Offer","Featured"])
         try:
-            with open("pend.dat", "r") as r:
+            with open("./bin/cache/"+username+"/pend.dat", "r") as r:
                 reader = csv.reader(r)
                 for row in reader:
                     items=[]
@@ -562,12 +600,28 @@ class HSMainWindow(QtWidgets.QMainWindow, main_window_redesign.Ui_HSMainWindow):
 
     def deletePendingProductAction(self):
         row = self.pendTable.selectionModel().selection().indexes()[0].row()
-        item_num = self.pending_model.item(row, 0)
+        item_num = self.pending_model.item(row, 0).text()
 
-        QtWidgets.QMessageBox.information(self, 'Delete Pending',
-                                     'Unimplemented: This function would delete pending item ' + str(
-                                         item_num),
-                                     QtWidgets.QMessageBox.Ok)
+        temp_list = []
+
+        with open("./bin/cache/"+username+"/pend.dat", "r") as f:
+            reader = csv.reader(f, delimiter=',')
+            for row in reader:
+                temp_list.append(row)
+
+        for item in temp_list:
+            for val in item:
+                if str(val) == str(item_num):
+                    temp_list.remove(item)
+
+        os.remove("./bin/cache/"+username+"/pend.dat")
+
+        with open("./bin/cache/"+username+"/pend.dat","w") as f:
+            writer = csv.writer(f, delimiter=',')
+            for item in temp_list:
+                writer.writerow(item)
+
+        self.loadPending()
         return
 
     def editPendingAction(self):
@@ -611,6 +665,17 @@ def main():
     else:
         logging.debug("login quit")
         return
+    print(username)
+
+    #clearing cached inventory files
+    try:
+        os.remove("./bin/cache/"+username+"/active_cat.dat")
+        os.remove("./bin/cache/" + username + "/inactive_cat.dat")
+        os.remove("./bin/cache/" + username + "/sold_cat.dat")
+        os.remove("./bin/cache/" + username + "/disabled_cat.dat")
+    except Exception as e:
+        logging.exception(e)
+        pass
 
     app.exec()
 
@@ -618,6 +683,8 @@ def main():
 def getNetworkSession():
     return NetworkSession
 
+def getUserName():
+    return username
 
 if __name__ == '__main__':
     sys.excepthook = my_exception_hook
